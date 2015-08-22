@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         ScaleOrbs(0.7f);
 
-        Instantiate(EndLevelExplosion, transform.position + new Vector3(0,0,-5), Quaternion.identity);
+        Instantiate(EndLevelExplosion, transform.position + new Vector3(0,0,-10), Quaternion.identity);
         yield return new WaitForSeconds(1f);
 
         currentLevel++;
