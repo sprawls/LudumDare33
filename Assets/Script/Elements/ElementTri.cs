@@ -37,6 +37,7 @@ public class ElementTri : MonoBehaviour {
     }
 
     void Start(){
+        ScaleElements();
         MoveElementsToPosition();
         UpdateCompletion();
         TriRenderer.gameObject.layer = 8;
@@ -46,6 +47,7 @@ public class ElementTri : MonoBehaviour {
         if (CurrentTris.Contains(this)) {
             CurrentTris.Remove(this);
         }
+        _canRotate = true;
     }
 
     private void AddToStaticList() {
@@ -106,6 +108,7 @@ public class ElementTri : MonoBehaviour {
     }
 
     public void RotateTri() {
+        Debug.Log("current tris : " + CurrentTris.Count);
         if (_canRotate) {
             //Logic
             Element old_1 = Element_1.element;
@@ -128,6 +131,12 @@ public class ElementTri : MonoBehaviour {
         Element_1.TranslateElement(pos_1);
         Element_2.TranslateElement(pos_2);
         Element_3.TranslateElement(pos_3);
+    }
+
+    void ScaleElements() {
+        Element_1.element.ScaleModel(size);
+        Element_2.element.ScaleModel(size);
+        Element_3.element.ScaleModel(size);
     }
 
     IEnumerator RotationCooldown() {

@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetRate: {x: -.200000003, y: -.150000006}
+  randomizeStartOffset: 1
 --- !u!114 &11465070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -332,6 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetRate: {x: -.25, y: -.0500000007}
+  randomizeStartOffset: 1
 --- !u!114 &11475914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -344,6 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetRate: {x: .100000001, y: 0}
+  randomizeStartOffset: 0
 --- !u!114 &11483902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -356,6 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetRate: {x: .25, y: .150000006}
+  randomizeStartOffset: 1
 --- !u!135 &13506244
 SphereCollider:
   m_ObjectHideFlags: 1

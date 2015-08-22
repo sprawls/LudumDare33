@@ -13,7 +13,7 @@ public class Element : MonoBehaviour {
     public GameObject Orb_Water;
     public GameObject Orb_Wind;
 
-    private GameObject Model;
+    public GameObject Model;
 
     void Start() {
         SetupOrb();
@@ -44,5 +44,10 @@ public class Element : MonoBehaviour {
         Model.transform.DOMove(newPos, 1f, false);
     }
 
+    public void ScaleModel(float scale) {
+        Model.transform.parent = null;
+        Model.transform.localScale = Vector3.one * scale * (2f/3f);
+        Model.transform.parent = transform;
+    }
 
 }
