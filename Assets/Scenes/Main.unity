@@ -87,6 +87,48 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &17431079
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 446610, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446610, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446610, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446610, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446610, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446610, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446610, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 446610, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &228738256
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &353322452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +424,7 @@ MonoBehaviour:
   - {fileID: 179402, guid: 7ebe1862a71758f49bb46c4e4906f5e9, type: 2}
   - {fileID: 103024, guid: 6f75ac3dc96804a4bb55d7588d240cae, type: 2}
   - {fileID: 126934, guid: a54a561605eb03544a19dc5947263fb9, type: 2}
+  - {fileID: 103676, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
   currentLevel: 0
   currentLevel_Obj: {fileID: 0}
   EndLevelExplosion: {fileID: 126130, guid: a6ab9d45467819841b3a86ea9244ea02, type: 2}

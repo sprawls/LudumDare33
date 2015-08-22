@@ -50,4 +50,9 @@ public class Element : MonoBehaviour {
         Model.transform.parent = transform;
     }
 
+    public void ResetModel() {
+        Destroy(Model);
+        SetupOrb();
+    }
+
 }

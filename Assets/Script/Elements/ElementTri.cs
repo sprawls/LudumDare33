@@ -84,9 +84,9 @@ public class ElementTri : MonoBehaviour {
     /// <summary> Returns true if all elements in this cycle are different </summary>
     /// <returns></returns>
     private bool IsComplete() {
-        if ((Element_1.GetEType() != Element_2.GetEType()) &&
-            (Element_2.GetEType() != Element_3.GetEType()) &&
-            (Element_3.GetEType() != Element_1.GetEType())) {
+        if ((Element_1.GetEType(this) != Element_2.GetEType(this)) &&
+            (Element_2.GetEType(this) != Element_3.GetEType(this)) &&
+            (Element_3.GetEType(this) != Element_1.GetEType(this))) {
             _isComplete = true;
             return true;
         } else {
@@ -108,15 +108,15 @@ public class ElementTri : MonoBehaviour {
     }
 
     public void RotateTri() {
-        Debug.Log("current tris : " + CurrentTris.Count);
+        //Debug.Log("current tris : " + CurrentTris.Count);
         if (_canRotate) {
             //Logic
-            Element old_1 = Element_1.element;
-            Element old_2 = Element_2.element;
-            Element old_3 = Element_3.element;
-            Element_1.ChangeElement(old_3);
-            Element_2.ChangeElement(old_1);
-            Element_3.ChangeElement(old_2);
+            Element old_1 = Element_1.GetElement(this);
+            Element old_2 = Element_2.GetElement(this);
+            Element old_3 = Element_3.GetElement(this);
+            Element_1.ChangeElement(old_3, this);
+            Element_2.ChangeElement(old_1, this);
+            Element_3.ChangeElement(old_2, this);
             if (UpdateAndGetAllTris()) {
                 GameManager.Instance.CompleteLevel();
             }
@@ -128,15 +128,15 @@ public class ElementTri : MonoBehaviour {
     }
 
     void MoveElementsToPosition() {
-        Element_1.TranslateElement(pos_1);
-        Element_2.TranslateElement(pos_2);
-        Element_3.TranslateElement(pos_3);
+        Element_1.TranslateElement(pos_1, this);
+        Element_2.TranslateElement(pos_2, this);
+        Element_3.TranslateElement(pos_3, this);
     }
 
     void ScaleElements() {
-        Element_1.element.ScaleModel(size);
-        Element_2.element.ScaleModel(size);
-        Element_3.element.ScaleModel(size);
+        Element_1.GetElement(this).ScaleModel(size);
+        Element_2.GetElement(this).ScaleModel(size);
+        Element_3.GetElement(this).ScaleModel(size);
     }
 
     IEnumerator RotationCooldown() {
