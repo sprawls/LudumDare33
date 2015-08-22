@@ -113,7 +113,9 @@ public class ElementTri : MonoBehaviour {
             Element_1.ChangeElement(old_3);
             Element_2.ChangeElement(old_1);
             Element_3.ChangeElement(old_2);
-            UpdateAndGetAllTris();
+            if (UpdateAndGetAllTris()) {
+                GameManager.Instance.CompleteLevel();
+            }
             //Start anim
             MoveElementsToPosition();
             //Start Cooldown
