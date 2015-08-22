@@ -43,6 +43,7 @@ GameObject:
   - 23: {fileID: 2329068}
   - 64: {fileID: 6432694}
   - 114: {fileID: 11495860}
+  - 114: {fileID: 11461758}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -251,6 +252,7 @@ GameObject:
   - 23: {fileID: 2327282}
   - 64: {fileID: 6479776}
   - 114: {fileID: 11479070}
+  - 114: {fileID: 11434208}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -676,6 +678,18 @@ MonoBehaviour:
   Orb_Fire: {fileID: 183750, guid: e94bb38e073fa714f836bd1d13545c68, type: 2}
   Orb_Water: {fileID: 103758, guid: 77ee7fa3310781e46822f39434209f26, type: 2}
   Orb_Wind: {fileID: 105202, guid: 348f3294495d05c47872636b1f5545f3, type: 2}
+--- !u!114 &11434208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdbae388d3f0a0f4e9b11f37cc1e48a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetRate: {x: 0, y: .0500000007}
 --- !u!114 &11437052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -748,6 +762,18 @@ MonoBehaviour:
   Orb_Fire: {fileID: 183750, guid: e94bb38e073fa714f836bd1d13545c68, type: 2}
   Orb_Water: {fileID: 103758, guid: 77ee7fa3310781e46822f39434209f26, type: 2}
   Orb_Wind: {fileID: 105202, guid: 348f3294495d05c47872636b1f5545f3, type: 2}
+--- !u!114 &11461758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdbae388d3f0a0f4e9b11f37cc1e48a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetRate: {x: 0, y: .0500000007}
 --- !u!114 &11462542
 MonoBehaviour:
   m_ObjectHideFlags: 1

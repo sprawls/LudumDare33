@@ -37,7 +37,7 @@ public class Element : MonoBehaviour {
         Model = (GameObject) Instantiate(GO,transform.position,Quaternion.identity);
         Model.transform.localScale = Vector3.one * 1f;
         Model.transform.parent = transform;
-        Debug.Log("mod scale " + Model.transform.localScale + " name : " + Model.name);
+        //Debug.Log("mod scale " + Model.transform.localScale + " name : " + Model.name);
     }
 
     public virtual void TranslateToPosition(Vector3 newPos) {

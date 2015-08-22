@@ -39,6 +39,7 @@ public class ElementTri : MonoBehaviour {
     void Start(){
         MoveElementsToPosition();
         UpdateCompletion();
+        TriRenderer.gameObject.layer = 8;
     }
 
     void OnDestroy() {
@@ -73,7 +74,7 @@ public class ElementTri : MonoBehaviour {
         lr.SetColors(Color.black, Color.black);
         lr.SetPosition(0, s);
         lr.SetPosition(1, e);
-        lr.SetWidth(0.1f, 0.1f);
+        lr.SetWidth(0.12f, 0.12f);
         lr.material = LineRenderersMaterial;
 
     }

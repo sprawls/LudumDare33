@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour {
     public void CompleteLevel() {
         //TODO : Play Anim
         currentLevel++;
+        ChangeColorByLevel.UpdateAllColor();
         LoadLevel();
     }
 
