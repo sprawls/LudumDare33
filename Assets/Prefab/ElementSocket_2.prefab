@@ -175,6 +175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: {fileID: 11439108}
+  FusionSocketParticles: {fileID: 122690, guid: 0b37654941d370a49a377bd34c99bc97,
+    type: 2}
   subElement_1: {fileID: 11441116}
   subElement_2: {fileID: 11422672}
   Tri_1: {fileID: 0}

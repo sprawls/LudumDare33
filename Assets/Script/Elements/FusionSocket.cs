@@ -3,6 +3,8 @@ using System.Collections;
 
 public class FusionSocket : ElementSocket {
 
+    public GameObject FusionSocketParticles;
+
     public Element subElement_1;
     public Element subElement_2;
 
@@ -17,13 +19,29 @@ public class FusionSocket : ElementSocket {
         
     }
 
+    private void ChangeElement(ElementType newElem) {
+        if (element.EType != newElem) {
+            element.EType = newElem;
+            Instantiate(FusionSocketParticles, element.transform.position, Quaternion.identity);
+        }
+    }
+
     private void MixElements() {
-        if (subElement_1.EType == subElement_2.EType) element.EType = subElement_1.EType;
-        else if (subElement_1.EType != ElementType.fire && subElement_2.EType != ElementType.fire) element.EType = ElementType.fire;
-        else if (subElement_1.EType != ElementType.water && subElement_2.EType != ElementType.water) element.EType = ElementType.water;
-        else if (subElement_1.EType != ElementType.wind && subElement_2.EType != ElementType.wind) element.EType = ElementType.wind;
+        if (subElement_1.EType == subElement_2.EType) ChangeElement(subElement_1.EType);
+        else if (subElement_1.EType != ElementType.fire && subElement_2.EType != ElementType.fire) ChangeElement(ElementType.fire);
+        else if (subElement_1.EType != ElementType.water && subElement_2.EType != ElementType.water) ChangeElement(ElementType.water);
+        else if (subElement_1.EType != ElementType.wind && subElement_2.EType != ElementType.wind) ChangeElement(ElementType.wind);
         element.ResetModel();
         element.ScaleModel(Tri_1.size * 1.5f);
+        PositionInMiddle();
+    }
+
+    private void PositionInMiddle() {
+        Vector3 subDistance = tri_1_pos - tri_2_pos;
+        Vector3 middlePos = (subDistance.normalized * (subDistance.magnitude * 0.5f)) + tri_2_pos;
+        //Debug.Log("mid : " + middlePos + "   sub1 :" + tri_1_pos + "  sub2 " + tri_2_pos);
+        element.transform.position = middlePos + new Vector3(0, 0, -5);
+        element.Model.transform.position = element.transform.position;
     }
 
     public override Element GetElement(ElementTri triRef) {
@@ -51,11 +69,6 @@ public class FusionSocket : ElementSocket {
             Debug.Log("Get Element Ref wasn't found ! Did not Translate Anything !");
         }
         //Now put middle Orb inbetween both
-
-        Vector3 subDistance = tri_1_pos - tri_2_pos;
-        Vector3 middlePos = (subDistance.normalized * (subDistance.magnitude * 0.5f)) + tri_2_pos;
-        Debug.Log("mid : " + middlePos + "   sub1 :" + tri_1_pos + "  sub2 " + tri_2_pos);
-        element.transform.position = middlePos + new Vector3(0,0,-5);
         MixElements();
     }
 

@@ -15,6 +15,10 @@ public class Element : MonoBehaviour {
 
     public GameObject Model;
 
+    void Awake() {
+        transform.position = Vector3.zero;
+    }
+
     void Start() {
         SetupOrb();
     }
@@ -34,7 +38,7 @@ public class Element : MonoBehaviour {
                 break;
         }
         //Spawn it
-        Model = (GameObject) Instantiate(GO,transform.position,Quaternion.identity);
+        Model = (GameObject) Instantiate(GO,Vector3.zero,Quaternion.identity);
         Model.transform.localScale = Vector3.one * 1f;
         Model.transform.parent = transform;
         //Debug.Log("mod scale " + Model.transform.localScale + " name : " + Model.name);
