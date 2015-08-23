@@ -112,7 +112,7 @@ MonoBehaviour:
   clip_music: {fileID: 8300000, guid: e251d82c9a432324bbc479b27ee65470, type: 3}
   clip_move: {fileID: 8300000, guid: c385f88cf64c4c0408b0dd8575c8fb46, type: 3}
   clip_fusionChange: {fileID: 8300000, guid: a46fb0ab5468248478dda96cd46a9ed1, type: 3}
-  clip_levelComplete: {fileID: 0}
+  clip_levelComplete: {fileID: 8300000, guid: 832a5c1860fc67649a9917fbfb8a76c3, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -37,14 +37,14 @@ public class MusicManager : MonoBehaviour {
     }
 
     public void PlaySound_Move(){
-        audioSource.PlayOneShot(clip_move);
+        if(clip_move != null ) audioSource.PlayOneShot(clip_move);
     }
 
     public void PlaySound_FusionChange() {
-        audioSource.PlayOneShot(clip_fusionChange);
+        if (clip_fusionChange != null) audioSource.PlayOneShot(clip_fusionChange);
     }
 
     public void PlaySound_LevelComplete() {
-        audioSource.PlayOneShot(clip_levelComplete);
+        if (clip_levelComplete != null) audioSource.PlayOneShot(clip_levelComplete);
     }
 }

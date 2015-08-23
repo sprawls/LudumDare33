@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void CompleteLevel() {
+        
         StartCoroutine(CompletionAnimation());
         currentLevelMoves = 0;
     }
@@ -82,7 +83,9 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         ScaleOrbs(1.5f);
         DeactivateAllColliders();
+        MusicManager.Instance.PlaySound_LevelComplete();
         yield return new WaitForSeconds(0.5f);
+        
         ScaleOrbs(0.7f);
 
         Instantiate(EndLevelExplosion, transform.position + new Vector3(0,0,-10), Quaternion.identity);
