@@ -11,6 +11,7 @@ public class TriCollider : MonoBehaviour {
 
     void OnMouseDown() {
         Debug.Log("Clicked");
+        
         triCollider.RotateTri();
     }
 }

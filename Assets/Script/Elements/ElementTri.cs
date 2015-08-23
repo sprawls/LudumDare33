@@ -110,6 +110,8 @@ public class ElementTri : MonoBehaviour {
     public void RotateTri() {
         //Debug.Log("current tris : " + CurrentTris.Count);
         if (_canRotate) {
+            if (GameManager.Instance != null) GameManager.Instance.AddMove();
+            else Debug.Log("GameManager is null !");
             //Logic
             Element old_1 = Element_1.GetElement(this);
             Element old_2 = Element_2.GetElement(this);

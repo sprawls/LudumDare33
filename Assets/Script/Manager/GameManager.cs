@@ -9,10 +9,12 @@ public class GameManager : MonoBehaviour {
 
     public List<GameObject> LevelsList;
     public int currentLevel = 0;
+    public int currentLevelMoves {get; private set;}
+    private int[] parMoves = new int[8] {2, 2, 6, 1, 2, 7, 6, 6};
     [HideInInspector] public GameObject currentLevel_Obj;
     public GameObject EndLevelExplosion;
 
-
+    public int Score {get; private set;}
 
     void Awake() {
         if (Instance == null) {
@@ -24,7 +26,10 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
+        currentLevelMoves = 0;
+        Score = 0;
         LoadLevel();
+
     }
 
     void OnDestroy() {
@@ -33,11 +38,28 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public int GetParMoves() {
+        if (parMoves.Length > currentLevel) {
+            return parMoves[currentLevel];
+        } else {
+            Debug.Log("No Par Moves with current level");
+            return 5;
+        }
+    }
+
+    public void AddMove() {
+        currentLevelMoves++;
+        if (currentLevelMoves > parMoves[currentLevel]) Score++;
+    }
+
     public void CompleteLevel() {
         StartCoroutine(CompletionAnimation());
+        currentLevelMoves = 0;
     }
 
     public void LoadLevel() {
+        
+
         if (currentLevel_Obj != null) Destroy(currentLevel_Obj);
         if (LevelsList.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList[currentLevel], transform.position, Quaternion.identity);
         else Debug.Log("All LEvels COMPLETED !");
