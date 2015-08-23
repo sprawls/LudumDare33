@@ -11,6 +11,6 @@ public class UIGetter_Moves : MonoBehaviour {
     }
 
     void Update() {
-        text.text = GameManager.Instance.currentLevelMoves.ToString();
+        if (GameManager.Instance != null) text.text = GameManager.Instance.currentLevelMoves.ToString();
     }
 }

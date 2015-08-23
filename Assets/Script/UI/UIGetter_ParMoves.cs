@@ -11,6 +11,6 @@ public class UIGetter_ParMoves : MonoBehaviour {
     }
 
     void Update() {
-        text.text = GameManager.Instance.GetParMoves().ToString();
+        if(GameManager.Instance != null) text.text = GameManager.Instance.GetParMoves().ToString();
     }
 }

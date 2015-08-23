@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> LevelsList;
     public int currentLevel = 0;
     public int currentLevelMoves {get; private set;}
-    private int[] parMoves = new int[8] {2, 2, 6, 1, 2, 7, 6, 6};
+    private int[] parMoves = new int[9] {2, 2, 6, 1, 2, 7, 6, 6,8};
     [HideInInspector] public GameObject currentLevel_Obj;
     public GameObject EndLevelExplosion;
 

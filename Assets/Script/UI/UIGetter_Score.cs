@@ -11,7 +11,7 @@ public class UIGetter_Score : MonoBehaviour {
     }
 
     void Update() {
-        text.text = "+" + GameManager.Instance.Score.ToString();
+        if (GameManager.Instance != null) text.text = "+" + GameManager.Instance.Score.ToString();
     }
 
 }

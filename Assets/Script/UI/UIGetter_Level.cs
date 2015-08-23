@@ -11,6 +11,6 @@ public class UIGetter_Level : MonoBehaviour {
     }
 
 	void Update () {
-        text.text = (GameManager.Instance.currentLevel + 1).ToString();
+        if (GameManager.Instance != null) text.text = (GameManager.Instance.currentLevel + 1).ToString();
 	}
 }
