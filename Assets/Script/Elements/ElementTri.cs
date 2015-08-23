@@ -112,6 +112,7 @@ public class ElementTri : MonoBehaviour {
         if (_canRotate) {
             if (GameManager.Instance != null) GameManager.Instance.AddMove();
             else Debug.Log("GameManager is null !");
+            if (MusicManager.Instance != null) MusicManager.Instance.PlaySound_Move();
             //Logic
             Element old_1 = Element_1.GetElement(this);
             Element old_2 = Element_2.GetElement(this);

@@ -8,8 +8,13 @@ public class MenuManager : MonoBehaviour {
     public Image frontImage;
     public GameObject mainCanvas;
 
+    private bool isfadin = false;
+
     public void OnClick_GoNextScene() {
-        StartCoroutine(StartGame());
+        if (isfadin == false) {
+            isfadin = true;
+            StartCoroutine(StartGame());
+        }
     }
 
     public void OnClick_OpenTwitter() {

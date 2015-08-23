@@ -21,6 +21,7 @@ public class FusionSocket : ElementSocket {
 
     private void ChangeElement(ElementType newElem) {
         if (element.EType != newElem) {
+            MusicManager.Instance.PlaySound_FusionChange();
             element.EType = newElem;
             Instantiate(FusionSocketParticles, element.transform.position, Quaternion.identity);
         }

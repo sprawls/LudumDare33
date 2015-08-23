@@ -109,7 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7fc83ddc640e9409d1bb71a5f9f111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicClip: {fileID: 8300000, guid: e251d82c9a432324bbc479b27ee65470, type: 3}
+  clip_music: {fileID: 8300000, guid: e251d82c9a432324bbc479b27ee65470, type: 3}
+  clip_move: {fileID: 8300000, guid: c385f88cf64c4c0408b0dd8575c8fb46, type: 3}
+  clip_fusionChange: {fileID: 8300000, guid: a46fb0ab5468248478dda96cd46a9ed1, type: 3}
+  clip_levelComplete: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
