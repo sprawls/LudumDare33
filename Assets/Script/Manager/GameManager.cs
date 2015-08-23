@@ -6,11 +6,12 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour {
 
     public static GameManager Instance {  get; private set; }
+    public static bool tutoShown = false;
 
     public List<GameObject> LevelsList;
     public int currentLevel = 0;
     public int currentLevelMoves {get; private set;}
-    private int[] parMoves = new int[9] {2, 2, 6, 1, 2, 7, 6, 6,8};
+    private int[] parMoves = new int[10] {2, 2, 6, 1, 2, 7, 6, 6,8, 11};
     [HideInInspector] public GameObject currentLevel_Obj;
     public GameObject EndLevelExplosion;
 
@@ -26,10 +27,16 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
+        if (tutoShown == false) {
+            TutorialManager.Instance.StartTutorial();
+        }
+    }
+
+    public void StartGame() {
+        tutoShown = true;
         currentLevelMoves = 0;
         Score = 0;
         LoadLevel();
-
     }
 
     void OnDestroy() {
@@ -53,7 +60,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void CompleteLevel() {
-        
+        if (currentLevelMoves < GetParMoves()) Score -= (GetParMoves() - currentLevelMoves);
         StartCoroutine(CompletionAnimation());
         currentLevelMoves = 0;
     }

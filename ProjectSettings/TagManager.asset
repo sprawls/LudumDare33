@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - ElementParent
+  - ConvoText
+  - TutoCanvas
+  - TalkRings
   layers:
   - Default
   - TransparentFX

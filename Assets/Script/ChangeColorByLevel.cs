@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 
 public class ChangeColorByLevel : MonoBehaviour {
+
+    public bool ChangeText = false;
+    public bool ChangeMeshRenderer = false;
 
     private static List<ChangeColorByLevel> colorList;
 
@@ -11,7 +15,7 @@ public class ChangeColorByLevel : MonoBehaviour {
     public Color EndColor;
 
     private MeshRenderer meshRendrer;
-
+    private Text text;
 
 
 	void Awake(){
@@ -20,7 +24,8 @@ public class ChangeColorByLevel : MonoBehaviour {
     }
 
     void Start() {
-        meshRendrer = GetComponent<MeshRenderer>();
+        if(ChangeText) text = GetComponent<Text>();
+        if(ChangeMeshRenderer) meshRendrer = GetComponent<MeshRenderer>();
     }
 
     void OnDestroy(){
@@ -35,6 +40,8 @@ public class ChangeColorByLevel : MonoBehaviour {
 
     public void UpdateColor(){
         Color TargetColor = Color.Lerp(StartColor, EndColor, (float)GameManager.Instance.currentLevel / (float)GameManager.Instance.LevelsList.Count);
-        meshRendrer.material.DOColor(TargetColor, 2f);
+        
+        if(meshRendrer != null) meshRendrer.material.DOColor(TargetColor, 2f);
+        if(text != null) text.DOColor(TargetColor, 2f);
     }
 }
