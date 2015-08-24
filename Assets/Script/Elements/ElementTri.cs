@@ -58,6 +58,14 @@ public class ElementTri : MonoBehaviour {
         CurrentTris.Add(this);
     }
 
+    /// <summary> Makes all the tris unable to be used </summary>
+    /// <returns></returns>
+    public static void ToogleAllTrisActivation(bool canBeUsed) {
+        for (int i = 0; i < CurrentTris.Count; i++) {
+            CurrentTris[i].canReceivePlayerInput = canBeUsed;
+        }
+    }
+
     /// <summary> Updates all tris and return true if ALL of them are complete </summary>
     /// <returns></returns>
     public static bool UpdateAndGetAllTris() {
@@ -65,6 +73,15 @@ public class ElementTri : MonoBehaviour {
         for (int i = 0; i < CurrentTris.Count; i++) {
             CurrentTris[i].UpdateCompletion();
             if (!CurrentTris[i]._isComplete) allTrue = false;
+        }
+        return allTrue;
+    }
+
+    public static bool CheckIfAllFalse() {
+        bool allTrue = false;
+        for (int i = 0; i < CurrentTris.Count; i++) {
+            CurrentTris[i].UpdateCompletion();
+            if (CurrentTris[i]._isComplete) allTrue = true;
         }
         return allTrue;
     }
@@ -123,6 +140,10 @@ public class ElementTri : MonoBehaviour {
             Element_3.ChangeElement(old_2, this);
             if (UpdateAndGetAllTris()) {
                 GameManager.Instance.CompleteLevel();
+            } else if (GameManager.Instance.currentLevel == GameManager.LastLevel) {
+                if (CheckIfAllFalse()) {
+                    GameManager.Instance.StartEnding_NoHeatDeath();
+                }
             }
             //Start anim
             MoveElementsToPosition();

@@ -9,6 +9,7 @@ TagManager:
   - TutoCanvas
   - TalkRings
   - TutoTris
+  - OtherBeing
   layers:
   - Default
   - TransparentFX

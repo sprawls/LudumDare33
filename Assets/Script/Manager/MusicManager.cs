@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class MusicManager : MonoBehaviour {
 
@@ -36,6 +37,13 @@ public class MusicManager : MonoBehaviour {
         }
     }
 
+    void OnLevelWasLoaded(int lvl) {
+        if (lvl == 0 && Instance == this) {
+            audioSource_music.DOFade(1,2f);
+            audioSource_sounds.DOFade(1, 2f);
+        }
+    }
+
     public void PlaySound_Move(){
         if (clip_move != null) audioSource_music.PlayOneShot(clip_move);
     }
@@ -46,5 +54,10 @@ public class MusicManager : MonoBehaviour {
 
     public void PlaySound_LevelComplete() {
         if (clip_levelComplete != null) audioSource_sounds.PlayOneShot(clip_levelComplete);
+    }
+
+    public void StopAllSounds(){
+        audioSource_music.DOFade(0, 6f);
+        audioSource_sounds.DOFade(0, 8f);
     }
 }

@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance {  get; private set; }
     public static bool tutoShown = false;
 
+    public CanvasGroup UICanvas;
+    public CanvasGroup UICanvas_Ending;
+    public CanvasGroup UICanvas_Ending_Button;
+    public MeshRenderer backgroundRenderer;
+
     public List<GameObject> LevelsList;
     public int currentLevel = 0;
     public int currentLevelMoves {get; private set;}
@@ -16,6 +21,7 @@ public class GameManager : MonoBehaviour {
     public GameObject EndLevelExplosion;
 
     public int Score {get; private set;}
+    public const int LastLevel = 11;
 
     void Awake() {
         if (Instance == null) {
@@ -28,6 +34,7 @@ public class GameManager : MonoBehaviour {
 
     void Start() {
         if (tutoShown == false) {
+            UICanvas_Ending.DOFade(0, 0.01f);
             TutorialManager.Instance.StartTutorial();
         }
     }
@@ -68,9 +75,19 @@ public class GameManager : MonoBehaviour {
             TutorialManager.Instance.TutoLevelCompleted();
         } else {
             if (currentLevelMoves < GetParMoves()) Score -= (GetParMoves() - currentLevelMoves);
-            StartCoroutine(CompletionAnimation());
-            currentLevelMoves = 0;
+
+            Debug.Log("last lvl :" + LastLevel + " Cur + 1 : " + (currentLevel + 1));
+            if (currentLevel + 1 == LastLevel) {
+                StartCoroutine(EndSequence_HeatDeath());
+            } else {
+                StartCoroutine(CompletionAnimation());
+                currentLevelMoves = 0;
+            }
         }
+    }
+
+    public void StartEnding_NoHeatDeath() {
+
     }
 
     public void LoadLevel() {
@@ -84,7 +101,19 @@ public class GameManager : MonoBehaviour {
     public void ReloadLevel() {
         if (currentLevel_Obj != null) Destroy(currentLevel_Obj);
         if (LevelsList.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList[currentLevel], transform.position, Quaternion.identity);
-        else StartCoroutine(EndSequence());
+        else Debug.Log("LastLevelReached");
+    }
+
+    public void OnClick_Restart() {
+        if (currentLevel < 0 || currentLevel + 1 >= LastLevel) {
+
+        } else {
+            ReloadLevel();
+        }
+    }
+
+    public void OnClick_BackToMenu() {
+        Application.LoadLevel("Menu");
     }
 
     private void DeactivateAllColliders(){
@@ -161,7 +190,7 @@ public class GameManager : MonoBehaviour {
             case 9:
                 messageCooldown = TalkManager.Instance.WriteMessage("That's a big one.");
                 break;
-            case 10:
+            case LastLevel-1:
                 messageCooldown = TalkManager.Instance.WriteMessage("This is the last one. Once this cluster reaches equilibrium, so will the universe. ");
                 yield return new WaitForSeconds(messageCooldown + 3.5f);
                 messageCooldown = TalkManager.Instance.WriteMessage("Everything will stop. Maximum Entropy. ");
@@ -220,11 +249,36 @@ public class GameManager : MonoBehaviour {
         TalkManager.Instance.WriteMessage(RandomMessage);
     }
 
-    IEnumerator EndSequence() {
+    IEnumerator EndSequence_HeatDeath() {
+        ElementTri.ToogleAllTrisActivation(false);
+        StopCoroutine("TalkAboutLevel");
         float messageCooldown = TalkManager.Instance.WriteMessage("Here it is. The Heat Death.");
         yield return new WaitForSeconds(messageCooldown + 5.5f);
         messageCooldown = TalkManager.Instance.WriteMessage("It's time to go now.");
         yield return new WaitForSeconds(messageCooldown + 2.5f);
+        UICanvas.DOFade(0, 1.5f);
+        StartCoroutine(CompletionAnimation());
+        MusicManager.Instance.StopAllSounds();
+        backgroundRenderer.GetComponent<ChangeColorByLevel>().enabled = false;
+        yield return new WaitForSeconds(3f);
+        backgroundRenderer.material.DOColor(new Color(1, 1, 1, 1), 5f);
+        OtherBeing ob = GameObject.FindGameObjectWithTag("OtherBeing").GetComponent<OtherBeing>();
+        ob.Kill();
+        yield return new WaitForSeconds(5f);
+        
+        UICanvas_Ending.DOFade(1, 8f);
+        yield return new WaitForSeconds(3f);
+        UICanvas_Ending_Button.DOFade(1, 5f);
 
+    }
+
+    IEnumerator EndSequence_NoHeatDeath() {
+        float messageCooldown = TalkManager.Instance.WriteMessage("What are you doing ? This is the opposite of what you have to do.");
+        yield return new WaitForSeconds(messageCooldown + 3.5f);
+        messageCooldown = TalkManager.Instance.WriteMessage("Come on, balance this cluster.");
+        yield return new WaitForSeconds(messageCooldown + 2.5f);
+        messageCooldown = TalkManager.Instance.WriteMessage("Come on, balance this cluster.");
+        yield return new WaitForSeconds(messageCooldown + 2.5f);
+        
     }
 }
