@@ -52,7 +52,7 @@ MonoBehaviour:
   - {fileID: 126934, guid: a54a561605eb03544a19dc5947263fb9, type: 2}
   - {fileID: 187806, guid: e000442e93ce16e459355c9799fa5b66, type: 2}
   - {fileID: 142500, guid: 9b25b8bb02721154e9d84798ed9de7fe, type: 2}
-  currentLevel: 9
+  currentLevel: 0
   currentLevel_Obj: {fileID: 0}
   EndLevelExplosion: {fileID: 126130, guid: a6ab9d45467819841b3a86ea9244ea02, type: 2}
 --- !u!114 &11468234
@@ -66,7 +66,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d49388732714249bf6e48c64c67c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTalking: 0
 --- !u!114 &11496544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,7 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0f0ce89d70a594fb8df48c4635e846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Canvas_Tuto: {fileID: 0}
+  TutoLevel_01: {fileID: 0}
+  tutoLevelComplete: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

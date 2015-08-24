@@ -54,15 +54,23 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void CompleteLevel_Tuto() {
+        StartCoroutine(CompletionAnimation_Tuto());
+    }
+
     public void AddMove() {
         currentLevelMoves++;
         if (currentLevelMoves > parMoves[currentLevel]) Score++;
     }
 
     public void CompleteLevel() {
-        if (currentLevelMoves < GetParMoves()) Score -= (GetParMoves() - currentLevelMoves);
-        StartCoroutine(CompletionAnimation());
-        currentLevelMoves = 0;
+        if (TutorialManager.Instance.isInTuto) {
+            TutorialManager.Instance.TutoLevelCompleted();
+        } else {
+            if (currentLevelMoves < GetParMoves()) Score -= (GetParMoves() - currentLevelMoves);
+            StartCoroutine(CompletionAnimation());
+            currentLevelMoves = 0;
+        }
     }
 
     public void LoadLevel() {
@@ -82,7 +90,7 @@ public class GameManager : MonoBehaviour {
     private void ScaleOrbs(float scale) {
         ElementSocket[] sockets = currentLevel_Obj.GetComponentsInChildren<ElementSocket>();
         foreach (ElementSocket s in sockets) {
-            s.element.Model.transform.DOScale(s.element.Model.transform.localScale.x * scale, 0.5f);
+            if (s.element.Model != null) s.element.Model.transform.DOScale(s.element.Model.transform.localScale.x * scale, 0.5f);
         }
     }
 
@@ -101,5 +109,17 @@ public class GameManager : MonoBehaviour {
         currentLevel++;
         ChangeColorByLevel.UpdateAllColor();
         LoadLevel();
+    }
+
+    IEnumerator CompletionAnimation_Tuto() {
+        TutorialManager.Instance.ScaleTutoOrbs(1.5f);
+
+        MusicManager.Instance.PlaySound_LevelComplete();
+        yield return new WaitForSeconds(0.5f);
+
+        TutorialManager.Instance.ScaleTutoOrbs(0.7f);
+
+        Instantiate(EndLevelExplosion, transform.position + new Vector3(0, 0, -10), Quaternion.identity);
+        yield return new WaitForSeconds(1f);
     }
 }

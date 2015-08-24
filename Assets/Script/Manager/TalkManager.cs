@@ -45,14 +45,13 @@ public class TalkManager : MonoBehaviour {
     }
 
     public float WriteMessage(string newMessage) {
-
+        StopAllCoroutines();
         StartCoroutine(TextAnim(newMessage));
         return newMessage.Length * charDelay;
     }
 
     public void FadeOutText() {
         conversationText.DOFade(0, 1f);
-
     }
 
     IEnumerator TextAnim(string Message) {
@@ -65,8 +64,12 @@ public class TalkManager : MonoBehaviour {
         for (int i = 0; i < Message.Length; i++) {
             conversationText.text += Message[i];
             yield return new WaitForSeconds(charDelay);
+            conversationText.DOFade(1, 0.01f);
         }
         isTalking = false;
+
+        yield return new WaitForSeconds(8f);
+        FadeOutText();
     }
 
 }

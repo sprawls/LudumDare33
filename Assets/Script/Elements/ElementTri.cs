@@ -8,6 +8,7 @@ public class ElementTri : MonoBehaviour {
 
     public float size = 1f;
     public float addedRotation = 0;
+    public bool canReceivePlayerInput = true;
 
     public ElementSocket Element_1;
     public ElementSocket Element_2;
@@ -109,7 +110,7 @@ public class ElementTri : MonoBehaviour {
 
     public void RotateTri() {
         //Debug.Log("current tris : " + CurrentTris.Count);
-        if (_canRotate) {
+        if (_canRotate && canReceivePlayerInput) {
             if (GameManager.Instance != null) GameManager.Instance.AddMove();
             else Debug.Log("GameManager is null !");
             if (MusicManager.Instance != null) MusicManager.Instance.PlaySound_Move();
