@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> LevelsList;
     public int currentLevel = 0;
     public int currentLevelMoves {get; private set;}
-    private int[] parMoves = new int[10] {2, 2, 6, 1, 2, 7, 6, 6,8, 11};
+    private int[] parMoves = new int[11] {2, 2, 6, 1, 2, 7, 6, 6,8, 11, 2};
     [HideInInspector] public GameObject currentLevel_Obj;
     public GameObject EndLevelExplosion;
 
@@ -74,13 +74,17 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LoadLevel() {
-        
-        if (currentLevel_Obj != null) Destroy(currentLevel_Obj);
-        if (LevelsList.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList[currentLevel], transform.position, Quaternion.identity);
-        else Debug.Log("All Levels COMPLETED !");
 
+        ReloadLevel();
         StopCoroutine("TalkAboutLevel");
         StartCoroutine("TalkAboutLevel");
+       
+    }
+
+    public void ReloadLevel() {
+        if (currentLevel_Obj != null) Destroy(currentLevel_Obj);
+        if (LevelsList.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList[currentLevel], transform.position, Quaternion.identity);
+        else StartCoroutine(EndSequence());
     }
 
     private void DeactivateAllColliders(){
@@ -111,6 +115,7 @@ public class GameManager : MonoBehaviour {
         currentLevel++;
         ChangeColorByLevel.UpdateAllColor();
         LoadLevel();
+
     }
 
     IEnumerator CompletionAnimation_Tuto() {
@@ -151,10 +156,27 @@ public class GameManager : MonoBehaviour {
                 messageCooldown = TalkManager.Instance.WriteMessage("Once this is over, you'll have to go back there.");
                 break;
             case 8:
-                messageCooldown = TalkManager.Instance.WriteMessage("No need to feel bad. Heat death is the only solution.");
+                messageCooldown = TalkManager.Instance.WriteMessage("No need to feel bad. We'll survive.");
                 break;
             case 9:
                 messageCooldown = TalkManager.Instance.WriteMessage("That's a big one.");
+                break;
+            case 10:
+                messageCooldown = TalkManager.Instance.WriteMessage("This is the last one. Once this cluster reaches equilibrium, so will the universe. ");
+                yield return new WaitForSeconds(messageCooldown + 3.5f);
+                messageCooldown = TalkManager.Instance.WriteMessage("Everything will stop. Maximum Entropy. ");
+                yield return new WaitForSeconds(messageCooldown + 12f);
+                messageCooldown = TalkManager.Instance.WriteMessage("Come on, you can do it.");
+                yield return new WaitForSeconds(messageCooldown + 8f);
+                messageCooldown = TalkManager.Instance.WriteMessage("You never had any doubt before. ");
+                yield return new WaitForSeconds(messageCooldown + 12f);
+                messageCooldown = TalkManager.Instance.WriteMessage("We are waiting for you.");
+                yield return new WaitForSeconds(messageCooldown + 18f);
+                messageCooldown = TalkManager.Instance.WriteMessage("Come on, This is the last one.");
+                yield return new WaitForSeconds(messageCooldown + 40f);
+                messageCooldown = TalkManager.Instance.WriteMessage("I Mean it, it really is... ");
+                yield return new WaitForSeconds(messageCooldown + 100f);
+                messageCooldown = TalkManager.Instance.WriteMessage("Still there ? Really ?");
                 break;
         }
         messageCooldown += 15f;
@@ -173,7 +195,7 @@ public class GameManager : MonoBehaviour {
                 RandomMessage = "Take your time, we're in no hurry.";
                 break;
             case 1 :
-                RandomMessage = "Equilibrium will happen regardless. We're just accelerating the process.";
+                RandomMessage = "Stability will happen regardless. We're just accelerating the process.";
                 break;
             case 2:
                 RandomMessage = "Still rusty, huh.";
@@ -196,5 +218,13 @@ public class GameManager : MonoBehaviour {
         }
 
         TalkManager.Instance.WriteMessage(RandomMessage);
+    }
+
+    IEnumerator EndSequence() {
+        float messageCooldown = TalkManager.Instance.WriteMessage("Here it is. The Heat Death.");
+        yield return new WaitForSeconds(messageCooldown + 5.5f);
+        messageCooldown = TalkManager.Instance.WriteMessage("It's time to go now.");
+        yield return new WaitForSeconds(messageCooldown + 2.5f);
+
     }
 }

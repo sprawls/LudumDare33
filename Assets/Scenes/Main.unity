@@ -674,7 +674,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 353322452}
-        m_MethodName: LoadLevel
+        m_MethodName: ReloadLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1605,6 +1605,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList.Array.size
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 474188, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1641,6 +1645,18 @@ Prefab:
       propertyPath: TutoLevel_01
       value: 
       objectReference: {fileID: 198262, guid: b4809580c940f414192af6548be8065f, type: 2}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: currentLevel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList.Array.data[10]
+      value: 
+      objectReference: {fileID: 161342, guid: 679e8637bb484cd4db42e05f4ab697d8, type: 2}
+    - target: {fileID: 182006, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
   m_IsPrefabParent: 0
@@ -2568,9 +2584,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: 
 --- !u!222 &2100785908
 CanvasRenderer:
   m_ObjectHideFlags: 0
