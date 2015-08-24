@@ -190,7 +190,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 152519789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.38999987, y: -4.11999989, z: 0}
+  m_LocalPosition: {x: -6.51300001, y: -4.11999989, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1848053422}
@@ -1800,7 +1800,7 @@ Prefab:
       objectReference: {fileID: 198262, guid: b4809580c940f414192af6548be8065f, type: 2}
     - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
       propertyPath: currentLevel
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
       propertyPath: LevelsList.Array.data[10]
@@ -1826,6 +1826,10 @@ Prefab:
       propertyPath: backgroundRenderer
       value: 
       objectReference: {fileID: 875460928}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: RestartButton
+      value: 
+      objectReference: {fileID: 1403175174}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
   m_IsPrefabParent: 0
@@ -2736,7 +2740,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1979228808}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

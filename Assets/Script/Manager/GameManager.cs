@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -6,12 +7,13 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour {
 
     public static GameManager Instance {  get; private set; }
-    public static bool tutoShown = false;
+    public bool tutoShown = false;
 
     public CanvasGroup UICanvas;
     public CanvasGroup UICanvas_Ending;
     public CanvasGroup UICanvas_Ending_Button;
     public MeshRenderer backgroundRenderer;
+    public Button RestartButton;
 
     public List<GameObject> LevelsList;
     public int currentLevel = 0;
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
+        RestartButton.interactable = false;
         if (tutoShown == false) {
             UICanvas_Ending.DOFade(0, 0.01f);
             TutorialManager.Instance.StartTutorial();
@@ -40,7 +43,9 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartGame() {
+
         tutoShown = true;
+        currentLevel = 0;
         currentLevelMoves = 0;
         Score = 0;
         LoadLevel();
@@ -265,7 +270,7 @@ public class GameManager : MonoBehaviour {
         OtherBeing ob = GameObject.FindGameObjectWithTag("OtherBeing").GetComponent<OtherBeing>();
         ob.Kill();
         yield return new WaitForSeconds(5f);
-        
+        RestartButton.interactable = true;
         UICanvas_Ending.DOFade(1, 8f);
         yield return new WaitForSeconds(3f);
         UICanvas_Ending_Button.DOFade(1, 5f);

@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour {
 
     public Image frontImage;
     public GameObject mainCanvas;
+    public GameObject[] TransitionDestroy;
 
     private bool isfadin = false;
 
@@ -18,7 +19,8 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void OnClick_OpenTwitter() {
-        Application.OpenURL("https://twitter.com/Alexis_Lessard");
+        if(Application.loadedLevel == 0)
+            Application.OpenURL("https://twitter.com/Alexis_Lessard");
     }
 
     IEnumerator StartGame() {
@@ -31,6 +33,9 @@ public class MenuManager : MonoBehaviour {
         Destroy(mainCanvas);
         yield return new WaitForSeconds(1.5f);
 
+        foreach (GameObject go in TransitionDestroy) {
+            Destroy(go);
+        }
         frontImage.DOFade(0, 4f);
         Application.LoadLevel(1);
 
