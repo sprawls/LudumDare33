@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour {
         
         if (currentLevel_Obj != null) Destroy(currentLevel_Obj);
         if (LevelsList.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList[currentLevel], transform.position, Quaternion.identity);
-        else Debug.Log("All LEvels COMPLETED !");
+        else Debug.Log("All Levels COMPLETED !");
 
         StopCoroutine("TalkAboutLevel");
         StartCoroutine("TalkAboutLevel");
@@ -130,14 +130,71 @@ public class GameManager : MonoBehaviour {
 
         float messageCooldown = 0f;
         switch (currentLevel) {
-            case 0 :
-                messageCooldown = TalkManager.Instance.WriteMessage("");
+            case 1 :
+                messageCooldown = TalkManager.Instance.WriteMessage("Equilibrium is necessary.");
                 break;
             case 2 :
+                messageCooldown = TalkManager.Instance.WriteMessage("Simply put, clearing a cluster removes all its free energy.");
+                break;
+            case 4:
+                messageCooldown = TalkManager.Instance.WriteMessage("Sometimes energy can fuse. The result from the fuse is the element you must consider.");
+                yield return new WaitForSeconds(messageCooldown + 3.5f);
+                messageCooldown = TalkManager.Instance.WriteMessage("Two identical orbs will produce the same element while two different will produce a new one.");
+                break;
+            case 5:
+                messageCooldown = TalkManager.Instance.WriteMessage("It gets harder from here on out.");
+                break;
+            case 6:
+                messageCooldown = TalkManager.Instance.WriteMessage("We're getting closer. I feel it.");
+                break;
+            case 7:
+                messageCooldown = TalkManager.Instance.WriteMessage("Once this is over, you'll have to go back there.");
+                break;
+            case 8:
+                messageCooldown = TalkManager.Instance.WriteMessage("No need to feel bad. Heat death is the only solution.");
+                break;
+            case 9:
+                messageCooldown = TalkManager.Instance.WriteMessage("That's a big one.");
                 break;
         }
         messageCooldown += 15f;
 
         yield return new WaitForSeconds(messageCooldown);
+
+        
+
+        WriteRandomTip();
+    }
+
+    private void WriteRandomTip() {
+        string RandomMessage= "";
+        switch(Random.Range(0,8)){
+            case 0 :
+                RandomMessage = "Take your time, we're in no hurry.";
+                break;
+            case 1 :
+                RandomMessage = "Equilibrium will happen regardless. We're just accelerating the process.";
+                break;
+            case 2:
+                RandomMessage = "Still rusty, huh.";
+                break;
+            case 3:
+                RandomMessage = "You can always reset the cluster to its origin position by using the button at the top right corner.";
+                break;
+            case 4:
+                RandomMessage = "The optimal amount of moves to reach equilibrium in a cluster is written in the top left corner.";
+                break;
+            case 5:
+                RandomMessage = "Your score is the amount of moves above the par solution used. The lower the better. ";
+                break;
+            case 6:
+                RandomMessage = "Keep going, we haven't woken you up for nothing.";
+                break;
+            case 7:
+                RandomMessage = "What's wrong ? You've done that plenty of times.";
+                break;
+        }
+
+        TalkManager.Instance.WriteMessage(RandomMessage);
     }
 }
