@@ -75,10 +75,12 @@ public class GameManager : MonoBehaviour {
 
     public void LoadLevel() {
         
-
         if (currentLevel_Obj != null) Destroy(currentLevel_Obj);
         if (LevelsList.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList[currentLevel], transform.position, Quaternion.identity);
         else Debug.Log("All LEvels COMPLETED !");
+
+        StopCoroutine("TalkAboutLevel");
+        StartCoroutine("TalkAboutLevel");
     }
 
     private void DeactivateAllColliders(){
@@ -121,5 +123,21 @@ public class GameManager : MonoBehaviour {
 
         Instantiate(EndLevelExplosion, transform.position + new Vector3(0, 0, -10), Quaternion.identity);
         yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator TalkAboutLevel() {
+        yield return new WaitForSeconds(2.5f);
+
+        float messageCooldown = 0f;
+        switch (currentLevel) {
+            case 0 :
+                messageCooldown = TalkManager.Instance.WriteMessage("");
+                break;
+            case 2 :
+                break;
+        }
+        messageCooldown += 15f;
+
+        yield return new WaitForSeconds(messageCooldown);
     }
 }

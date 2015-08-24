@@ -68,7 +68,7 @@ public class TalkManager : MonoBehaviour {
         }
         isTalking = false;
 
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(6f);
         FadeOutText();
     }
 

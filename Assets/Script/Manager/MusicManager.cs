@@ -9,7 +9,9 @@ public class MusicManager : MonoBehaviour {
     public AudioClip clip_move;
     public AudioClip clip_fusionChange;
     public AudioClip clip_levelComplete;
-    private AudioSource audioSource;
+
+    public AudioSource audioSource_music;
+    public AudioSource audioSource_sounds;
     
 
     void Awake() {
@@ -22,12 +24,10 @@ public class MusicManager : MonoBehaviour {
     }
 
     void Start() {
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
 
-        audioSource.loop = true;
-        audioSource.clip = clip_music;
-        audioSource.Play();
+        audioSource_music.loop = true;
+        audioSource_music.clip = clip_music;
+        audioSource_music.Play();
     }
 
     void OnDestroy() {
@@ -37,14 +37,14 @@ public class MusicManager : MonoBehaviour {
     }
 
     public void PlaySound_Move(){
-        if(clip_move != null ) audioSource.PlayOneShot(clip_move);
+        if (clip_move != null) audioSource_music.PlayOneShot(clip_move);
     }
 
     public void PlaySound_FusionChange() {
-        if (clip_fusionChange != null) audioSource.PlayOneShot(clip_fusionChange);
+        if (clip_fusionChange != null) audioSource_music.PlayOneShot(clip_fusionChange);
     }
 
     public void PlaySound_LevelComplete() {
-        if (clip_levelComplete != null) audioSource.PlayOneShot(clip_levelComplete);
+        if (clip_levelComplete != null) audioSource_sounds.PlayOneShot(clip_levelComplete);
     }
 }
