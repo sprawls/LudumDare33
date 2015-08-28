@@ -743,8 +743,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e7bb5dcdad68d408d8721f6e81155b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movesLeft_GameObject: {fileID: 122668, guid: a4810b4e351657c428e6b106a167f030, type: 2}
+  rotationAvailable: -1
   size: 2
   addedRotation: 180
+  canReceivePlayerInput: 1
   Element_1: {fileID: 11438306}
   Element_2: {fileID: 11413952}
   Element_3: {fileID: 11427720}
@@ -790,8 +793,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e7bb5dcdad68d408d8721f6e81155b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movesLeft_GameObject: {fileID: 0}
+  rotationAvailable: -1
   size: 2
   addedRotation: 0
+  canReceivePlayerInput: 1
   Element_1: {fileID: 11438306}
   Element_2: {fileID: 11481532}
   Element_3: {fileID: 11449404}

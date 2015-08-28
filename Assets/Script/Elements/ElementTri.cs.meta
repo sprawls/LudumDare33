@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: 22e7bb5dcdad68d408d8721f6e81155b
-timeCreated: 1440218276
+timeCreated: 1440735562
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - movesLeft_GameObject: {fileID: 122668, guid: a4810b4e351657c428e6b106a167f030,
+      type: 2}
+  - Element_1: {instanceID: 0}
+  - Element_2: {instanceID: 0}
+  - Element_3: {instanceID: 0}
+  - TriRenderer: {instanceID: 0}
+  - LineRenderersMaterial: {instanceID: 0}
   executionOrder: 100
   icon: {instanceID: 0}
   userData: 

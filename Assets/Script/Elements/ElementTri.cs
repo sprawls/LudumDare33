@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class ElementTri : MonoBehaviour {
 
     public static List<ElementTri> CurrentTris;
+    public GameObject movesLeft_GameObject;
 
+    public int rotationAvailable = -1;
     public float size = 1f;
     public float addedRotation = 0;
     public bool canReceivePlayerInput = true;
@@ -13,12 +15,15 @@ public class ElementTri : MonoBehaviour {
     public ElementSocket Element_1;
     public ElementSocket Element_2;
     public ElementSocket Element_3;
+
     public MeshRenderer TriRenderer;
     public Material LineRenderersMaterial;
+    private GameObject currentMovesLeftObj;
 
     private Vector3 pos_1;
     private Vector3 pos_2;
     private Vector3 pos_3;
+
     private static bool _canRotate = true;
     private bool _isComplete = false;
 
@@ -41,6 +46,7 @@ public class ElementTri : MonoBehaviour {
         ScaleElements();
         MoveElementsToPosition();
         UpdateCompletion();
+        UpdateMovesText();
         TriRenderer.gameObject.layer = 8;
     }
 
@@ -56,6 +62,17 @@ public class ElementTri : MonoBehaviour {
             CurrentTris = new List<ElementTri>();
         }
         CurrentTris.Add(this);
+    }
+
+    private void UpdateMovesText() {
+        if (rotationAvailable >= 0) {
+            if (currentMovesLeftObj == null) {
+                currentMovesLeftObj = (GameObject)Instantiate(movesLeft_GameObject, transform.position, Quaternion.identity);
+                currentMovesLeftObj.transform.parent = transform;
+            }
+            if (rotationAvailable == 0) currentMovesLeftObj.GetComponentInChildren<TextMesh>().text = "X";
+            else currentMovesLeftObj.GetComponentInChildren<TextMesh>().text = rotationAvailable.ToString();
+        }
     }
 
     /// <summary> Makes all the tris unable to be used </summary>
@@ -125,30 +142,46 @@ public class ElementTri : MonoBehaviour {
         return _isComplete;
     }
 
+    private bool UseRotationAvailable() {
+        bool rotates = false;
+        if (rotationAvailable == -1) rotates = true;
+        if (rotationAvailable > 0) {
+            rotates = true;
+            rotationAvailable--;
+        }
+        return rotates;
+    }
+
     public void RotateTri() {
         //Debug.Log("current tris : " + CurrentTris.Count);
         if (_canRotate && canReceivePlayerInput) {
-            if (GameManager.Instance != null) GameManager.Instance.AddMove();
-            else Debug.Log("GameManager is null !");
-            if (MusicManager.Instance != null) MusicManager.Instance.PlaySound_Move();
-            //Logic
-            Element old_1 = Element_1.GetElement(this);
-            Element old_2 = Element_2.GetElement(this);
-            Element old_3 = Element_3.GetElement(this);
-            Element_1.ChangeElement(old_3, this);
-            Element_2.ChangeElement(old_1, this);
-            Element_3.ChangeElement(old_2, this);
-            if (UpdateAndGetAllTris()) {
-                GameManager.Instance.CompleteLevel();
-            } else if (GameManager.Instance.currentLevel == GameManager.LastLevel) {
-                if (CheckIfAllFalse()) {
-                    GameManager.Instance.StartEnding_NoHeatDeath();
+            if (UseRotationAvailable()) {
+
+                if (GameManager.Instance != null) GameManager.Instance.AddMove();
+                else Debug.Log("GameManager is null !");
+                if (MusicManager.Instance != null) MusicManager.Instance.PlaySound_Move();
+                //Logic
+                Element old_1 = Element_1.GetElement(this);
+                Element old_2 = Element_2.GetElement(this);
+                Element old_3 = Element_3.GetElement(this);
+                Element_1.ChangeElement(old_3, this);
+                Element_2.ChangeElement(old_1, this);
+                Element_3.ChangeElement(old_2, this);
+                if (UpdateAndGetAllTris()) {
+                    GameManager.Instance.CompleteLevel();
+                } else if (GameManager.Instance.currentLevel == GameManager.LastLevel) {
+                    if (CheckIfAllFalse()) {
+                        GameManager.Instance.StartEnding_NoHeatDeath();
+                    }
                 }
+                UpdateMovesText();
+
+                //Start anim
+                MoveElementsToPosition();
+                //Start Cooldown
+                StartCoroutine(RotationCooldown());
+
             }
-            //Start anim
-            MoveElementsToPosition();
-            //Start Cooldown
-            StartCoroutine(RotationCooldown());
         }
     }
 
@@ -166,7 +199,7 @@ public class ElementTri : MonoBehaviour {
 
     IEnumerator RotationCooldown() {
         _canRotate = false;
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.4f);
         _canRotate = true;
     }
 
