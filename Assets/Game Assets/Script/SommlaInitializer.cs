@@ -44,29 +44,106 @@ public class SommlaInitializer : MonoBehaviour {
         );
         #endregion
 
-        Score nullScore = null;
-        Mission nullMission = null;
-
         // Add 10 levels to each world
-        world_A.BatchAddLevelsWithTemplates(
-            10, 
-            null,
-            nullScore,
-            nullMission);
-
-        world_B.BatchAddLevelsWithTemplates(
-            10,
-            world_B_Gate,
-            nullScore,
-            nullMission);
-
+        for (int i = 0; i < 10; i++) {
+            world_A.AddInnerWorld(new Level("World_A_" + i));
+            world_B.AddInnerWorld(new Level("World_B_" + i));
+        }
         // Create a world that will contain all worlds of the game
         World mainWorld = new World("main_world");
         mainWorld.InnerWorldsMap.Add(world_A.ID, world_A);
         mainWorld.InnerWorldsMap.Add(world_B.ID, world_B);
 
+
+        foreach (World world in mainWorld.InnerWorldsList) {
+            foreach (World level in world.InnerWorldsList) {
+                level.AddScore(new RangeScore("stars", "stars", true, new RangeScore.SRange(0, 3)));
+                level.AddScore(new Score("moves", "moves", false));
+            }
+        }
+
         return mainWorld;
     }
 
+    /// <summary>
+    /// Get the Score of a Level
+    /// </summary>
+    /// <param name="world"> world of the level </param>
+    /// <param name="level"> id of the level </param>
+    /// <param name="isStars"> true if we want star score, false if we want moves score </param>
+    /// <returns></returns>
+    public static int GetLevelScore(int world, int level, bool isStars) {
+        Dictionary<string, double> recordScores;
+        string wantedScoreKey;
+
+        if (isStars) wantedScoreKey = "stars";
+        else wantedScoreKey = "moves";
+
+        //Get Level ID with world
+        string levelID = "";
+        switch (world) {
+            case 0 :
+                levelID = "world_A_";
+                break;
+            case 1 :
+                levelID = "world_B_";
+                break;
+        }
+        //Complete level ID with level
+        levelID += level.ToString();
+        recordScores = SoomlaLevelUp.GetLevel(levelID).GetRecordScores();
+
+        //Get the pairs of scores and return the wanted one
+        foreach (KeyValuePair<string, double> entry in recordScores) {
+            if (entry.Key == wantedScoreKey) {
+                return (int) entry.Value;
+            }
+
+            string message = entry.Key + ": " + entry.Value;
+            SoomlaUtils.LogDebug("", message);
+        }
+
+        return -1;
+    }
+
+    /// <summary>
+    /// Get the toal score for all levels in given world 
+    /// </summary>
+    /// <param name="world"> id of world </param>
+    /// <param name="isStars"> true if we want star score, false if we want moves score </param>
+    /// <returns></returns>
+    public static int GetWorldScore(int world, bool isStars) {
+        Dictionary<string, double> recordScores;
+        string wantedScoreKey;
+
+        if (isStars) wantedScoreKey = "stars";
+        else wantedScoreKey = "moves";
+
+        //Get Level ID with world
+        switch (world) {
+            case 0:
+                recordScores = SoomlaLevelUp.GetWorld("world_A").GetRecordScores();
+                break;
+            case 1:
+                recordScores = SoomlaLevelUp.GetWorld("world_B").GetRecordScores();
+                break;
+            default :
+                recordScores = null;
+                break;
+        }
+
+        //Get the pairs of scores and return the wanted one
+        int totalValue = 0;
+        foreach (KeyValuePair<string, double> entry in recordScores) {
+            if (entry.Key == wantedScoreKey) {
+                totalValue += (int)entry.Value;
+            }
+
+            string message = entry.Key + ": " + entry.Value;
+            SoomlaUtils.LogDebug("", message);
+        }
+
+        return totalValue;
+    }
 
 }
