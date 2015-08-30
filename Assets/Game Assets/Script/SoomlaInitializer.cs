@@ -9,9 +9,9 @@ using Soomla.Levelup;
 
 
 
-public class SommlaInitializer : MonoBehaviour {
+public class SoomlaInitializer : MonoBehaviour {
 
-    public static SommlaInitializer Instance;
+    public static SoomlaInitializer Instance;
 
     void Awake() {
         if (Instance == null) {
@@ -46,8 +46,8 @@ public class SommlaInitializer : MonoBehaviour {
 
         // Add 10 levels to each world
         for (int i = 0; i < 10; i++) {
-            world_A.AddInnerWorld(new Level("World_A_" + i));
-            world_B.AddInnerWorld(new Level("World_B_" + i));
+            world_A.AddInnerWorld(new Level("world_A_" + i));
+            world_B.AddInnerWorld(new Level("world_B_" + i));
         }
         // Create a world that will contain all worlds of the game
         World mainWorld = new World("main_world");
@@ -73,7 +73,7 @@ public class SommlaInitializer : MonoBehaviour {
     /// <param name="isStars"> true if we want star score, false if we want moves score </param>
     /// <returns></returns>
     public static int GetLevelScore(int world, int level, bool isStars) {
-        Dictionary<string, double> recordScores;
+        Dictionary<string, double> recordScores = null;
         string wantedScoreKey;
 
         if (isStars) wantedScoreKey = "stars";
@@ -91,16 +91,24 @@ public class SommlaInitializer : MonoBehaviour {
         }
         //Complete level ID with level
         levelID += level.ToString();
-        recordScores = SoomlaLevelUp.GetLevel(levelID).GetRecordScores();
+        Level lvl = SoomlaLevelUp.GetLevel(levelID);
+        if (lvl == null) {
+            Debug.Log("Level is null !");
+        } else {
+            recordScores = SoomlaLevelUp.GetLevel(levelID).GetRecordScores();
+        }
+        
 
         //Get the pairs of scores and return the wanted one
-        foreach (KeyValuePair<string, double> entry in recordScores) {
-            if (entry.Key == wantedScoreKey) {
-                return (int) entry.Value;
-            }
+        if (recordScores != null) {
+            foreach (KeyValuePair<string, double> entry in recordScores) {
+                if (entry.Key == wantedScoreKey) {
+                    return (int)entry.Value;
+                }
 
-            string message = entry.Key + ": " + entry.Value;
-            SoomlaUtils.LogDebug("", message);
+                string message = entry.Key + ": " + entry.Value;
+                //SoomlaUtils.LogDebug("", message);
+            }
         }
 
         return -1;
@@ -122,10 +130,10 @@ public class SommlaInitializer : MonoBehaviour {
         //Get Level ID with world
         switch (world) {
             case 0:
-                recordScores = SoomlaLevelUp.GetWorld("world_A").GetRecordScores();
+                recordScores = SoomlaLevelUp.GetWorld("world_A").GetLatestScores();
                 break;
             case 1:
-                recordScores = SoomlaLevelUp.GetWorld("world_B").GetRecordScores();
+                recordScores = SoomlaLevelUp.GetWorld("world_B").GetLatestScores();
                 break;
             default :
                 recordScores = null;
@@ -140,7 +148,7 @@ public class SommlaInitializer : MonoBehaviour {
             }
 
             string message = entry.Key + ": " + entry.Value;
-            SoomlaUtils.LogDebug("", message);
+            //SoomlaUtils.LogDebug("", message);
         }
 
         return totalValue;

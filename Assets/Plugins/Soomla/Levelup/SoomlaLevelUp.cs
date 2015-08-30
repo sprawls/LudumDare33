@@ -45,6 +45,7 @@ namespace Soomla.Levelup {
 		/// </summary>
 		/// <param name="initialWorld">Initial world.</param>
 		public static void Initialize(World initialWorld) {
+            Debug.Log(initialWorld);
 			InitialWorld = initialWorld;
 
 			save();
@@ -82,7 +83,7 @@ namespace Soomla.Levelup {
 		/// <returns>The world.</returns>
 		/// <param name="worldId">World ID of the <c>Score</c> to be fetched.</param>
 		public static World GetWorld(string worldId) {
-			if (InitialWorld.ID == worldId) {
+            if (InitialWorld != null && InitialWorld.ID == worldId) {
 				return InitialWorld;
 			}
 
