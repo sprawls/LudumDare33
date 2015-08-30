@@ -57,8 +57,9 @@ public class SoomlaInitializer : MonoBehaviour {
 
         foreach (World world in mainWorld.InnerWorldsList) {
             foreach (World level in world.InnerWorldsList) {
-                level.AddScore(new RangeScore("stars", "stars", true, new RangeScore.SRange(0, 3)));
-                level.AddScore(new Score("moves", "moves", false));
+                string levelName = level.ID;
+                level.AddScore(new RangeScore(levelName + "_stars", "stars", true, new RangeScore.SRange(0, 3)));
+                level.AddScore(new Score(levelName + "_moves", "moves", false));
             }
         }
 
@@ -75,9 +76,6 @@ public class SoomlaInitializer : MonoBehaviour {
     public static int GetLevelScore(int world, int level, bool isStars) {
         Dictionary<string, double> recordScores = null;
         string wantedScoreKey;
-
-        if (isStars) wantedScoreKey = "stars";
-        else wantedScoreKey = "moves";
 
         //Get Level ID with world
         string levelID = "";
@@ -97,7 +95,11 @@ public class SoomlaInitializer : MonoBehaviour {
         } else {
             recordScores = SoomlaLevelUp.GetLevel(levelID).GetRecordScores();
         }
-        
+
+        //Get wanted Key 
+        wantedScoreKey = lvl.ID;
+        if (isStars) wantedScoreKey += "_stars";
+        else wantedScoreKey += "_moves";
 
         //Get the pairs of scores and return the wanted one
         if (recordScores != null) {
@@ -124,9 +126,6 @@ public class SoomlaInitializer : MonoBehaviour {
         Dictionary<string, double> recordScores;
         string wantedScoreKey;
 
-        if (isStars) wantedScoreKey = "stars";
-        else wantedScoreKey = "moves";
-
         //Get Level ID with world
         switch (world) {
             case 0:
@@ -139,6 +138,10 @@ public class SoomlaInitializer : MonoBehaviour {
                 recordScores = null;
                 break;
         }
+
+        //Get wanted Key 
+        if (isStars) wantedScoreKey = "stars";
+        else wantedScoreKey = "moves";
 
         //Get the pairs of scores and return the wanted one
         int totalValue = 0;

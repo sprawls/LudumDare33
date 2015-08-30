@@ -3,8 +3,8 @@ using System.Collections;
 
 
 public class OffsetTexture : MonoBehaviour {
-    float offsetX = 0f;
-    float offsetY = 0f;
+    public float offsetX = 0f;
+    public float offsetY = 0f;
 
     public Vector2 offsetRate;
     public bool randomizeStartOffset = false;
@@ -12,6 +12,7 @@ public class OffsetTexture : MonoBehaviour {
     private MeshRenderer mesh;
 
     void Start() {
+
         mesh = gameObject.GetComponent<MeshRenderer>();
         if (randomizeStartOffset) {
             offsetX = Random.Range(0f, 1f);
