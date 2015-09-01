@@ -33,26 +33,26 @@ public class SoomlaInitializer : MonoBehaviour {
     }
 
     private World createMainWorld() {
-        World world_A = new World("world_A");
-        World world_B = new World("world_B");
+        World world_1 = new World("world_1");
+        World world_2 = new World("world_2");
 
         //Gates
         #region Gates
-        Gate world_B_Gate = new WorldCompletionGate(
+        Gate world_2_Gate = new WorldCompletionGate(
             "WGate_B",                              // ID
-            world_A.ID                             // Associated World ID
+            world_1.ID                             // Associated World ID
         );
         #endregion
 
         // Add 10 levels to each world
         for (int i = 0; i < 10; i++) {
-            world_A.AddInnerWorld(new Level("world_A_" + i));
-            world_B.AddInnerWorld(new Level("world_B_" + i));
+            world_1.AddInnerWorld(new Level("world_1_" + i));
+            world_2.AddInnerWorld(new Level("world_2_" + i));
         }
         // Create a world that will contain all worlds of the game
         World mainWorld = new World("main_world");
-        mainWorld.InnerWorldsMap.Add(world_A.ID, world_A);
-        mainWorld.InnerWorldsMap.Add(world_B.ID, world_B);
+        mainWorld.InnerWorldsMap.Add(world_1.ID, world_1);
+        mainWorld.InnerWorldsMap.Add(world_2.ID, world_2);
 
 
         foreach (World world in mainWorld.InnerWorldsList) {
@@ -81,10 +81,10 @@ public class SoomlaInitializer : MonoBehaviour {
         string levelID = "";
         switch (world) {
             case 0 :
-                levelID = "world_A_";
+                levelID = "world_1_";
                 break;
             case 1 :
-                levelID = "world_B_";
+                levelID = "world_2_";
                 break;
         }
         //Complete level ID with level
@@ -129,10 +129,10 @@ public class SoomlaInitializer : MonoBehaviour {
         //Get Level ID with world
         switch (world) {
             case 0:
-                recordScores = SoomlaLevelUp.GetWorld("world_A").GetLatestScores();
+                recordScores = SoomlaLevelUp.GetWorld("world_1").GetLatestScores();
                 break;
             case 1:
-                recordScores = SoomlaLevelUp.GetWorld("world_B").GetLatestScores();
+                recordScores = SoomlaLevelUp.GetWorld("world_2").GetLatestScores();
                 break;
             default :
                 recordScores = null;
@@ -152,6 +152,41 @@ public class SoomlaInitializer : MonoBehaviour {
 
             string message = entry.Key + ": " + entry.Value;
             //SoomlaUtils.LogDebug("", message);
+        }
+
+        return totalValue;
+    }
+
+    /// <summary>
+    /// Get The amount of completed levels in a given world
+    /// </summary>
+    /// <param name="world">wanted world</param>
+    /// <returns>Amount of completed levels </returns>
+    public static int GetWorldCompletedLevels(int world){
+        Dictionary<string, World> levels;
+
+        //Get Level ID with world
+        switch (world) {
+            case 0:
+                levels = SoomlaLevelUp.GetWorld("world_1").InnerWorldsMap;
+                break;
+            case 1:
+                levels = SoomlaLevelUp.GetWorld("world_2").InnerWorldsMap;
+                break;
+            default :
+                levels = null;
+                break;
+        }
+
+        //Get the pairs of scores and return the wanted one
+        int totalValue = 0;
+        foreach (KeyValuePair<string, World> entry in levels) {
+            if (entry.Value.IsCompleted() == true) {
+                totalValue++;
+            }
+
+            string message = entry.Key + ": " + entry.Value;
+            //Debug.Log(message);
         }
 
         return totalValue;

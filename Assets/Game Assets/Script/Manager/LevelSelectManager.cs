@@ -22,7 +22,7 @@ public class LevelSelectManager : MonoBehaviour {
     }
 
     public void Debug_Set3Starts(int level) {
-        string id = "world_A_" + level.ToString();
+        string id = "world_1_" + level.ToString();
         Debug.Log("Amount of worlds + levels : " + SoomlaLevelUp.GetWorldCount(true));
 
         Level levelRef = SoomlaLevelUp.GetLevel(id);
@@ -31,6 +31,7 @@ public class LevelSelectManager : MonoBehaviour {
         levelRef.SetScoreValue(levelRef.ID + "_moves", 5);
         levelRef.SetScoreValue(levelRef.ID + "_stars", 1);
         levelRef.End (true);
+        levelRef.SetCompleted(true);
     }
 
 
