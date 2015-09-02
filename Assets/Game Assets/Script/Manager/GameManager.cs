@@ -7,7 +7,6 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour {
 
     public static GameManager Instance {  get; private set; }
-    public bool tutoShown = false;
 
     public CanvasGroup UICanvas;
     public CanvasGroup UICanvas_Ending;
@@ -36,7 +35,7 @@ public class GameManager : MonoBehaviour {
 
     void Start() {
         RestartButton.interactable = false;
-        if (tutoShown == false) {
+        if (LevelManager.Instance.showTutorial == true) {
             UICanvas_Ending.DOFade(0, 0.01f);
             TutorialManager.Instance.StartTutorial();
         } else {
@@ -45,12 +44,10 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartGame() {
-
         StartGame(0);
     }
 
     public void StartGame(int lvl) {
-        tutoShown = true;
         currentLevel = lvl;
         currentLevelMoves = 0;
         Score = 0;
@@ -85,6 +82,7 @@ public class GameManager : MonoBehaviour {
         if (TutorialManager.Instance.isInTuto) {
             TutorialManager.Instance.TutoLevelCompleted();
         } else {
+            //TODO : Update Par Moves
             if (currentLevelMoves < GetParMoves()) Score -= (GetParMoves() - currentLevelMoves);
 
             Debug.Log("last lvl :" + LastLevel + " Cur + 1 : " + (currentLevel + 1));
@@ -92,7 +90,7 @@ public class GameManager : MonoBehaviour {
                 StartCoroutine(EndSequence_HeatDeath());
             } else {
                 StartCoroutine(CompletionAnimation());
-                currentLevelMoves = 0;
+                
             }
         }
     }
@@ -152,7 +150,10 @@ public class GameManager : MonoBehaviour {
         Instantiate(EndLevelExplosion, transform.position + new Vector3(0,0,-10), Quaternion.identity);
         yield return new WaitForSeconds(1f);
 
-        currentLevel++;
+        LevelManager.Instance.CompleteLevel(currentLevelMoves, parMoves[currentLevel]);
+        currentLevel = LevelManager.Instance.currentSelectedLevel;
+        currentLevelMoves = 0;
+
         ChangeColorByLevel.UpdateAllColor();
         LoadLevel();
 

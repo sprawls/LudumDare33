@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11410444}
   - 114: {fileID: 11496544}
   - 114: {fileID: 11468234}
+  - 82: {fileID: 8246502}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -30,6 +31,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &8246502
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182006}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11410444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -41,7 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9019470920dd1144982f34e025dd157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelsList:
+  UICanvas: {fileID: 0}
+  UICanvas_Ending: {fileID: 0}
+  UICanvas_Ending_Button: {fileID: 0}
+  backgroundRenderer: {fileID: 0}
+  RestartButton: {fileID: 0}
+  LevelsList_w1:
   - {fileID: 167156, guid: c23054368a648264bb3b269b45c6f4b0, type: 2}
   - {fileID: 179402, guid: 7ebe1862a71758f49bb46c4e4906f5e9, type: 2}
   - {fileID: 103024, guid: 6f75ac3dc96804a4bb55d7588d240cae, type: 2}
@@ -52,6 +127,8 @@ MonoBehaviour:
   - {fileID: 126934, guid: a54a561605eb03544a19dc5947263fb9, type: 2}
   - {fileID: 187806, guid: e000442e93ce16e459355c9799fa5b66, type: 2}
   - {fileID: 142500, guid: 9b25b8bb02721154e9d84798ed9de7fe, type: 2}
+  - {fileID: 161342, guid: 679e8637bb484cd4db42e05f4ab697d8, type: 2}
+  LevelsList_w2: []
   currentLevel: 0
   currentLevel_Obj: {fileID: 0}
   EndLevelExplosion: {fileID: 126130, guid: a6ab9d45467819841b3a86ea9244ea02, type: 2}
@@ -77,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0f0ce89d70a594fb8df48c4635e846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutoLevel_01: {fileID: 0}
+  TutoLevel_01: {fileID: 198262, guid: b4809580c940f414192af6548be8065f, type: 2}
   tutoLevelComplete: 0
 --- !u!1001 &100100000
 Prefab:

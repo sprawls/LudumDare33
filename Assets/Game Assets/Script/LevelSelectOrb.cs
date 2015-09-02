@@ -14,6 +14,7 @@ public class LevelSelectOrb : MonoBehaviour {
     public WorldsEnum world;
     public int level;
     public int pointsRequired;
+    public bool showTutorial = false;
 
     private GameObject spawnedOrbPrefab;
 
@@ -30,10 +31,10 @@ public class LevelSelectOrb : MonoBehaviour {
         Debug.Log("Going To World " + world + " level " + level);
         switch (world) {
             case WorldsEnum.world_1:
-                LevelManager.Instance.StartLevel(0, level);
+                LevelManager.Instance.StartLevel(1, level, showTutorial);
                 break;
             case WorldsEnum.world_2:
-                LevelManager.Instance.StartLevel(1, level);
+                LevelManager.Instance.StartLevel(2, level, showTutorial);
                 break;
         }
         

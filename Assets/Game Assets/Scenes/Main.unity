@@ -1762,6 +1762,10 @@ Prefab:
       propertyPath: LevelsList.Array.size
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.size
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 474188, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1830,6 +1834,50 @@ Prefab:
       propertyPath: RestartButton
       value: 
       objectReference: {fileID: 1403175174}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.data[0]
+      value: 
+      objectReference: {fileID: 167156, guid: c23054368a648264bb3b269b45c6f4b0, type: 2}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.data[1]
+      value: 
+      objectReference: {fileID: 179402, guid: 7ebe1862a71758f49bb46c4e4906f5e9, type: 2}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.data[2]
+      value: 
+      objectReference: {fileID: 103024, guid: 6f75ac3dc96804a4bb55d7588d240cae, type: 2}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.data[3]
+      value: 
+      objectReference: {fileID: 152934, guid: cf4aa03ae29a22246a64df7f153eeb51, type: 2}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.data[4]
+      value: 
+      objectReference: {fileID: 103676, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.data[5]
+      value: 
+      objectReference: {fileID: 134118, guid: 93d4963d15b24264fb16792790931f8f, type: 2}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.data[6]
+      value: 
+      objectReference: {fileID: 179032, guid: 34fbdb34d7a0497439ef871627667e8c, type: 2}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.data[7]
+      value: 
+      objectReference: {fileID: 126934, guid: a54a561605eb03544a19dc5947263fb9, type: 2}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.data[8]
+      value: 
+      objectReference: {fileID: 187806, guid: e000442e93ce16e459355c9799fa5b66, type: 2}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.data[9]
+      value: 
+      objectReference: {fileID: 142500, guid: 9b25b8bb02721154e9d84798ed9de7fe, type: 2}
+    - target: {fileID: 11410444, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
+      propertyPath: LevelsList_w1.Array.data[10]
+      value: 
+      objectReference: {fileID: 161342, guid: 679e8637bb484cd4db42e05f4ab697d8, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ec50bd7b271e9147938ad787f24bee0, type: 2}
   m_IsPrefabParent: 0
