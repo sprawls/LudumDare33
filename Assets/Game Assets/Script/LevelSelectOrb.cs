@@ -9,7 +9,7 @@ public class LevelSelectOrb : MonoBehaviour {
     public GameObject orbPrefab_locked;
     public GameObject orbPrefab_unlocked;
     public GameObject orbPrefab_completed;
-    public CircleCollider2D buttonCollider;
+    public SphereCollider buttonCollider;
 
     public WorldsEnum world;
     public int level;
@@ -28,6 +28,15 @@ public class LevelSelectOrb : MonoBehaviour {
 
     void OnMouseDown() {
         Debug.Log("Going To World " + world + " level " + level);
+        switch (world) {
+            case WorldsEnum.world_1:
+                LevelManager.Instance.StartLevel(0, level);
+                break;
+            case WorldsEnum.world_2:
+                LevelManager.Instance.StartLevel(1, level);
+                break;
+        }
+        
     }
 
     void UpdateOrb(){
@@ -51,11 +60,11 @@ public class LevelSelectOrb : MonoBehaviour {
         switch (world) {
             case WorldsEnum.world_1:
                 levelsCompleted = SoomlaInitializer.GetWorldCompletedLevels(0);
-                Debug.Log("Amount completed in world 1 : " + levelsCompleted);
+                //Debug.Log("Amount completed in world 1 : " + levelsCompleted);
                 break;
             case WorldsEnum.world_2:
                 levelsCompleted = SoomlaInitializer.GetWorldCompletedLevels(1);
-                Debug.Log("Amount completed in world 2 : " + levelsCompleted);
+                //Debug.Log("Amount completed in world 2 : " + levelsCompleted);
                 break;
         }    
         return levelsCompleted;
@@ -73,5 +82,6 @@ public class LevelSelectOrb : MonoBehaviour {
         } 
         spawnedOrbPrefab = (GameObject) Instantiate(prefab, transform.position, Quaternion.identity);
         spawnedOrbPrefab.transform.parent = transform;
+        spawnedOrbPrefab.transform.localScale = Vector3.one;
     }
 }

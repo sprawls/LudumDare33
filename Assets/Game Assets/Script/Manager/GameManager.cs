@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour {
     public MeshRenderer backgroundRenderer;
     public Button RestartButton;
 
-    public List<GameObject> LevelsList;
+    public List<GameObject> LevelsList_w1;
+    public List<GameObject> LevelsList_w2;
     public int currentLevel = 0;
     public int currentLevelMoves {get; private set;}
     private int[] parMoves = new int[11] {2, 2, 6, 1, 2, 7, 6, 6,8, 11, 2};
@@ -28,7 +29,6 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         if (Instance == null) {
             Instance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
@@ -39,13 +39,19 @@ public class GameManager : MonoBehaviour {
         if (tutoShown == false) {
             UICanvas_Ending.DOFade(0, 0.01f);
             TutorialManager.Instance.StartTutorial();
+        } else {
+            StartGame(LevelManager.Instance.currentSelectedLevel);
         }
     }
 
     public void StartGame() {
 
+        StartGame(0);
+    }
+
+    public void StartGame(int lvl) {
         tutoShown = true;
-        currentLevel = 0;
+        currentLevel = lvl;
         currentLevelMoves = 0;
         Score = 0;
         LoadLevel();
@@ -105,7 +111,7 @@ public class GameManager : MonoBehaviour {
 
     public void ReloadLevel() {
         if (currentLevel_Obj != null) Destroy(currentLevel_Obj);
-        if (LevelsList.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList[currentLevel], transform.position, Quaternion.identity);
+        if (LevelsList_w1.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList_w1[currentLevel], transform.position, Quaternion.identity);
         else Debug.Log("LastLevelReached");
     }
 

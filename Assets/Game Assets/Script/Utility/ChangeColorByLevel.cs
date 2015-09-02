@@ -39,7 +39,7 @@ public class ChangeColorByLevel : MonoBehaviour {
     }
 
     public void UpdateColor(){
-        Color TargetColor = Color.Lerp(StartColor, EndColor, (float)GameManager.Instance.currentLevel / (float)GameManager.Instance.LevelsList.Count);
+        Color TargetColor = Color.Lerp(StartColor, EndColor, (float)GameManager.Instance.currentLevel / (float)GameManager.Instance.LevelsList_w1.Count);
         
         if(meshRendrer != null) meshRendrer.material.DOColor(TargetColor, 2f);
         if(text != null) text.DOColor(TargetColor, 2f);
