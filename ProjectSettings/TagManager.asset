@@ -10,6 +10,7 @@ TagManager:
   - TalkRings
   - TutoTris
   - OtherBeing
+  - ReceivesTouchInputs
   layers:
   - Default
   - TransparentFX

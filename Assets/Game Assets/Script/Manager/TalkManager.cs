@@ -24,10 +24,12 @@ public class TalkManager : MonoBehaviour {
     private ParticleSystem talkParticles;
 
 
+
     void Awake() {
         if (Instance == null) {
             Instance = this;
             GameObject.DontDestroyOnLoad(gameObject);
+            gameObject.AddComponent<DialogueManager>();
         } else {
             Destroy(gameObject);
         }
