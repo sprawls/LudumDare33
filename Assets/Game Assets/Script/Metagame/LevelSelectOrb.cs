@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Soomla.Levelup;
 
 public class LevelSelectOrb : MonoBehaviour {
 
@@ -41,18 +40,24 @@ public class LevelSelectOrb : MonoBehaviour {
     }
 
     void UpdateOrb(){
-       int completedLevels = GetAmtLvlCompleted();
-       if (completedLevels >= pointsRequired) {
-           buttonCollider.enabled = true;
-           Debug.Log("Level to check completion : " + SoomlaLevelUp.GetLevel(GetLevelId()) +  "   and its id : " + GetLevelId());
-           if (SoomlaLevelUp.GetLevel(GetLevelId()).IsCompleted()) {
-               SpawnOrb(orbPrefab_completed);
+       Level currentLevel = LevelManager.Instance.GetLevel(GetLevelId());
+       if (currentLevel != null) {
+           int completedLevels = GetAmtLvlCompleted();
+           if (completedLevels >= pointsRequired) {
+               buttonCollider.enabled = true;
+               if (LevelManager.Instance.GetLevel(GetLevelId()).completedPar) {
+                   SpawnOrb(orbPrefab_completed);
+               } else if (LevelManager.Instance.GetLevel(GetLevelId()).completed) {
+                   SpawnOrb(orbPrefab_completed);
+               } else {
+                   SpawnOrb(orbPrefab_unlocked);
+               }
            } else {
-               SpawnOrb(orbPrefab_unlocked);
+               buttonCollider.enabled = false;
+               SpawnOrb(orbPrefab_locked);
            }
        } else {
-           buttonCollider.enabled = false;
-           SpawnOrb(orbPrefab_locked);
+           Debug.Log("Requested Level Does Not Exist !");
        }
     }
 
@@ -60,12 +65,12 @@ public class LevelSelectOrb : MonoBehaviour {
         int levelsCompleted = 0;
         switch (world) {
             case WorldsEnum.world_1:
-                levelsCompleted = SoomlaInitializer.GetWorldCompletedLevels(0);
-                //Debug.Log("Amount completed in world 1 : " + levelsCompleted);
+                levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(0);
+                Debug.Log("Amount completed in world 1 : " + levelsCompleted);
                 break;
             case WorldsEnum.world_2:
-                levelsCompleted = SoomlaInitializer.GetWorldCompletedLevels(1);
-                //Debug.Log("Amount completed in world 2 : " + levelsCompleted);
+                levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(1);
+                Debug.Log("Amount completed in world 2 : " + levelsCompleted);
                 break;
         }    
         return levelsCompleted;

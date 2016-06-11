@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Soomla.Levelup;
+using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
@@ -10,9 +10,12 @@ public class LevelManager : MonoBehaviour {
     public int currentSelectedLevel = 0;
     public bool showTutorial = false;
 
+    private List<Level> levelList;
+
     void Awake() {
         if (Instance == null) {
             Instance = this;
+            levelList = new List<Level>();
         } else {
             Destroy(gameObject);
         }
@@ -34,19 +37,34 @@ public class LevelManager : MonoBehaviour {
 
     public void CompleteLevel(int moves, int parMoves) {
         string levelID = "world_" + currentSelectedWorld + "_" + currentSelectedLevel;
-        Level levelRef = SoomlaLevelUp.GetLevel(levelID);
+        Level levelRef = GetLevel(levelID);
+        if(levelRef != null) {
+            levelRef.SetCompleted();
+            if (moves <= parMoves) levelRef.SetCompletedPar();
+            currentSelectedLevel++;
+        } else {
+            Debug.Log("Requested Level Does not exist");
+        }
 
-        int amtStars;
-        if ((float)moves / (float)parMoves < 0.4f) amtStars = 1;
-        else if ((float)moves / (float)parMoves < 0.8f) amtStars = 2;
-        else amtStars = 3;
+       
+    }
 
-        levelRef.Start();
-        levelRef.SetScoreValue(levelRef.ID + "_moves", moves);
-        levelRef.SetScoreValue(levelRef.ID + "_stars", amtStars);
-        levelRef.End(true);
-        levelRef.SetCompleted(true);
+    public Level GetLevel(string wantedID) {
+        for (int i = 0; i < levelList.Count; ++i) {
+            if (levelList[i].id == wantedID) {
+                return levelList[i];
+            }
+        }
+        return null;
+    }
 
-        currentSelectedLevel++;
+    public int GetWorldCompletedLevels(int worldRequested) {
+        int amt = 0;
+        for (int i = 0; i < levelList.Count; ++i) {
+            if (levelList[i].world == worldRequested && levelList[i].completed) {
+                ++amt;
+            }
+        }
+        return amt;
     }
 }
