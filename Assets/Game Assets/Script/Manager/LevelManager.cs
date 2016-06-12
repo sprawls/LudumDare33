@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,12 +11,13 @@ public class LevelManager : MonoBehaviour {
     public int currentSelectedLevel = 0;
     public bool showTutorial = false;
 
-    private List<Level> levelList;
+    public LevelsData levelsData { get; private set; }
 
     void Awake() {
         if (Instance == null) {
             Instance = this;
-            levelList = new List<Level>();
+            SaveAndLoad.Load();
+            levelsData = GameSave.current.levels;
         } else {
             Destroy(gameObject);
         }
@@ -32,7 +34,7 @@ public class LevelManager : MonoBehaviour {
         showTutorial = showTuto;
         currentSelectedWorld = world;
         currentSelectedLevel = level;
-        Application.LoadLevel("Main");
+        SceneManager.LoadScene("Main");
     }
 
     public void CompleteLevel(int moves, int parMoves) {
@@ -50,9 +52,9 @@ public class LevelManager : MonoBehaviour {
     }
 
     public Level GetLevel(string wantedID) {
-        for (int i = 0; i < levelList.Count; ++i) {
-            if (levelList[i].id == wantedID) {
-                return levelList[i];
+        for (int i = 0; i < levelsData.levelList.Count; ++i) {
+            if (levelsData.levelList[i].id == wantedID) {
+                return levelsData.levelList[i];
             }
         }
         return null;
@@ -60,11 +62,24 @@ public class LevelManager : MonoBehaviour {
 
     public int GetWorldCompletedLevels(int worldRequested) {
         int amt = 0;
-        for (int i = 0; i < levelList.Count; ++i) {
-            if (levelList[i].world == worldRequested && levelList[i].completed) {
+        for (int i = 0; i < levelsData.levelList.Count; ++i) {
+            if (levelsData.levelList[i].world == worldRequested && levelsData.levelList[i].completed) {
                 ++amt;
             }
         }
         return amt;
+    }
+
+    public void UpdatePersistentData(GameSave newSave) {
+        levelsData = newSave.levels;
+    }
+}
+
+[System.Serializable]
+public class LevelsData {
+    public List<Level> levelList;
+
+    public LevelsData() {
+        levelList = new List<Level>();
     }
 }

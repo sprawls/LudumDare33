@@ -169,11 +169,7 @@ public class ElementTri : MonoBehaviour {
                 Element_3.ChangeElement(old_2, this);
                 if (UpdateAndGetAllTris()) {
                     GameManager.Instance.CompleteLevel();
-                } else if (GameManager.Instance.currentLevel == GameManager.LastLevel) {
-                    if (CheckIfAllFalse()) {
-                        GameManager.Instance.StartEnding_NoHeatDeath();
-                    }
-                }
+                } 
                 UpdateMovesText();
 
                 //Start anim

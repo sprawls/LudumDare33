@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using DG.Tweening;
 
@@ -19,7 +20,7 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void OnClick_OpenTwitter() {
-        if(Application.loadedLevel == 0)
+        if(SceneManager.GetActiveScene().name == "Main")
             Application.OpenURL("https://twitter.com/Alexis_Lessard");
     }
 

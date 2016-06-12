@@ -12,9 +12,9 @@ public class TalkManager : MonoBehaviour {
         get { return _isTalking; } 
         private set { 
             _isTalking = value;
-            if (talkParticles != null) { 
-                talkParticles.enableEmission = _isTalking;
+            if (talkParticles != null) {
                 talkParticles.emissionRate = 4;
+                talkParticles.enableEmission = _isTalking;
             }
         }
     }

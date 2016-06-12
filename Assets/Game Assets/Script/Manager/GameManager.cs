@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class GameManager : MonoBehaviour {
@@ -16,18 +17,21 @@ public class GameManager : MonoBehaviour {
 
     public List<GameObject> LevelsList_w1;
     public List<GameObject> LevelsList_w2;
+    public List<List<GameObject>> worldList = new List<List<GameObject>>();
     public int currentLevel = 0;
+    public int currentWorld = 0;
     public int currentLevelMoves {get; private set;}
     private int[] parMoves = new int[11] {2, 2, 6, 1, 2, 7, 6, 6,8, 11, 2};
     [HideInInspector] public GameObject currentLevel_Obj;
     public GameObject EndLevelExplosion;
 
     public int Score {get; private set;}
-    public const int LastLevel = 11;
 
     void Awake() {
         if (Instance == null) {
             Instance = this;
+            worldList.Add(LevelsList_w1);
+            worldList.Add(LevelsList_w2);
         } else {
             Destroy(gameObject);
         }
@@ -48,8 +52,9 @@ public class GameManager : MonoBehaviour {
         StartGame(0);
     }
 
-    public void StartGame(int lvl) {
+    public void StartGame(int lvl, int world = 0) {
         currentLevel = lvl;
+        currentWorld = world;
         currentLevelMoves = 0;
         Score = 0;
         LoadLevel();
@@ -86,8 +91,7 @@ public class GameManager : MonoBehaviour {
             //TODO : Update Par Moves
             if (currentLevelMoves < GetParMoves()) Score -= (GetParMoves() - currentLevelMoves);
 
-            Debug.Log("last lvl :" + LastLevel + " Cur + 1 : " + (currentLevel + 1));
-            if (currentLevel + 1 == LastLevel) {
+            if (currentLevel + 1 >= worldList[currentWorld].Count) {
                 StartCoroutine(EndSequence_HeatDeath());
             } else {
                 StartCoroutine(CompletionAnimation());
@@ -116,7 +120,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnClick_Restart() {
-        if (currentLevel < 0 || currentLevel + 1 >= LastLevel) {
+        if (currentLevel < 0 || currentLevel + 1 >= worldList[currentWorld].Count) {
 
         } else {
             ReloadLevel();
@@ -124,7 +128,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnClick_BackToMenu() {
-        Application.LoadLevel("Menu");
+        SceneManager.LoadScene("Menu");
     }
 
     private void DeactivateAllColliders(){
