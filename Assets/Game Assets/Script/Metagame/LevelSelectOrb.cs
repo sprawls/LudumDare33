@@ -39,7 +39,7 @@ public class LevelSelectOrb : MonoBehaviour {
         
     }
 
-    void UpdateOrb(){
+    public void UpdateOrb(){
        Level currentLevel = LevelManager.Instance.GetLevel(GetLevelId());
        if (currentLevel != null) {
            int completedLevels = GetAmtLvlCompleted();
@@ -52,9 +52,9 @@ public class LevelSelectOrb : MonoBehaviour {
                } else {
                    SpawnOrb(orbPrefab_unlocked);
                }
-           } else {
-               buttonCollider.enabled = false;
+           } else {      
                SpawnOrb(orbPrefab_locked);
+               buttonCollider.enabled = false;
            }
        } else {
            Debug.Log("Requested Level Does Not Exist !");
@@ -62,15 +62,19 @@ public class LevelSelectOrb : MonoBehaviour {
        }
     }
 
+    public void OnScreenVisible() {
+
+    }
+
     private int GetAmtLvlCompleted() {
         int levelsCompleted = 0;
         switch (world) {
             case WorldsEnum.world_1:
-                levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(0);
+                levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(1);
                 Debug.Log("Amount completed in world 1 : " + levelsCompleted);
                 break;
             case WorldsEnum.world_2:
-                levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(1);
+                levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(2);
                 Debug.Log("Amount completed in world 2 : " + levelsCompleted);
                 break;
         }    

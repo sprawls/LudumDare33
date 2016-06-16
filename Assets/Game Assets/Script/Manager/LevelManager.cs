@@ -30,6 +30,7 @@ public class LevelManager : MonoBehaviour {
     void OnDestroy() {
         if (Instance == this) {
             Instance = null;
+            SaveAndLoad.Save();
         }
     }
 
@@ -43,6 +44,7 @@ public class LevelManager : MonoBehaviour {
                 Level previousLevelData = PopLevelInList(levelsData.levelList, i+1, j);
                 if(previousLevelData != null) {
                     newLevelList.Add(new Level(GetLevelID(i+1, j), previousLevelData.unlocked, previousLevelData.completed, previousLevelData.completedPar));
+                    Debug.Log("level " + (j) + " found. Completed : " + previousLevelData.completed + "    completedPar : " + previousLevelData.completedPar);
                 } else {
                     newLevelList.Add(new Level(GetLevelID(i+1,j)));
                 }

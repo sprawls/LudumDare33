@@ -49,8 +49,8 @@ public class WorldsPosition : MonoBehaviour {
     /// </summary>
     /// <param name="go"></param>
     void ActivateSphereCollidersInObject(GameObject go) {
-        SphereCollider[] colls = go.GetComponentsInChildren<SphereCollider>();
-        foreach (SphereCollider s in colls) { s.enabled = true; }
+        LevelSelectOrb[] orbs = go.GetComponentsInChildren<LevelSelectOrb>();
+        foreach (LevelSelectOrb lso in orbs) { lso.UpdateOrb(); }
     }
 
     public void Touch_SwipedLeft() {
