@@ -42,6 +42,8 @@ MonoBehaviour:
   currentSelectedWorld: 0
   currentSelectedLevel: 0
   showTutorial: 0
+  LevelsList_w1_par: 0200000002000000060000000100000002000000070000000600000006000000080000000b00000002000000
+  LevelsList_w2_par: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

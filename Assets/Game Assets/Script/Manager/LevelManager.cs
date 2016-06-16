@@ -11,13 +11,17 @@ public class LevelManager : MonoBehaviour {
     public int currentSelectedLevel = 0;
     public bool showTutorial = false;
 
+    public List<int> LevelsList_w1_par;
+    public List<int> LevelsList_w2_par;
+    public List<List<int>> worldList_par = new List<List<int>>();
     public LevelsData levelsData { get; private set; }
 
     void Awake() {
         if (Instance == null) {
             Instance = this;
-            SaveAndLoad.Load();
-            levelsData = GameSave.current.levels;
+            worldList_par.Add(LevelsList_w1_par);
+            worldList_par.Add(LevelsList_w2_par);
+            LoadLevelsFromSave();
         } else {
             Destroy(gameObject);
         }
@@ -29,6 +33,35 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
+    void LoadLevelsFromSave() {
+        SaveAndLoad.Load();
+        levelsData = GameSave.current.levels;
+
+        List<Level> newLevelList = new List<Level>();
+        for (int i = 0; i < worldList_par.Count; ++i) {
+            for (int j = 0; j < worldList_par[i].Count; ++j) {
+                Level previousLevelData = PopLevelInList(levelsData.levelList, i+1, j);
+                if(previousLevelData != null) {
+                    newLevelList.Add(new Level(GetLevelID(i+1, j), previousLevelData.unlocked, previousLevelData.completed, previousLevelData.completedPar));
+                } else {
+                    newLevelList.Add(new Level(GetLevelID(i+1,j)));
+                }
+                newLevelList[newLevelList.Count - 1].SetPar( worldList_par[i][j]);
+            }
+        }
+        levelsData.levelList = newLevelList;
+        SaveAndLoad.Save();
+    }
+
+    Level PopLevelInList(List<Level> list, int world, int lvl) {
+        foreach (Level curLevel in list) {
+            if (curLevel.world == world && curLevel.lvl == lvl) {
+                list.Remove(curLevel); // remove for performance reason
+                return (curLevel);
+            }
+        }
+        return null;
+    }
 
     public void StartLevel(int world, int level, bool showTuto) {
         showTutorial = showTuto;
@@ -38,7 +71,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void CompleteLevel(int moves, int parMoves) {
-        string levelID = "world_" + currentSelectedWorld + "_" + currentSelectedLevel;
+        string levelID = GetLevelID(currentSelectedWorld+1,currentSelectedLevel);
         Level levelRef = GetLevel(levelID);
         if(levelRef != null) {
             levelRef.SetCompleted();
@@ -72,6 +105,10 @@ public class LevelManager : MonoBehaviour {
 
     public void UpdatePersistentData(GameSave newSave) {
         levelsData = newSave.levels;
+    }
+
+    public string GetLevelID(int world, int level) {
+        return ("world_" + world + "_" + level);
     }
 }
 

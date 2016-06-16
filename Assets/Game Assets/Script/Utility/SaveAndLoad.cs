@@ -10,7 +10,7 @@ public static class SaveAndLoad {
 
     public static void Save() {
 
-        Load(); //Update SavedGames
+        if (GameSave.current == null) Load(); //create an empty file if none
         SaveCurrentInSavedGames(); //Add Save at correct spot in saved games
 
         //Debug.Log("Saving at Destination : " + Application.persistentDataPath); //Debug Save Path

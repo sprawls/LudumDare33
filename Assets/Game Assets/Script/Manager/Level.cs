@@ -11,12 +11,14 @@ public class Level {
     public bool completedPar { private set; get; }
     public int world { private set; get; }
     public int lvl { private set; get; }
+    public int par { private set; get; }
 
     public Level(string _id) {
         id = _id;
         unlocked = false;
         completed = false;
         completedPar = false;
+        par = 0;
         SetWorldAndLvl();
     }
 
@@ -25,6 +27,7 @@ public class Level {
         unlocked = _unlocked;
         completed = _completed;
         completedPar = _completedPar;
+        par = 0;
         SetWorldAndLvl();
     }
 
@@ -46,5 +49,7 @@ public class Level {
         unlocked = true;
     }
 
-
+    public void SetPar(int _par) {
+        par = _par;
+    }
 }

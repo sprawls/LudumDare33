@@ -58,6 +58,7 @@ public class LevelSelectOrb : MonoBehaviour {
            }
        } else {
            Debug.Log("Requested Level Does Not Exist !");
+           Debug.Log(GetLevelId());
        }
     }
 
