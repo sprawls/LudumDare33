@@ -112,6 +112,16 @@ public class LevelManager : MonoBehaviour {
     public string GetLevelID(int world, int level) {
         return ("world_" + world + "_" + level);
     }
+
+    public int GetLevelPar(int worldRequested, int levelRequested) {
+        for (int i = 0; i < levelsData.levelList.Count; ++i) {
+            if (levelsData.levelList[i].world == worldRequested && levelsData.levelList[i].lvl == levelRequested) {
+                return levelsData.levelList[i].par;
+            }
+        }
+        Debug.LogError("Tried to get par of level that does not exist !");
+        return -1;
+    }
 }
 
 [System.Serializable]

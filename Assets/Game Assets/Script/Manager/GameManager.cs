@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour {
     public int currentLevel = 0;
     public int currentWorld = 0;
     public int currentLevelMoves {get; private set;}
-    private int[] parMoves = new int[11] {2, 2, 6, 1, 2, 7, 6, 6,8, 11, 2};
     [HideInInspector] public GameObject currentLevel_Obj;
     public GameObject EndLevelExplosion;
 
@@ -67,12 +66,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public int GetParMoves() {
-        if (parMoves.Length > currentLevel) {
-            return parMoves[currentLevel];
-        } else {
-            Debug.Log("No Par Moves with current level");
-            return 5;
-        }
+        return (LevelManager.Instance.GetLevelPar(currentWorld, currentLevel));
     }
 
     public void CompleteLevel_Tuto() {
@@ -81,7 +75,7 @@ public class GameManager : MonoBehaviour {
 
     public void AddMove() {
         currentLevelMoves++;
-        if (currentLevelMoves > parMoves[currentLevel]) Score++;
+        if (currentLevelMoves > GetParMoves()) Score++;
     }
 
     public void CompleteLevel() {
@@ -156,7 +150,7 @@ public class GameManager : MonoBehaviour {
         Instantiate(EndLevelExplosion, transform.position + new Vector3(0,0,-10), Quaternion.identity);
         yield return new WaitForSeconds(1f);
 
-        LevelManager.Instance.CompleteLevel(currentLevelMoves, parMoves[currentLevel]);
+        LevelManager.Instance.CompleteLevel(currentLevelMoves, GetParMoves());
         currentLevel = LevelManager.Instance.currentSelectedLevel;
         currentLevelMoves = 0;
 
