@@ -37,7 +37,10 @@ public class TalkManager : MonoBehaviour {
 
     void Start(){
         conversationText = GameObject.FindGameObjectWithTag("ConvoText").GetComponent<Text>();
-        talkParticles = GameObject.FindGameObjectWithTag("TalkRings").GetComponent<ParticleSystem>();
+        if (GameObject.FindGameObjectWithTag("TalkRings") != null) {
+            talkParticles = GameObject.FindGameObjectWithTag("TalkRings").GetComponent<ParticleSystem>();
+        }
+        
     }
 
     void OnDestroy() {

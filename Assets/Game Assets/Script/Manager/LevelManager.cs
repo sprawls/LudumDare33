@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour {
 
     public static LevelManager Instance;
 
-    public int currentSelectedWorld = 0;
+    public int currentSelectedWorld = 1;
     public int currentSelectedLevel = 0;
     public bool showTutorial = false;
 
@@ -18,10 +18,12 @@ public class LevelManager : MonoBehaviour {
 
     void Awake() {
         if (Instance == null) {
+            DontDestroyOnLoad(gameObject);
             Instance = this;
             worldList_par.Add(LevelsList_w1_par);
             worldList_par.Add(LevelsList_w2_par);
             LoadLevelsFromSave();
+            UpdateBackgroundColor();
         } else {
             Destroy(gameObject);
         }
@@ -44,7 +46,7 @@ public class LevelManager : MonoBehaviour {
                 Level previousLevelData = PopLevelInList(levelsData.levelList, i+1, j);
                 if(previousLevelData != null) {
                     newLevelList.Add(new Level(GetLevelID(i+1, j), previousLevelData.unlocked, previousLevelData.completed, previousLevelData.completedPar));
-                    Debug.Log("level " + (j) + " found. Completed : " + previousLevelData.completed + "    completedPar : " + previousLevelData.completedPar);
+                    Debug.Log("world" + (i+1) + " level " + (j) + " found. Completed : " + previousLevelData.completed + "    completedPar : " + previousLevelData.completedPar);
                 } else {
                     newLevelList.Add(new Level(GetLevelID(i+1,j)));
                 }
@@ -72,8 +74,13 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene("Main");
     }
 
+    public void UpdateBackgroundColor() {
+        if (currentSelectedWorld % 2 == 0) Camera.main.backgroundColor = Color.white;
+        else Camera.main.backgroundColor = Color.black;
+    }
+
     public void CompleteLevel(int moves, int parMoves) {
-        string levelID = GetLevelID(currentSelectedWorld+1,currentSelectedLevel);
+        string levelID = GetLevelID(currentSelectedWorld,currentSelectedLevel);
         Level levelRef = GetLevel(levelID);
         if(levelRef != null) {
             levelRef.SetCompleted();
@@ -119,7 +126,6 @@ public class LevelManager : MonoBehaviour {
                 return levelsData.levelList[i].par;
             }
         }
-        Debug.LogError("Tried to get par of level that does not exist !");
         return -1;
     }
 }

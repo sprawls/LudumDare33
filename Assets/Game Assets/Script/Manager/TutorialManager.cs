@@ -14,6 +14,7 @@ public class TutorialManager : MonoBehaviour {
     public bool tutoLevelComplete = false;
 
     private CanvasGroup Canvas_Tuto;
+    private Button Skip_Tuto;
     private GameObject TutoLevel_ref;
     private bool tutoButtonPressed = false;
     private bool showTuto = false;
@@ -22,6 +23,8 @@ public class TutorialManager : MonoBehaviour {
     void Awake() {
         if (Instance == null) {
             Instance = this;
+            Canvas_Tuto = GameObject.FindGameObjectWithTag("TutoCanvas").GetComponent<CanvasGroup>();
+            Skip_Tuto = GameObject.FindGameObjectWithTag("TutoSkip").GetComponent<Button>();
             GameObject.DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
@@ -29,7 +32,7 @@ public class TutorialManager : MonoBehaviour {
     }
 
     void Start() {
-        Canvas_Tuto = GameObject.FindGameObjectWithTag("TutoCanvas").GetComponent<CanvasGroup>();
+
         isInTuto = false;
         ToggleButtons(false);
     }
@@ -85,6 +88,9 @@ public class TutorialManager : MonoBehaviour {
             Destroy(TutoLevel_ref);
             TutoLevel_ref = null;
         }
+        if (Skip_Tuto != null) {
+            Destroy(Skip_Tuto.gameObject);
+        }
 
         isInTuto = false;
         GameManager.Instance.StartGame();
@@ -103,7 +109,7 @@ public class TutorialManager : MonoBehaviour {
 
     IEnumerator Convo_Start() {
         yield return new WaitForSeconds(3f);
-        float waitTime = TalkManager.Instance.WriteMessage("Hello There. It's been a while. ");
+        float waitTime = TalkManager.Instance.WriteMessage("Hello. It has been a while.");
         yield return new WaitForSeconds(waitTime + 2.5f);
         waitTime = TalkManager.Instance.WriteMessage("It's time again.");
         yield return new WaitForSeconds(waitTime + 2.5f);
@@ -126,9 +132,9 @@ public class TutorialManager : MonoBehaviour {
     IEnumerator TutorialLevel() {
         TutoLevel_ref = (GameObject)Instantiate(TutoLevel_01, transform.position, Quaternion.identity);
 
-        float waitTime = TalkManager.Instance.WriteMessage("Here are two clusters. The left one is already stabilized and cleared.");
+        float waitTime = TalkManager.Instance.WriteMessage("Here are two clusters. The left one is already balanced");
         yield return new WaitForSeconds(waitTime + 1.5f);
-        waitTime = TalkManager.Instance.WriteMessage("To clear a cluster, all of its elements must be properly distributed.");
+        waitTime = TalkManager.Instance.WriteMessage("To balance a cluster, all of its elements must be properly distributed.");
         yield return new WaitForSeconds(waitTime + 2.5f);
         waitTime = TalkManager.Instance.WriteMessage("Each Tri must have a different element on each of its corners.");
         yield return new WaitForSeconds(waitTime + 4f);
@@ -144,7 +150,7 @@ public class TutorialManager : MonoBehaviour {
             yield return null;
         }
 
-        waitTime = TalkManager.Instance.WriteMessage("Great. You'll remember the rest as we go. Let's Start.");
+        waitTime = TalkManager.Instance.WriteMessage("Great. You'll learn the rest along the way. Let's Start.");
         yield return new WaitForSeconds(waitTime + 3.5f);
         
     }

@@ -8,6 +8,11 @@ public class LevelSelectOrb : MonoBehaviour {
     public GameObject orbPrefab_locked;
     public GameObject orbPrefab_unlocked;
     public GameObject orbPrefab_completed;
+    public GameObject orbPrefab_completedPar;
+    public GameObject orbPrefab_locked_inverse;
+    public GameObject orbPrefab_unlocked_inverse;
+    public GameObject orbPrefab_completed_inverse;
+    public GameObject orbPrefab_completedPar_inverse;
     public SphereCollider buttonCollider;
 
     public WorldsEnum world;
@@ -23,17 +28,13 @@ public class LevelSelectOrb : MonoBehaviour {
         UpdateOrb();
 	}
 
-    void OnEnable() {
-    }
-
     void OnMouseDown() {
-        Debug.Log("Going To World " + world + " level " + level);
         switch (world) {
             case WorldsEnum.world_1:
                 LevelManager.Instance.StartLevel(1, level, showTutorial);
                 break;
             case WorldsEnum.world_2:
-                LevelManager.Instance.StartLevel(2, level, showTutorial);
+                LevelManager.Instance.StartLevel(2, level, false);
                 break;
         }
         
@@ -41,19 +42,24 @@ public class LevelSelectOrb : MonoBehaviour {
 
     public void UpdateOrb(){
        Level currentLevel = LevelManager.Instance.GetLevel(GetLevelId());
+       bool isInInverseWorld = (LevelManager.Instance.currentSelectedWorld % 2 == 0);
        if (currentLevel != null) {
            int completedLevels = GetAmtLvlCompleted();
            if (completedLevels >= pointsRequired) {
                buttonCollider.enabled = true;
                if (LevelManager.Instance.GetLevel(GetLevelId()).completedPar) {
-                   SpawnOrb(orbPrefab_completed);
+                   if(!isInInverseWorld) SpawnOrb(orbPrefab_completedPar);
+                   else SpawnOrb(orbPrefab_completedPar_inverse);
                } else if (LevelManager.Instance.GetLevel(GetLevelId()).completed) {
-                   SpawnOrb(orbPrefab_completed);
+                   if (!isInInverseWorld) SpawnOrb(orbPrefab_completed);
+                   else SpawnOrb(orbPrefab_completed_inverse);
                } else {
-                   SpawnOrb(orbPrefab_unlocked);
+                   if (!isInInverseWorld) SpawnOrb(orbPrefab_unlocked);
+                   else SpawnOrb(orbPrefab_unlocked_inverse);
                }
-           } else {      
-               SpawnOrb(orbPrefab_locked);
+           } else {
+               if (!isInInverseWorld) SpawnOrb(orbPrefab_locked);
+               else SpawnOrb(orbPrefab_locked_inverse);
                buttonCollider.enabled = false;
            }
        } else {
@@ -71,11 +77,9 @@ public class LevelSelectOrb : MonoBehaviour {
         switch (world) {
             case WorldsEnum.world_1:
                 levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(1);
-                Debug.Log("Amount completed in world 1 : " + levelsCompleted);
                 break;
             case WorldsEnum.world_2:
                 levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(2);
-                Debug.Log("Amount completed in world 2 : " + levelsCompleted);
                 break;
         }    
         return levelsCompleted;

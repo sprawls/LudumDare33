@@ -43,10 +43,21 @@ MonoBehaviour:
   orbPrefab_locked: {fileID: 153590, guid: 2ecf934c88fb99a4aa997f4ed8f120ff, type: 2}
   orbPrefab_unlocked: {fileID: 132648, guid: d895ceee37f6475409da3788eed5e07a, type: 2}
   orbPrefab_completed: {fileID: 102254, guid: 89e6d2ba2a621fe4ca08356197dd907e, type: 2}
+  orbPrefab_completedPar: {fileID: 103778, guid: ca85db4469c949044a879eeb8fbe0b15,
+    type: 2}
+  orbPrefab_locked_inverse: {fileID: 125068, guid: f4b846421e158a844bafc388246a47b0,
+    type: 2}
+  orbPrefab_unlocked_inverse: {fileID: 101810, guid: 9233dc52ef7a1a54ea8603685aa810e9,
+    type: 2}
+  orbPrefab_completed_inverse: {fileID: 109636, guid: 89814bb71b57a6e4693b7a62ba313629,
+    type: 2}
+  orbPrefab_completedPar_inverse: {fileID: 114366, guid: 8254389874a1f874bbee8a922b806ac4,
+    type: 2}
   buttonCollider: {fileID: 13584690}
   world: 0
   level: 0
   pointsRequired: 0
+  showTutorial: 1
 --- !u!135 &13584690
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -57,7 +68,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: -1}
 --- !u!1001 &100100000
 Prefab:

@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour {
             TutorialManager.Instance.StartTutorial();
             
         } else {
-            StartGame(LevelManager.Instance.currentSelectedLevel);
+            TutorialManager.Instance.ButtonClick_EndTuto();
+            StartGame(LevelManager.Instance.currentSelectedLevel, LevelManager.Instance.currentSelectedWorld);
         }
     }
 
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour {
         StartGame(0);
     }
 
-    public void StartGame(int lvl, int world = 0) {
+    public void StartGame(int lvl, int world = 1) {
         currentLevel = lvl;
         currentWorld = world;
         currentLevelMoves = 0;
@@ -85,12 +86,7 @@ public class GameManager : MonoBehaviour {
             //TODO : Update Par Moves
             if (currentLevelMoves < GetParMoves()) Score -= (GetParMoves() - currentLevelMoves);
 
-            if (currentLevel + 1 >= worldList[currentWorld].Count) {
-                StartCoroutine(EndSequence_HeatDeath());
-            } else {
-                StartCoroutine(CompletionAnimation());
-                
-            }
+            StartCoroutine(CompletionAnimation());
         }
     }
 
@@ -108,9 +104,23 @@ public class GameManager : MonoBehaviour {
     }
 
     public void ReloadLevel() {
+        //Debug.Log(currentLevel + "  " + currentWorld);
         if (currentLevel_Obj != null) Destroy(currentLevel_Obj);
-        if (LevelsList_w1.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList_w1[currentLevel], transform.position, Quaternion.identity);
-        else Debug.Log("LastLevelReached");
+        switch (currentWorld) {
+            case 1 :
+                if (LevelsList_w1.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList_w1[currentLevel], transform.position, Quaternion.identity);
+                else Debug.Log("LastLevelReached"); //TODO Go back to level select ?
+                break;
+            case 2  :
+                if (LevelsList_w2.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList_w2[currentLevel], transform.position, Quaternion.identity);
+                else Debug.Log("LastLevelReached"); //TODO Go back to level select ?
+                break;
+            default :
+                Debug.LogError("BadWorldRequested");
+                break;
+        }
+        
+        
     }
 
     public void OnClick_Restart() {

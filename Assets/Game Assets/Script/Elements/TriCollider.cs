@@ -10,8 +10,7 @@ public class TriCollider : MonoBehaviour {
     }
 
     void OnMouseDown() {
-        Debug.Log("Clicked");
-        
+        //Debug.Log("Clicked");    
         triCollider.RotateTri();
     }
 }
