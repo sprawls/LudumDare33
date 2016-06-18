@@ -36,6 +36,15 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
+    void OnLevelWasLoaded(int scene) {
+        if (scene == 1) UpdateBackgroundColor();
+    }
+
+    public void OnClick_BackToMenu() {
+        SceneManager.LoadScene("Menu");
+    }
+
+
     void LoadLevelsFromSave() {
         SaveAndLoad.Load();
         levelsData = GameSave.current.levels;

@@ -10,7 +10,6 @@ public class DialogueManager : MonoBehaviour {
     void Awake() {
         if (Instance == null) {
             Instance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }

@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour {
 
     public int Score {get; private set;}
 
+    private bool _inAnimation = false;
+
     void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -104,7 +106,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void ReloadLevel() {
-        //Debug.Log(currentLevel + "  " + currentWorld);
+        Debug.Log(currentLevel + "  " + currentWorld);
         if (currentLevel_Obj != null) Destroy(currentLevel_Obj);
         switch (currentWorld) {
             case 1 :
@@ -119,12 +121,15 @@ public class GameManager : MonoBehaviour {
                 Debug.LogError("BadWorldRequested");
                 break;
         }
-        
+
+        currentLevelMoves = 0;
         
     }
 
     public void OnClick_Restart() {
-        if (currentLevel < 0 || currentLevel + 1 >= worldList[currentWorld].Count) {
+        if (_inAnimation) return;
+
+        if (currentLevel < 0 || currentLevel + 1 >= worldList[currentWorld-1].Count) {
 
         } else {
             ReloadLevel();
@@ -132,7 +137,15 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnClick_BackToMenu() {
+        if (_inAnimation) return;
+
         SceneManager.LoadScene("Menu");
+    }
+
+    public void OnClick_BackToLevelSelect() {
+        if (_inAnimation) return;
+
+        SceneManager.LoadScene("Level Select");
     }
 
     private void DeactivateAllColliders(){
@@ -149,6 +162,7 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator CompletionAnimation() {
+        _inAnimation = true;
         yield return new WaitForSeconds(1f);
         ScaleOrbs(1.5f);
         DeactivateAllColliders();
@@ -167,9 +181,12 @@ public class GameManager : MonoBehaviour {
         ChangeColorByLevel.UpdateAllColor();
         LoadLevel();
 
+        _inAnimation = false;
     }
 
     IEnumerator CompletionAnimation_Tuto() {
+        _inAnimation = true;
+
         TutorialManager.Instance.ScaleTutoOrbs(1.5f);
 
         MusicManager.Instance.PlaySound_LevelComplete();
@@ -179,10 +196,14 @@ public class GameManager : MonoBehaviour {
 
         Instantiate(EndLevelExplosion, transform.position + new Vector3(0, 0, -10), Quaternion.identity);
         yield return new WaitForSeconds(1f);
+
+        _inAnimation = false;
     }
 
 
     IEnumerator EndSequence_HeatDeath() {
+        _inAnimation = true; 
+
         ElementTri.ToogleAllTrisActivation(false);
         DialogueManager.Instance.StopTalkCoroutines();
         float messageCooldown = TalkManager.Instance.WriteMessage("Here it is. The Heat Death.");
@@ -203,6 +224,7 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         UICanvas_Ending_Button.DOFade(1, 5f);
 
+        _inAnimation = false;
     }
 
     IEnumerator EndSequence_NoHeatDeath() {

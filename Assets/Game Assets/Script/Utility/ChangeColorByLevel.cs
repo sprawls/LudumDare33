@@ -8,6 +8,7 @@ public class ChangeColorByLevel : MonoBehaviour {
 
     public bool ChangeText = false;
     public bool ChangeMeshRenderer = false;
+    public bool ChangeImage = false;
 
     private static List<ChangeColorByLevel> colorList;
 
@@ -16,7 +17,7 @@ public class ChangeColorByLevel : MonoBehaviour {
 
     private MeshRenderer meshRendrer;
     private Text text;
-
+    private Image image;
 
 	void Awake(){
         if(colorList == null) colorList = new List<ChangeColorByLevel>();
@@ -26,6 +27,7 @@ public class ChangeColorByLevel : MonoBehaviour {
     void Start() {
         if(ChangeText) text = GetComponent<Text>();
         if(ChangeMeshRenderer) meshRendrer = GetComponent<MeshRenderer>();
+        if (ChangeImage) image = GetComponent<Image>();
     }
 
     void OnDestroy(){
@@ -43,5 +45,6 @@ public class ChangeColorByLevel : MonoBehaviour {
         
         if(meshRendrer != null) meshRendrer.material.DOColor(TargetColor, 2f);
         if(text != null) text.DOColor(TargetColor, 2f);
+        if (image != null) image.DOColor(TargetColor, 2f);
     }
 }

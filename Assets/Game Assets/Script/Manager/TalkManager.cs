@@ -28,7 +28,6 @@ public class TalkManager : MonoBehaviour {
     void Awake() {
         if (Instance == null) {
             Instance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
             gameObject.AddComponent<DialogueManager>();
         } else {
             Destroy(gameObject);

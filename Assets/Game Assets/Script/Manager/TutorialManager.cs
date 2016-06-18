@@ -25,7 +25,6 @@ public class TutorialManager : MonoBehaviour {
             Instance = this;
             Canvas_Tuto = GameObject.FindGameObjectWithTag("TutoCanvas").GetComponent<CanvasGroup>();
             Skip_Tuto = GameObject.FindGameObjectWithTag("TutoSkip").GetComponent<Button>();
-            GameObject.DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
