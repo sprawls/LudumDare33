@@ -32,6 +32,8 @@ public class WorldsPosition : MonoBehaviour {
     void MoveToSelectedWorld() {
         transform.DOMove(worldsTransforms[currentWorld].position, 1f);
         ActivateSphereCollidersInObject(worldsTransforms[currentWorld].gameObject);
+        if (currentWorld % 2 == 0) ActivateSphereCollidersInObject(worldsTransforms[currentWorld + 1].gameObject);
+        else ActivateSphereCollidersInObject(worldsTransforms[currentWorld -1].gameObject);
     }
 
     /// <summary>
@@ -54,10 +56,10 @@ public class WorldsPosition : MonoBehaviour {
     }
 
     public void Touch_SwipedLeft() {
-        SetWorldPosition(currentWorld -1);
+        SetWorldPosition(currentWorld -2);
     }
 
     public void Touch_SwipedRight() {
-        SetWorldPosition(currentWorld + 1);
+        SetWorldPosition(currentWorld + 2);
     }
 }

@@ -16,10 +16,20 @@ public class LevelManager : MonoBehaviour {
     public List<List<int>> worldList_par = new List<List<int>>();
     public LevelsData levelsData { get; private set; }
 
+    [Header("World Switch")]
+    public Camera normalCam;
+    public Camera inverseCam;
+    public Mesh transitionMesh;
+    //JS scripts
+    public GameObject screenWipeScript;
+    private bool inInverseAnimation = false;
+
+
     void Awake() {
         if (Instance == null) {
-            DontDestroyOnLoad(gameObject);
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+
             worldList_par.Add(LevelsList_w1_par);
             worldList_par.Add(LevelsList_w2_par);
             LoadLevelsFromSave();
@@ -36,6 +46,17 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
+    void Update() {
+        if (Input.GetMouseButtonDown(0)) {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100)) {
+                Debug.Log(hit.transform.gameObject.name);
+            }
+        }
+    }
+
     void OnLevelWasLoaded(int scene) {
         if (scene == 1) UpdateBackgroundColor();
     }
@@ -44,6 +65,27 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene("Menu");
     }
 
+    public void OnClick_InverseWorld() {
+        StartCoroutine(InverseWorld());
+    }
+
+    IEnumerator InverseWorld() {
+        if (!inInverseAnimation) {
+            inInverseAnimation = true;
+
+            screenWipeScript = GameObject.Find("Camera Parent");
+            if (screenWipeScript != null) {
+                screenWipeScript.SendMessage("InverseWorld", isInverseWorld());
+                if (isInverseWorld()) --currentSelectedWorld;
+                else ++currentSelectedWorld;
+                yield return new WaitForSeconds(2f);
+            }
+
+            
+
+            inInverseAnimation = false;
+        }
+    }
 
     void LoadLevelsFromSave() {
         SaveAndLoad.Load();
@@ -89,6 +131,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void CompleteLevel(int moves, int parMoves) {
+        Debug.Log("Complete world/lvl : " + currentSelectedWorld + " / " + currentSelectedLevel);
         string levelID = GetLevelID(currentSelectedWorld,currentSelectedLevel);
         Level levelRef = GetLevel(levelID);
         if(levelRef != null) {

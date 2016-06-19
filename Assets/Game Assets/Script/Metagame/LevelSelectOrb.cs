@@ -52,9 +52,20 @@ public class LevelSelectOrb : MonoBehaviour {
         
     }
 
+    private bool GetOrbReverseWorld() {
+        switch (world) {
+            case WorldsEnum.world_1:
+                return false;
+            case WorldsEnum.world_2:
+                return true;
+            default :
+                return false;
+        }
+    }
+
     public void UpdateOrb(){
        Level currentLevel = LevelManager.Instance.GetLevel(GetLevelId());
-       bool isInInverseWorld = (LevelManager.Instance.isInverseWorld());
+       bool isInInverseWorld = GetOrbReverseWorld();
        if (currentLevel != null) {
            int completedLevels = GetAmtLvlCompleted();
            if (completedLevels >= pointsRequired) {
