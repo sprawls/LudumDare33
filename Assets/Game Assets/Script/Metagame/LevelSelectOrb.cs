@@ -19,14 +19,26 @@ public class LevelSelectOrb : MonoBehaviour {
     public int level;
     public int pointsRequired;
     public bool showTutorial = false;
+    public LevelSelectOrb nextLevelOrb = null;
 
     private GameObject spawnedOrbPrefab;
+    private LineRenderer nextLevelLineRenderer;
+    public bool unlocked { get; private set; }
 
-
-	// Use this for initialization
-	void Start () {
+    void Awake() {
+        nextLevelLineRenderer = GetComponent<LineRenderer>();
         UpdateOrb();
+    }
+
+	void Start () {    
+        if (nextLevelOrb != null) {
+            nextLevelLineRenderer.enabled = true;
+            SetPositions(transform.position, nextLevelOrb.transform.position);
+        } else {
+            nextLevelLineRenderer.enabled = false;
+        }
 	}
+
 
     void OnMouseDown() {
         switch (world) {
@@ -42,7 +54,7 @@ public class LevelSelectOrb : MonoBehaviour {
 
     public void UpdateOrb(){
        Level currentLevel = LevelManager.Instance.GetLevel(GetLevelId());
-       bool isInInverseWorld = (LevelManager.Instance.currentSelectedWorld % 2 == 0);
+       bool isInInverseWorld = (LevelManager.Instance.isInverseWorld());
        if (currentLevel != null) {
            int completedLevels = GetAmtLvlCompleted();
            if (completedLevels >= pointsRequired) {
@@ -57,10 +69,12 @@ public class LevelSelectOrb : MonoBehaviour {
                    if (!isInInverseWorld) SpawnOrb(orbPrefab_unlocked);
                    else SpawnOrb(orbPrefab_unlocked_inverse);
                }
+               unlocked = true;
            } else {
                if (!isInInverseWorld) SpawnOrb(orbPrefab_locked);
                else SpawnOrb(orbPrefab_locked_inverse);
                buttonCollider.enabled = false;
+               unlocked = false;
            }
        } else {
            Debug.Log("Requested Level Does Not Exist !");
@@ -68,7 +82,22 @@ public class LevelSelectOrb : MonoBehaviour {
        }
     }
 
-    public void OnScreenVisible() {
+    void SetPositions(Vector3 pos1, Vector3 pos2) {
+        //Update Line renderer positions
+        nextLevelLineRenderer.SetPosition(0, pos1);
+        nextLevelLineRenderer.SetPosition(1, pos2);
+        //Update other Line renderer properties
+        nextLevelLineRenderer.SetWidth(0.15f, 0.15f);
+
+        //Update Properties based on inverse world
+        Color beamColor;
+        if(LevelManager.Instance.isInverseWorld()){
+            beamColor = new Color(0.6f,0.80f,1f,0.5f);
+        } else {
+            beamColor = new Color(0.7f,0.80f,1f,0.5f);
+        }
+        if(!nextLevelOrb.unlocked) beamColor = new Color(beamColor.r,beamColor.g,beamColor.b, 0.2f);
+        nextLevelLineRenderer.SetColors(beamColor, beamColor);
 
     }
 

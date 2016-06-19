@@ -84,7 +84,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void UpdateBackgroundColor() {
-        if (currentSelectedWorld % 2 == 0) Camera.main.backgroundColor = Color.white;
+        if (isInverseWorld()) Camera.main.backgroundColor = Color.white;
         else Camera.main.backgroundColor = Color.black;
     }
 
@@ -136,6 +136,10 @@ public class LevelManager : MonoBehaviour {
             }
         }
         return -1;
+    }
+
+    public bool isInverseWorld() {
+        return (currentSelectedWorld % 2 == 0);
     }
 }
 
