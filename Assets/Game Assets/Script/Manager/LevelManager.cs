@@ -46,17 +46,6 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-    void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 100)) {
-                Debug.Log(hit.transform.gameObject.name);
-            }
-        }
-    }
-
     void OnLevelWasLoaded(int scene) {
         if (scene == 1) UpdateBackgroundColor();
     }
