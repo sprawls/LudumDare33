@@ -13,6 +13,10 @@ public class LevelManager : MonoBehaviour {
 
     public List<int> LevelsList_w1_par;
     public List<int> LevelsList_w2_par;
+    public List<int> LevelsList_w3_par;
+    public List<int> LevelsList_w4_par;
+    public List<int> LevelsList_w5_par;
+    public List<int> LevelsList_w6_par;
     public List<List<int>> worldList_par = new List<List<int>>();
     public LevelsData levelsData { get; private set; }
 
@@ -32,6 +36,10 @@ public class LevelManager : MonoBehaviour {
 
             worldList_par.Add(LevelsList_w1_par);
             worldList_par.Add(LevelsList_w2_par);
+            worldList_par.Add(LevelsList_w3_par);
+            worldList_par.Add(LevelsList_w4_par);
+            worldList_par.Add(LevelsList_w5_par);
+            worldList_par.Add(LevelsList_w6_par);
             LoadLevelsFromSave();
             UpdateBackgroundColor();
         } else {
@@ -56,6 +64,24 @@ public class LevelManager : MonoBehaviour {
 
     public void OnClick_InverseWorld() {
         StartCoroutine(InverseWorld());
+    }
+
+    public void OnClick_NextWorld() {
+        if (currentSelectedWorld + 2 <= worldList_par.Count) {
+            MoveLevelSelectTo(currentSelectedWorld + 2);
+        }
+    }
+
+    public void OnClick_PreviousWorld() {
+        if (currentSelectedWorld - 2 > 0) {
+            MoveLevelSelectTo(currentSelectedWorld - 2);
+        }
+    }
+
+    void MoveLevelSelectTo(int world) {
+        WorldsPosition worldPosScript = GameObject.Find("Camera Parent").GetComponent<WorldsPosition>();
+        worldPosScript.SetWorldPosition((int)Mathf.Ceil((float)world / 2f));
+        currentSelectedWorld = world;
     }
 
     IEnumerator InverseWorld() {

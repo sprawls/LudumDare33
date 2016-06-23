@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LevelSelectOrb : MonoBehaviour {
 
-    public enum WorldsEnum { world_1, world_2 }
+    public enum WorldsEnum { world_1, world_2, world_3, world_4, world_5, world_6 }
 
     public GameObject orbPrefab_locked;
     public GameObject orbPrefab_unlocked;
@@ -48,6 +48,18 @@ public class LevelSelectOrb : MonoBehaviour {
             case WorldsEnum.world_2:
                 LevelManager.Instance.StartLevel(2, level, false);
                 break;
+            case WorldsEnum.world_3:
+                LevelManager.Instance.StartLevel(3, level, false);
+                break;
+            case WorldsEnum.world_4:
+                LevelManager.Instance.StartLevel(4, level, false);
+                break;
+            case WorldsEnum.world_5:
+                LevelManager.Instance.StartLevel(5, level, false);
+                break;
+            case WorldsEnum.world_6:
+                LevelManager.Instance.StartLevel(6, level, false);
+                break;
         }
         
     }
@@ -57,6 +69,14 @@ public class LevelSelectOrb : MonoBehaviour {
             case WorldsEnum.world_1:
                 return false;
             case WorldsEnum.world_2:
+                return true;
+            case WorldsEnum.world_3:
+                return false;
+            case WorldsEnum.world_4:
+                return true;
+            case WorldsEnum.world_5:
+                return false;
+            case WorldsEnum.world_6:
                 return true;
             default :
                 return false;
@@ -120,6 +140,18 @@ public class LevelSelectOrb : MonoBehaviour {
                 break;
             case WorldsEnum.world_2:
                 levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(2);
+                break;
+            case WorldsEnum.world_3:
+                levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(3);
+                break;
+            case WorldsEnum.world_4:
+                levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(4);
+                break;
+            case WorldsEnum.world_5:
+                levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(5);
+                break;
+            case WorldsEnum.world_6:
+                levelsCompleted = LevelManager.Instance.GetWorldCompletedLevels(6);
                 break;
         }    
         return levelsCompleted;

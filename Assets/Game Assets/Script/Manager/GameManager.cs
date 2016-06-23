@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour {
 
     public List<GameObject> LevelsList_w1;
     public List<GameObject> LevelsList_w2;
+    public List<GameObject> LevelsList_w3;
+    public List<GameObject> LevelsList_w4;
+    public List<GameObject> LevelsList_w5;
+    public List<GameObject> LevelsList_w6;
     public List<List<GameObject>> worldList = new List<List<GameObject>>();
     public int currentLevel = 0;
     public int currentWorld = 0;
@@ -33,6 +37,10 @@ public class GameManager : MonoBehaviour {
             Instance = this;
             worldList.Add(LevelsList_w1);
             worldList.Add(LevelsList_w2);
+            worldList.Add(LevelsList_w3);
+            worldList.Add(LevelsList_w4);
+            worldList.Add(LevelsList_w5);
+            worldList.Add(LevelsList_w6);
         } else {
             Destroy(gameObject);
         }
