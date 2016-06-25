@@ -17,6 +17,7 @@ public class WorldsPosition : MonoBehaviour {
 	}
 
     public void SetWorldPosition(int worldToShow) {
+        Debug.Log("moving to world : " + worldToShow);
         if (worldToShow >= 0 && worldToShow < worldsTransforms.Count) {
             currentWorld = worldToShow;
             SetWorldPosition();
@@ -24,16 +25,12 @@ public class WorldsPosition : MonoBehaviour {
     }
 
     void SetWorldPosition() {
-        DeactivateSphereColliders();
         MoveToSelectedWorld();
     }
 
 
     void MoveToSelectedWorld() {
         transform.DOMove(worldsTransforms[currentWorld].position, 1f);
-        ActivateSphereCollidersInObject(worldsTransforms[currentWorld].gameObject);
-        if (currentWorld % 2 == 0) ActivateSphereCollidersInObject(worldsTransforms[currentWorld + 1].gameObject);
-        else ActivateSphereCollidersInObject(worldsTransforms[currentWorld -1].gameObject);
     }
 
     /// <summary>

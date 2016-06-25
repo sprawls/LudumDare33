@@ -26,13 +26,14 @@ public class LevelManager : MonoBehaviour {
     public Mesh transitionMesh;
     //JS scripts
     public GameObject screenWipeScript;
-    private bool inInverseAnimation = false;
+    public bool inInverseAnimation { get; private set; }
 
 
     void Awake() {
         if (Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            inInverseAnimation = false;
 
             worldList_par.Add(LevelsList_w1_par);
             worldList_par.Add(LevelsList_w2_par);
@@ -80,7 +81,7 @@ public class LevelManager : MonoBehaviour {
 
     void MoveLevelSelectTo(int world) {
         WorldsPosition worldPosScript = GameObject.Find("Camera Parent").GetComponent<WorldsPosition>();
-        worldPosScript.SetWorldPosition((int)Mathf.Ceil((float)world / 2f));
+        worldPosScript.SetWorldPosition((int)Mathf.Ceil((float)world / 2f) - 1);
         currentSelectedWorld = world;
     }
 
@@ -177,6 +178,16 @@ public class LevelManager : MonoBehaviour {
             }
         }
         return amt;
+    }
+
+    public bool GetWorldAllCompletedLevels(int worldRequested) {
+        for (int i = 0; i < levelsData.levelList.Count; ++i) {
+            if (levelsData.levelList[i].world == worldRequested && !levelsData.levelList[i].completed) {
+                Debug.Log("level nto completed :" + levelsData.levelList[i].id);
+                return false;
+            }
+        }
+        return true;
     }
 
     public void UpdatePersistentData(GameSave newSave) {
