@@ -599,7 +599,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.73199999, y: -1, z: 0}
+  m_LocalPosition: {x: 1.732, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 498598}
@@ -663,8 +663,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .299999952, z: 5}
-  m_LocalScale: {x: 1.64999998, y: 1.54499996, z: 1.64999998}
+  m_LocalPosition: {x: 0, y: 0.29999995, z: 5}
+  m_LocalScale: {x: 1.65, y: 1.545, z: 1.65}
   m_Children: []
   m_Father: {fileID: 414698}
   m_RootOrder: 0
@@ -675,7 +675,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.73199999, y: -1, z: 0}
+  m_LocalPosition: {x: 1.732, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 403826}
@@ -687,7 +687,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -20, y: 32.62074, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 408038}
@@ -701,7 +701,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.73199999, y: -1, z: 0}
+  m_LocalPosition: {x: 1.732, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 480110}
@@ -739,8 +739,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .299999952, z: 5}
-  m_LocalScale: {x: 1.64999998, y: 1.54499996, z: 1.64999998}
+  m_LocalPosition: {x: 0, y: 0.29999995, z: 5}
+  m_LocalScale: {x: 1.65, y: 1.545, z: 1.65}
   m_Children: []
   m_Father: {fileID: 458668}
   m_RootOrder: 0
@@ -751,8 +751,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .299999952, z: 5}
-  m_LocalScale: {x: 1.64999998, y: 1.54499996, z: 1.64999998}
+  m_LocalPosition: {x: 0, y: 0.29999995, z: 5}
+  m_LocalScale: {x: 1.65, y: 1.545, z: 1.65}
   m_Children: []
   m_Father: {fileID: 453134}
   m_RootOrder: 0
@@ -826,8 +826,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .299999952, z: 5}
-  m_LocalScale: {x: 1.64999998, y: 1.54499996, z: 1.64999998}
+  m_LocalPosition: {x: 0, y: 0.29999995, z: 5}
+  m_LocalScale: {x: 1.65, y: 1.545, z: 1.65}
   m_Children: []
   m_Father: {fileID: 481256}
   m_RootOrder: 0
@@ -838,7 +838,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.73199999, y: -1, z: 0}
+  m_LocalPosition: {x: 1.732, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 464578}
@@ -889,7 +889,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.73199999, y: -1, z: 0}
+  m_LocalPosition: {x: 1.732, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495490}
@@ -901,7 +901,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.73199999, y: -1, z: 0}
+  m_LocalPosition: {x: 1.732, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 415470}
@@ -934,7 +934,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.73199999, y: -1, z: 0}
+  m_LocalPosition: {x: 1.732, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405696}
@@ -983,8 +983,10 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -1007,8 +1009,10 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -1031,8 +1035,10 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -1055,8 +1061,10 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -1185,6 +1193,7 @@ MonoBehaviour:
   Element_3: {fileID: 11428466}
   TriRenderer: {fileID: 2330038}
   LineRenderersMaterial: {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  GizmoMesh: {fileID: 4300002, guid: f58a4a8fcaa9c3044b65b6c700b233f2, type: 3}
 --- !u!114 &11417926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1196,7 +1205,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbae388d3f0a0f4e9b11f37cc1e48a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetRate: {x: 0, y: .0500000007}
+  offsetX: 0
+  offsetY: 0
+  offsetRate: {x: 0, y: 0.05}
   randomizeStartOffset: 0
 --- !u!114 &11424736
 MonoBehaviour:
@@ -1241,7 +1252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbae388d3f0a0f4e9b11f37cc1e48a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetRate: {x: 0, y: .0500000007}
+  offsetX: 0
+  offsetY: 0
+  offsetRate: {x: 0, y: 0.05}
   randomizeStartOffset: 0
 --- !u!114 &11427980
 MonoBehaviour:
@@ -1363,6 +1376,7 @@ MonoBehaviour:
   Element_3: {fileID: 11431154}
   TriRenderer: {fileID: 2319116}
   LineRenderersMaterial: {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  GizmoMesh: {fileID: 4300002, guid: f58a4a8fcaa9c3044b65b6c700b233f2, type: 3}
 --- !u!114 &11459220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1433,7 +1447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbae388d3f0a0f4e9b11f37cc1e48a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetRate: {x: 0, y: .0500000007}
+  offsetX: 0
+  offsetY: 0
+  offsetRate: {x: 0, y: 0.05}
   randomizeStartOffset: 0
 --- !u!114 &11471780
 MonoBehaviour:
@@ -1484,6 +1500,7 @@ MonoBehaviour:
   Element_3: {fileID: 11491146}
   TriRenderer: {fileID: 2384412}
   LineRenderersMaterial: {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  GizmoMesh: {fileID: 4300002, guid: f58a4a8fcaa9c3044b65b6c700b233f2, type: 3}
 --- !u!114 &11485556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1521,6 +1538,7 @@ MonoBehaviour:
   Element_3: {fileID: 11471780}
   TriRenderer: {fileID: 2316830}
   LineRenderersMaterial: {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  GizmoMesh: {fileID: 4300002, guid: f58a4a8fcaa9c3044b65b6c700b233f2, type: 3}
 --- !u!114 &11491146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1567,7 +1585,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbae388d3f0a0f4e9b11f37cc1e48a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetRate: {x: 0, y: .0500000007}
+  offsetX: 0
+  offsetY: 0
+  offsetRate: {x: 0, y: 0.05}
   randomizeStartOffset: 0
 --- !u!1001 &100100000
 Prefab:

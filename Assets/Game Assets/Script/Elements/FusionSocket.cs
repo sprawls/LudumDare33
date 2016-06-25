@@ -81,5 +81,37 @@ public class FusionSocket : ElementSocket {
         }
         MixElements();
     }
+
+    //GIZMO DEBUG
+    void OnDrawGizmos() {
+        if (Application.isPlaying) return;
+        Vector3 middlePos = ((Tri_1.transform.position + Tri_2.transform.position) / 2f);
+        Vector3 middlePos_1 = (Tri_1.transform.position * 1.3f + Tri_2.transform.position * 0.7f) / 2f;
+        Vector3 middlePos_2 = (Tri_1.transform.position * 0.7f + Tri_2.transform.position * 1.3f) / 2f;
+
+        Gizmos.color = GetSocketGizmoColor(subElement_1);
+        Gizmos.DrawSphere(middlePos_1, 0.50f * Tri_1.size);
+        Gizmos.color = GetSocketGizmoColor(subElement_2);
+        Gizmos.DrawSphere(middlePos_2, 0.50f * Tri_1.size);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(middlePos, 0.60f * Tri_1.size);
+
+
+    }
+
+    private Color GetSocketGizmoColor(Element el) {
+        switch (el.EType) {
+            case ElementType.fire:
+                return Color.red;
+            case ElementType.water:
+                return Color.blue;
+            case ElementType.wind:
+                return Color.cyan;
+            case ElementType.all:
+                return Color.green;
+            default:
+                return Color.grey;
+        }
+    }
     
 }

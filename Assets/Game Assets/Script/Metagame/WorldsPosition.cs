@@ -17,7 +17,6 @@ public class WorldsPosition : MonoBehaviour {
 	}
 
     public void SetWorldPosition(int worldToShow) {
-        Debug.Log("moving to world : " + worldToShow);
         if (worldToShow >= 0 && worldToShow < worldsTransforms.Count) {
             currentWorld = worldToShow;
             SetWorldPosition();

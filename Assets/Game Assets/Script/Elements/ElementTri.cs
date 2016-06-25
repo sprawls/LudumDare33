@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -26,6 +27,9 @@ public class ElementTri : MonoBehaviour {
 
     private static bool _canRotate = true;
     private bool _isComplete = false;
+
+    [Header("Gizmos")]
+    public Mesh GizmoMesh;
 
     void Awake(){
         AddToStaticList();
@@ -200,4 +204,46 @@ public class ElementTri : MonoBehaviour {
     }
 
     
+    //GIZMO DEBUG
+    void OnDrawGizmos() {
+        if(Application.isPlaying) return; 
+        if(GizmoMesh) Gizmos.DrawMesh(  GizmoMesh,
+                                        transform.position + (Quaternion.Euler(0, 0, addedRotation) * new Vector3(0f, 0.3f, 2f)), 
+                                        Quaternion.Euler(0,0,addedRotation), 
+                                        new Vector3(1.65f,1.545f,1.65f) * size) ;
+
+        Vector3 pos_1 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(0, size, 0)) + transform.position;
+        Vector3 pos_2 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3((size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + transform.position;
+        Vector3 pos_3 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(-(size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + transform.position;
+
+        if (Element_1.element.EType != ElementType.none) {
+            Gizmos.color = GetSocketGizmoColor(Element_1);
+            Gizmos.DrawSphere(pos_1, 0.5f * size);
+        }
+        if (Element_2.element.EType != ElementType.none) {
+            Gizmos.color = GetSocketGizmoColor(Element_2);
+            Gizmos.DrawSphere(pos_2, 0.5f * size);
+        }
+        if (Element_3.element.EType != ElementType.none) {
+            Gizmos.color = GetSocketGizmoColor(Element_3);
+            Gizmos.DrawSphere(pos_3, 0.5f * size);
+        }
+
+    }
+
+    private Color GetSocketGizmoColor(ElementSocket es) {
+        switch (es.element.EType) {
+            case ElementType.fire :
+                return Color.red;
+            case ElementType.water:
+                return Color.blue;
+            case ElementType.wind:
+                return Color.cyan;
+            case ElementType.all:
+                return Color.green;
+            default:
+                return Color.grey;
+        }
+    }
+
 }

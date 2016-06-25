@@ -183,7 +183,6 @@ public class LevelManager : MonoBehaviour {
     public bool GetWorldAllCompletedLevels(int worldRequested) {
         for (int i = 0; i < levelsData.levelList.Count; ++i) {
             if (levelsData.levelList[i].world == worldRequested && !levelsData.levelList[i].completed) {
-                Debug.Log("level nto completed :" + levelsData.levelList[i].id);
                 return false;
             }
         }

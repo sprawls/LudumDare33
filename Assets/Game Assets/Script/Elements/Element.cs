@@ -2,7 +2,7 @@
 using System.Collections;
 using DG.Tweening;
 
-public enum ElementType { fire = 0, water = 1, wind = 2 }
+public enum ElementType { fire = 0, water = 1, wind = 2, all = 3, none = -1 }
 
 public class Element : MonoBehaviour {
 
@@ -36,6 +36,10 @@ public class Element : MonoBehaviour {
             case ElementType.wind:
                 GO = Orb_Wind;
                 break;
+        }
+        if (GO == null) {
+            Debug.Log("No model for Element Type : " + EType.ToString());
+            return;
         }
         //Spawn it
         Model = (GameObject) Instantiate(GO,Vector3.zero,Quaternion.identity);
