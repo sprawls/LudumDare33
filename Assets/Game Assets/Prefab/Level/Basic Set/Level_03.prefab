@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 476380}
   - 114: {fileID: 11459220}
   m_Layer: 0
-  m_Name: WindElement
+  m_Name: Water Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ GameObject:
   - 4: {fileID: 458086}
   - 114: {fileID: 11465580}
   m_Layer: 0
-  m_Name: WindElement
+  m_Name: Wind Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,7 +201,7 @@ GameObject:
   - 4: {fileID: 495440}
   - 114: {fileID: 11480344}
   m_Layer: 0
-  m_Name: FireElement
+  m_Name: Water Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,7 +265,7 @@ GameObject:
   - 4: {fileID: 413294}
   - 114: {fileID: 11426344}
   m_Layer: 0
-  m_Name: FireElement
+  m_Name: Water Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -348,7 +348,7 @@ GameObject:
   - 4: {fileID: 484296}
   - 114: {fileID: 11434744}
   m_Layer: 0
-  m_Name: FireElement
+  m_Name: Wind Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -396,7 +396,7 @@ GameObject:
   - 4: {fileID: 486984}
   - 114: {fileID: 11424736}
   m_Layer: 0
-  m_Name: FireElement
+  m_Name: Wind Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -463,7 +463,7 @@ GameObject:
   - 4: {fileID: 439042}
   - 114: {fileID: 11401324}
   m_Layer: 0
-  m_Name: FireElement
+  m_Name: Wind Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -479,7 +479,7 @@ GameObject:
   - 4: {fileID: 450146}
   - 114: {fileID: 11465096}
   m_Layer: 0
-  m_Name: FireElement
+  m_Name: Fire Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -511,7 +511,7 @@ GameObject:
   - 4: {fileID: 478576}
   - 114: {fileID: 11485556}
   m_Layer: 0
-  m_Name: WaterElement
+  m_Name: Water Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -687,7 +687,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 32.62074, z: 0}
+  m_LocalPosition: {x: -7.4, y: 10.653702, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 408038}

@@ -23,6 +23,26 @@ public class Element : MonoBehaviour {
         SetupOrb();
     }
 
+    void OnValidate() {
+        switch (EType) {
+            case ElementType.fire:
+                gameObject.name = "Fire Element";
+                break;
+            case ElementType.water:
+                gameObject.name = "Water Element";
+                break;
+            case ElementType.wind:
+                gameObject.name = "Wind Element";
+                break;
+            case ElementType.all:
+                gameObject.name = "All Element";
+                break;
+            default :
+                gameObject.name = "None Element";
+                break;
+        }
+    }
+
     private void SetupOrb() {
         GameObject GO = null;
         //Get Type

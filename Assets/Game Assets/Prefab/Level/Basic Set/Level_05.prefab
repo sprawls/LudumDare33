@@ -92,7 +92,7 @@ GameObject:
   - 4: {fileID: 415112}
   - 114: {fileID: 11449936}
   m_Layer: 0
-  m_Name: WaterElement
+  m_Name: Fire Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ GameObject:
   - 4: {fileID: 479412}
   - 114: {fileID: 11433718}
   m_Layer: 0
-  m_Name: WaterElement
+  m_Name: Wind Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ GameObject:
   - 4: {fileID: 464126}
   - 114: {fileID: 11416252}
   m_Layer: 0
-  m_Name: WaterElement
+  m_Name: Fire Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,7 +187,7 @@ GameObject:
   - 4: {fileID: 402012}
   - 114: {fileID: 11448486}
   m_Layer: 0
-  m_Name: elem2
+  m_Name: Fire Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,7 +203,7 @@ GameObject:
   - 4: {fileID: 413546}
   - 114: {fileID: 11441348}
   m_Layer: 0
-  m_Name: Result
+  m_Name: None Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,7 +234,7 @@ GameObject:
   - 4: {fileID: 463376}
   - 114: {fileID: 11410408}
   m_Layer: 0
-  m_Name: WaterElement
+  m_Name: Wind Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,7 +282,7 @@ GameObject:
   - 4: {fileID: 438592}
   - 114: {fileID: 11451020}
   m_Layer: 0
-  m_Name: elem1
+  m_Name: Wind Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -461,7 +461,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.04528, y: 10.932964, z: -5}
+  m_LocalPosition: {x: 33.4, y: 10.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 447362}
