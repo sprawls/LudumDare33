@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9019470920dd1144982f34e025dd157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontSpawnOnPlay: 0
   UICanvas: {fileID: 0}
   UICanvas_Ending: {fileID: 0}
   UICanvas_Ending_Button: {fileID: 0}
@@ -202,15 +203,15 @@ MonoBehaviour:
   - {fileID: 152934, guid: cf4aa03ae29a22246a64df7f153eeb51, type: 2}
   - {fileID: 189040, guid: 66d23c6cd0ecbdc48b91b7d6241517d4, type: 2}
   - {fileID: 103676, guid: 19ce1548abfac844daeed11009b93fdf, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 112648, guid: a68899233e46130489d6c95ae3c87dbe, type: 2}
+  - {fileID: 154828, guid: 5dd559386ad06be4d98a7b6f28898849, type: 2}
   - {fileID: 126934, guid: a54a561605eb03544a19dc5947263fb9, type: 2}
   - {fileID: 161342, guid: 679e8637bb484cd4db42e05f4ab697d8, type: 2}
   - {fileID: 179032, guid: 34fbdb34d7a0497439ef871627667e8c, type: 2}
   - {fileID: 142500, guid: 9b25b8bb02721154e9d84798ed9de7fe, type: 2}
   - {fileID: 187806, guid: e000442e93ce16e459355c9799fa5b66, type: 2}
   - {fileID: 134118, guid: 93d4963d15b24264fb16792790931f8f, type: 2}
-  - {fileID: 0}
+  - {fileID: 103120, guid: 0c7de8eb004ecfd4e86a7d42ec194439, type: 2}
   LevelsList_w2:
   - {fileID: 167156, guid: c23054368a648264bb3b269b45c6f4b0, type: 2}
   - {fileID: 179402, guid: 7ebe1862a71758f49bb46c4e4906f5e9, type: 2}

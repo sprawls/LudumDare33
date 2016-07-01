@@ -1499,6 +1499,8 @@ MonoBehaviour:
   subElement_2: {fileID: 11490930}
   Tri_1: {fileID: 11406402}
   Tri_2: {fileID: 11413748}
+  Tri_1_Additionnal: []
+  Tri_2_Additionnal: []
 --- !u!114 &11440382
 MonoBehaviour:
   m_ObjectHideFlags: 1

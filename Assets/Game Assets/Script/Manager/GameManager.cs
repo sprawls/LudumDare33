@@ -7,8 +7,12 @@ using DG.Tweening;
 
 public class GameManager : MonoBehaviour {
 
+    [Header("Debug")]
+    public bool DontSpawnOnPlay = false;
+
     public static GameManager Instance {  get; private set; }
 
+    [Header("Properties")]
     public CanvasGroup UICanvas;
     public CanvasGroup UICanvas_Ending;
     public CanvasGroup UICanvas_Ending_Button;
@@ -53,8 +57,10 @@ public class GameManager : MonoBehaviour {
             TutorialManager.Instance.StartTutorial();
             
         } else {
-            TutorialManager.Instance.ButtonClick_EndTuto();
-            StartGame(LevelManager.Instance.currentSelectedLevel, LevelManager.Instance.currentSelectedWorld);
+            if (!DontSpawnOnPlay) {
+                TutorialManager.Instance.ButtonClick_EndTuto();
+                StartGame(LevelManager.Instance.currentSelectedLevel, LevelManager.Instance.currentSelectedWorld);
+            }
         }
     }
 

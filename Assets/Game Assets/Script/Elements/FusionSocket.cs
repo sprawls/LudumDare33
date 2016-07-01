@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class FusionSocket : ElementSocket {
 
@@ -11,12 +12,15 @@ public class FusionSocket : ElementSocket {
     public ElementTri Tri_1;
     public ElementTri Tri_2;
 
+    /// <summary> Used to connect more than two tri to a single fusion socket </summary>
+    public List<ElementTri> Tri_1_Additionnal;
+    public List<ElementTri> Tri_2_Additionnal;
+
     private Vector3 tri_1_pos = Vector3.zero;
     private Vector3 tri_2_pos = Vector3.zero;
 
     public override void Start() {
         base.Start();
-        
     }
 
     private void ChangeElement(ElementType newElem) {
@@ -46,12 +50,21 @@ public class FusionSocket : ElementSocket {
     }
 
     public override Element GetElement(ElementTri triRef) {
+        
         if (triRef == Tri_1) return subElement_1;
         else if (triRef == Tri_2) return subElement_2;
-        else {
-            Debug.Log("Get Element Ref wasn't found ! Returned Null !");
-            return null;
+        else return GetElementAdditionnalTris(triRef);
+    }
+
+    private Element GetElementAdditionnalTris(ElementTri triRef) {
+        foreach (ElementTri tri in Tri_1_Additionnal) {
+            if (triRef == tri) return subElement_1;
         }
+        foreach (ElementTri tri in Tri_2_Additionnal) {
+            if (triRef == tri) return subElement_2;
+        }
+        Debug.LogError("Get Element Ref wasn't found ! Returned Null !");
+        return null;
     }
 
     public override ElementType GetEType(ElementTri triRef) {
@@ -67,19 +80,51 @@ public class FusionSocket : ElementSocket {
             tri_2_pos = newPos;
             subElement_2.TranslateToPosition(newPos);
         } else {
-            Debug.Log("Get Element Ref wasn't found ! Did not Translate Anything !");
+            TranslateElementAdditionnalTris(newPos, triRef);
         }
         //Now put middle Orb inbetween both
         MixElements();
+    }
+
+    private void TranslateElementAdditionnalTris(Vector3 newPos, ElementTri triRef) {
+        bool found = false;
+        foreach (ElementTri tri in Tri_1_Additionnal) {
+            if (triRef == tri) {
+                tri_1_pos = newPos;
+                subElement_1.TranslateToPosition(newPos);
+                found = true;
+            }
+        }
+        foreach (ElementTri tri in Tri_2_Additionnal) {
+            if (triRef == tri) {
+                tri_2_pos = newPos;
+                subElement_2.TranslateToPosition(newPos);
+                found = true;
+            }
+        }
+        if (!found) Debug.LogError("Translate Element Ref wasn't found ! Returned Null !");
     }
 
     public override void ChangeElement(Element newElement, ElementTri triRef) {
         if (triRef == Tri_1) subElement_1 = newElement;
         else if (triRef == Tri_2) subElement_2 = newElement;
         else {
-            Debug.Log("Get Element Ref wasn't found ! Did not Change Anything !");
+            ChangeElementAdditionnalTris(newElement, triRef);
         }
         MixElements();
+    }
+
+    private void ChangeElementAdditionnalTris(Element newElement, ElementTri triRef) {
+        bool found = false;
+        foreach (ElementTri tri in Tri_1_Additionnal) {
+            if (triRef == tri) subElement_1 = newElement;
+            found = true;
+        }
+        foreach (ElementTri tri in Tri_2_Additionnal) {
+            if (triRef == tri) subElement_2 = newElement;
+            found = true;
+        }
+        if(!found) Debug.LogError("Change Element Ref wasn't found ! Did not Change Anything !");
     }
 
     //GIZMO DEBUG

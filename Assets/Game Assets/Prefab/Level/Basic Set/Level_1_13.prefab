@@ -2432,6 +2432,8 @@ MonoBehaviour:
   subElement_2: {fileID: 11453002}
   Tri_1: {fileID: 11404324}
   Tri_2: {fileID: 11415792}
+  Tri_1_Additionnal: []
+  Tri_2_Additionnal: []
 --- !u!114 &11449886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2779,6 +2781,8 @@ MonoBehaviour:
   subElement_2: {fileID: 11432172}
   Tri_1: {fileID: 11411004}
   Tri_2: {fileID: 11415792}
+  Tri_1_Additionnal: []
+  Tri_2_Additionnal: []
 --- !u!114 &11489320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2825,6 +2829,8 @@ MonoBehaviour:
   subElement_2: {fileID: 11499250}
   Tri_1: {fileID: 11435072}
   Tri_2: {fileID: 11415792}
+  Tri_1_Additionnal: []
+  Tri_2_Additionnal: []
 --- !u!114 &11494324
 MonoBehaviour:
   m_ObjectHideFlags: 1

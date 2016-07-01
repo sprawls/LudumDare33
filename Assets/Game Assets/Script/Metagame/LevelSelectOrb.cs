@@ -171,4 +171,13 @@ public class LevelSelectOrb : MonoBehaviour {
         spawnedOrbPrefab.transform.parent = transform;
         spawnedOrbPrefab.transform.localScale = Vector3.one;
     }
+
+    //GIZMO DEBUG
+    void OnDrawGizmos() {
+        if (Application.isPlaying) return;
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(transform.position, 0.5f * transform.localScale.x);
+
+    }
 }
