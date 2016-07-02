@@ -127,7 +127,7 @@ public class LevelSelectOrb : MonoBehaviour {
         } else {
             beamColor = new Color(0.7f,0.80f,1f,0.5f);
         }
-        if(!nextLevelOrb.unlocked) beamColor = new Color(beamColor.r,beamColor.g,beamColor.b, 0.2f);
+        if(!nextLevelOrb.unlocked) beamColor = new Color(beamColor.r,beamColor.g,beamColor.b, 0.1f);
         nextLevelLineRenderer.SetColors(beamColor, beamColor);
 
     }

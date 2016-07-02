@@ -12,11 +12,13 @@ public class Element : MonoBehaviour {
     public GameObject Orb_Fire;
     public GameObject Orb_Water;
     public GameObject Orb_Wind;
+    private GameObject Orb_All;
 
     public GameObject Model;
 
     void Awake() {
         transform.position = Vector3.zero;
+        Orb_All = (GameObject) Resources.Load("Orbs/Orb_All");
     }
 
     void Start() {
@@ -55,6 +57,9 @@ public class Element : MonoBehaviour {
                 break;
             case ElementType.wind:
                 GO = Orb_Wind;
+                break;
+            case ElementType.all:
+                GO = Orb_All;
                 break;
         }
         if (GO == null) {

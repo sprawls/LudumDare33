@@ -90,12 +90,26 @@ public class ElementTri : MonoBehaviour {
     /// <summary> Updates all tris and return true if ALL of them are complete </summary>
     /// <returns></returns>
     public static bool UpdateAndGetAllTris() {
+        if (LevelManager.Instance.currentSelectedWorld % 2 == 1) return CheckCompletionNormal();
+        else return CheckCompletionInverse();
+    }
+
+    private static bool CheckCompletionNormal() {
         bool allTrue = true;
         for (int i = 0; i < CurrentTris.Count; i++) {
             CurrentTris[i].UpdateCompletion();
             if (!CurrentTris[i]._isComplete) allTrue = false;
         }
         return allTrue;
+    }
+
+    private static bool CheckCompletionInverse() {
+        bool allFalse = true;
+        for (int i = 0; i < CurrentTris.Count; i++) {
+            CurrentTris[i].UpdateCompletion();
+            if (CurrentTris[i]._isComplete) allFalse = false;
+        }
+        return allFalse;
     }
 
     public static bool CheckIfAllFalse() {
