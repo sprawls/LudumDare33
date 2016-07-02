@@ -137,9 +137,9 @@ public class ElementTri : MonoBehaviour {
     /// <summary> Returns true if all elements in this cycle are different </summary>
     /// <returns></returns>
     private bool IsComplete() {
-        if ((Element_1.GetEType(this) != Element_2.GetEType(this)) &&
-            (Element_2.GetEType(this) != Element_3.GetEType(this)) &&
-            (Element_3.GetEType(this) != Element_1.GetEType(this))) {
+        if (((Element_1.GetEType(this) != Element_2.GetEType(this)) || (Element_1.GetEType(this) == ElementType.all)) &&
+            ((Element_2.GetEType(this) != Element_3.GetEType(this)) || (Element_2.GetEType(this) == ElementType.all)) &&
+            ((Element_3.GetEType(this) != Element_1.GetEType(this)) || (Element_3.GetEType(this) == ElementType.all))) {
             _isComplete = true;
             return true;
         } else {
@@ -148,7 +148,7 @@ public class ElementTri : MonoBehaviour {
         }
     }
 
-    public void UpdateCompletion() {
+    private void UpdateCompletion() {
         if (IsComplete()) {
             TriRenderer.material.color = Color.green;  
         } else {
