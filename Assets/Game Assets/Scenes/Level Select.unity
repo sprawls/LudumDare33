@@ -2185,6 +2185,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11434414, guid: aba4fb770d5e3574589cf3dbbdaf7514, type: 2}
+      propertyPath: normalCam
+      value: 
+      objectReference: {fileID: 440159659}
+    - target: {fileID: 11434414, guid: aba4fb770d5e3574589cf3dbbdaf7514, type: 2}
+      propertyPath: inverseCam
+      value: 
+      objectReference: {fileID: 1371282465}
+    - target: {fileID: 11434414, guid: aba4fb770d5e3574589cf3dbbdaf7514, type: 2}
+      propertyPath: screenWipeScript
+      value: 
+      objectReference: {fileID: 776890838}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aba4fb770d5e3574589cf3dbbdaf7514, type: 2}
   m_IsPrefabParent: 0
