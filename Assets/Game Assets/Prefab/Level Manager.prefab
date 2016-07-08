@@ -43,7 +43,7 @@ MonoBehaviour:
   currentSelectedLevel: 0
   showTutorial: 0
   LevelsList_w1_par: 02000000020000000600000001000000060000000200000002000000040000000600000007000000060000000b000000080000000700000007000000
-  LevelsList_w2_par: 030000000300000005000000040000000800000003000000040000000400000009000000080000000000000000000000000000000000000000000000
+  LevelsList_w2_par: 03000000030000000500000004000000080000000300000004000000040000000900000008000000050000000700000007000000080000000f000000
   LevelsList_w3_par: 00000000
   LevelsList_w4_par: 00000000
   LevelsList_w5_par: 00000000
@@ -110,6 +110,26 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: LevelsList_w1_par.Array.data[14]
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: LevelsList_w2_par.Array.data[10]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: LevelsList_w2_par.Array.data[11]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: LevelsList_w2_par.Array.data[12]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: LevelsList_w2_par.Array.data[13]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: LevelsList_w2_par.Array.data[14]
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
