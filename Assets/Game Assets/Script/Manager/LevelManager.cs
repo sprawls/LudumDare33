@@ -60,7 +60,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void OnClick_BackToMenu() {
-        SceneManager.LoadScene("Menu");
+        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.menu);
     }
 
     public void OnClick_InverseWorld() {
@@ -138,7 +138,7 @@ public class LevelManager : MonoBehaviour {
         showTutorial = showTuto;
         currentSelectedWorld = world;
         currentSelectedLevel = level;
-        SceneManager.LoadScene("Main");
+        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.main, 1f, 1.5f, 0.5f);
     }
 
     public void UpdateBackgroundColor() {

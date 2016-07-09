@@ -153,13 +153,13 @@ public class GameManager : MonoBehaviour {
     public void OnClick_BackToMenu() {
         if (_inAnimation) return;
 
-        SceneManager.LoadScene("Menu");
+        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.menu);
     }
 
     public void OnClick_BackToLevelSelect() {
         if (_inAnimation) return;
 
-        SceneManager.LoadScene("Level Select");
+        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect, 1f, 1.5f, 0.5f);
     }
 
     private void DeactivateAllColliders(){

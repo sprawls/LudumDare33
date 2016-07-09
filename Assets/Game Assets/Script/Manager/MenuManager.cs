@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour {
     private bool isfadin = false;
 
     public void OnClick_GoNextScene() {
-        if (isfadin == false) {
+        if (isfadin == false && SceneTransitionManager.Instance.InTransition == false) {
             isfadin = true;
             StartCoroutine(StartGame());
         }
@@ -25,22 +25,16 @@ public class MenuManager : MonoBehaviour {
     }
 
     IEnumerator StartGame() {
-        frontImage.DOFade(1, 1.5f);
-        GameObject.DontDestroyOnLoad(frontImage.gameObject);
+        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect, 1.5f, 3.5f, 1f);
         GameObject.DontDestroyOnLoad(gameObject);
-        frontImage.gameObject.AddComponent<DestroyOnTimer>().time = 5f;
         yield return new WaitForSeconds(1.5f);
 
         Destroy(mainCanvas);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         foreach (GameObject go in TransitionDestroy) {
             Destroy(go);
         }
-        frontImage.DOFade(0, 4f);
-        Application.LoadLevel(1);
-
-        yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
 }
