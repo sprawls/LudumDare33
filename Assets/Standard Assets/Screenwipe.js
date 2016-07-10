@@ -117,6 +117,7 @@ function AlphaTimer (time : float) {
                                 var originalDepth = useCam.depth;
                                 useCam.depth = otherCam.depth+1;
  
+                                var i : float;
                                 if( useCurve )
                                 {
                                     var rate = 1.0/(time);
@@ -136,7 +137,7 @@ function AlphaTimer (time : float) {
                                     }
                                 }
                                 else{
-                                    rate = 1.0/(time*2);
+                                    rate = 1.0/(time*2);     
                                     if (zoom == ZoomType.Shrink) {
                                         for (i = 0.0; i < .5; i += Time.deltaTime * rate) {
                                             t = Mathf.Lerp(0.0, .5, Mathf.Sin(i * Mathf.PI));	// Slow down near the end
@@ -197,6 +198,7 @@ function AlphaTimer (time : float) {
                                         shape.parent = otherCam.transform;
                                         shape.localRotation = Quaternion.identity;
  
+                                        var i: float;
                                         if( useCurve ){
                                             var rate = 1.0/time;
                                             if (zoom == ZoomType.Shrink) {
@@ -256,7 +258,7 @@ function AlphaTimer (time : float) {
                                                 CameraSetup (cam1, cam2, true, false);
  
                                                 var rate = 1.0/time;
-                                                var t = 0.0;
+                                                var t  = 0.0;
                                                 var i = 0.0;
                                                 while( i < 1.0 ){
                                                     if( useCurve ){ 
@@ -340,6 +342,7 @@ function AlphaTimer (time : float) {
                                                     var newTriangles = new int[18*planeResolution];
  
                                                     var idx = 0;
+                                                    var i: int;
                                                     for (i = 0; i <= planeResolution; i++) {
                                                         var add : float = 1.0/planeResolution*i;
                                                         newUV[idx] = Vector2(0.0, 1.0-add);
@@ -353,6 +356,8 @@ function AlphaTimer (time : float) {
                                                     }
  
                                                     idx = 0;
+                                                    var y : int;
+                                                    var x : int;
                                                     for (y = 0; y < planeResolution; y++) {
                                                         for (x = 0; x < 3; x++) {
                                                             newTriangles[idx++] = (y*4	  )+x;
@@ -419,6 +424,7 @@ function AlphaTimer (time : float) {
  
                                                         // Do the cross-fade
                                                         var rate = 1.0/time;
+                                                        var i : float;
                                                         for (i = 0.0; i < 1.0; i += Time.deltaTime * rate) {
                                                             planeMaterial.color.a = Mathf.SmoothStep(0.0, 1.0, Mathf.InverseLerp(.75, .15, i));
                                                             // Make plane undulate

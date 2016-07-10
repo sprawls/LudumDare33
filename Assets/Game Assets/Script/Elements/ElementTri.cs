@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
-using UnityEditor;
+#if UNITY_EDITOR_WIN
+    using UnityEditor;
+#endif
 using System.Collections;
 using System.Collections.Generic;
 
@@ -217,7 +219,7 @@ public class ElementTri : MonoBehaviour {
         _canRotate = true;
     }
 
-    
+#if UNITY_EDITOR_WIN
     //GIZMO DEBUG
     void OnDrawGizmos() {
         if(Application.isPlaying) return; 
@@ -259,5 +261,5 @@ public class ElementTri : MonoBehaviour {
                 return Color.grey;
         }
     }
-
+#endif
 }
