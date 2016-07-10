@@ -50,7 +50,7 @@ MonoBehaviour:
   LevelsList_w6_par: 00000000
   normalCam: {fileID: 0}
   inverseCam: {fileID: 0}
-  transitionMesh: {fileID: 4300002, guid: 103612e5e1ff43a4e896c567a2cb3ae1, type: 3}
+  transitionMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   screenWipeScript: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:

@@ -8,6 +8,7 @@ private var shape : Transform;
 private var curve : AnimationCurve;
 private var useCurve : boolean;
 static var use : Screenwipe;
+static var ModelScale : float;
 enum ZoomType {Grow, Shrink}
 enum TransitionType {Left, Right, Up, Down}
  
@@ -220,7 +221,7 @@ function AlphaTimer (time : float) {
                                             if (zoom == ZoomType.Shrink) {
                                                 for (i = 1.0; i > 0.0; i -= Time.deltaTime * rate) {
                                                     t = Mathf.Lerp(1.0, 0.0, Mathf.Sin((1.0-i) * Mathf.PI * 0.5));	// Slow down near the end
-                                                    shape.localScale = Vector3(t, t, t);
+                                                    shape.localScale = Vector3(t*ModelScale, t*ModelScale, t*ModelScale);
                                                     shape.localEulerAngles = Vector3(0.0, 0.0, i * rotateAmount);
                                                     yield;
                                                 }
@@ -228,7 +229,7 @@ function AlphaTimer (time : float) {
                                             else {
                                                 for (i = 0.0; i < 1.0; i += Time.deltaTime * rate) {
                                                     t = Mathf.Lerp(1.0, 0.0, Mathf.Sin((1.0-i) * Mathf.PI * 0.5));		// Start out slower
-                                                    shape.localScale = Vector3(t, t, t);
+                                                    shape.localScale = Vector3(t*ModelScale, t*ModelScale, t*ModelScale);
                                                     shape.localEulerAngles = Vector3(0.0, 0.0, -i * rotateAmount);
                                                     yield;
                                                 }   
