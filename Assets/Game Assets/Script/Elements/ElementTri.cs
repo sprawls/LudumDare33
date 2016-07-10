@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
-#if UNITY_EDITOR_WIN
-    using UnityEditor;
-#endif
 using System.Collections;
 using System.Collections.Generic;
+
+#if UNITY_EDITOR_WIN
+using UnityEditor;
+#endif
 
 public class ElementTri : MonoBehaviour {
 
@@ -51,6 +52,7 @@ public class ElementTri : MonoBehaviour {
     void Start(){
         ScaleElements();
         MoveElementsToPosition();
+        ChangeOrbBackgroundsColor();
         UpdateCompletion();
         UpdateMovesText();
         TriRenderer.gameObject.layer = 8;
@@ -76,7 +78,7 @@ public class ElementTri : MonoBehaviour {
                 currentMovesLeftObj = (GameObject)Instantiate(movesLeft_GameObject, transform.position, Quaternion.identity);
                 currentMovesLeftObj.transform.parent = transform;
             }
-            if (rotationAvailable == 0) currentMovesLeftObj.GetComponentInChildren<TextMesh>().text = "X";
+            if (rotationAvailable == 0) currentMovesLeftObj.GetComponentInChildren<TextMesh>().text = "0";
             else currentMovesLeftObj.GetComponentInChildren<TextMesh>().text = rotationAvailable.ToString();
         }
     }
@@ -194,6 +196,7 @@ public class ElementTri : MonoBehaviour {
 
                 //Start anim
                 MoveElementsToPosition();
+                ChangeOrbBackgroundsColor();
                 //Start Cooldown
                 StartCoroutine(RotationCooldown());
 
@@ -205,6 +208,12 @@ public class ElementTri : MonoBehaviour {
         Element_1.TranslateElement(pos_1, this);
         Element_2.TranslateElement(pos_2, this);
         Element_3.TranslateElement(pos_3, this);
+    }
+
+    void ChangeOrbBackgroundsColor() {
+        Element_1.ColorElements();
+        Element_2.ColorElements();
+        Element_3.ColorElements();
     }
 
     void ScaleElements() {

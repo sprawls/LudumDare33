@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class FusionSocket : ElementSocket {
 
@@ -16,16 +17,20 @@ public class FusionSocket : ElementSocket {
     public List<ElementTri> Tri_1_Additionnal;
     public List<ElementTri> Tri_2_Additionnal;
 
+    public virtual Color SubOrbBackgroundColor { get; protected set; }
     private Vector3 tri_1_pos = Vector3.zero;
     private Vector3 tri_2_pos = Vector3.zero;
 
+
+
     public override void Start() {
         base.Start();
+        SubOrbBackgroundColor = new Color(0.40f, 0.40f, 0.40f, 1f);
     }
 
     private void ChangeElement(ElementType newElem) {
+        MusicManager.Instance.PlaySound_FusionChange();
         if (element.EType != newElem) {
-            MusicManager.Instance.PlaySound_FusionChange();
             element.EType = newElem;
             Instantiate(FusionSocketParticles, element.transform.position, Quaternion.identity);
         }
@@ -87,6 +92,8 @@ public class FusionSocket : ElementSocket {
         MixElements();
     }
 
+
+
     private void TranslateElementAdditionnalTris(Vector3 newPos, ElementTri triRef) {
         bool found = false;
         foreach (ElementTri tri in Tri_1_Additionnal) {
@@ -126,6 +133,16 @@ public class FusionSocket : ElementSocket {
             found = true;
         }
         if(!found) Debug.LogError("Change Element Ref wasn't found ! Did not Change Anything !");
+    }
+
+    public override void ColorElements() {
+        SpriteRenderer subSprite1 = subElement_1.GetComponentInChildren<SpriteRenderer>();
+        subSprite1.DOColor(SubOrbBackgroundColor,1f);
+        SpriteRenderer subSprite2 = subElement_2.GetComponentInChildren<SpriteRenderer>();
+        subSprite2.DOColor(SubOrbBackgroundColor, 1f);
+        SpriteRenderer elemSprite = element.GetComponentInChildren<SpriteRenderer>();
+        elemSprite.DOColor(OrbBackgroundColor, 1f);
+        
     }
 
     //GIZMO DEBUG

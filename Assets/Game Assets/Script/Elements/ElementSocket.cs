@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class ElementSocket : MonoBehaviour {
 
     public Element element;
 
+    public virtual Color OrbBackgroundColor { get; protected set; }
 
     public virtual void Start() {
-
+        OrbBackgroundColor = new Color(0f, 0f, 0f, 1f);
     }
 
     public virtual Element GetElement(ElementTri triRef) {
@@ -25,6 +27,11 @@ public class ElementSocket : MonoBehaviour {
 
     public virtual void ChangeElement(Element newElement, ElementTri triRef) {
         element = newElement;
+    }
+
+    public virtual void ColorElements() {
+        SpriteRenderer spriteRend = element.GetComponentInChildren<SpriteRenderer>();
+        spriteRend.DOColor(OrbBackgroundColor, 1f);
     }
 
 
