@@ -115,8 +115,8 @@ public class LevelSelectOrb : MonoBehaviour {
 
     void SetPositions(Vector3 pos1, Vector3 pos2) {
         //Update Line renderer positions
-        nextLevelLineRenderer.SetPosition(0, pos1);
-        nextLevelLineRenderer.SetPosition(1, pos2);
+        nextLevelLineRenderer.SetPosition(0, pos1 );
+        nextLevelLineRenderer.SetPosition(1, pos2 );
         //Update other Line renderer properties
         nextLevelLineRenderer.SetWidth(0.15f, 0.15f);
 

@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 497928}
   - 212: {fileID: 21256040}
+  - 114: {fileID: 11459542}
   m_Layer: 0
   m_Name: New Sprite
   m_TagString: Untagged
@@ -57,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.362, y: 51.973545, z: -23.010262}
+  m_LocalPosition: {x: -96.7, y: -19.21, z: -23.010262}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 497928}
@@ -84,7 +85,7 @@ Transform:
   m_GameObject: {fileID: 112944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.44, y: 0.44, z: 1}
   m_Children: []
   m_Father: {fileID: 453264}
   m_RootOrder: 0
@@ -136,6 +137,19 @@ MonoBehaviour:
   offsetY: 0
   offsetRate: {x: 0.02, y: 0.04}
   randomizeStartOffset: 1
+--- !u!114 &11459542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8fc52b50cd89504e8d902cc99377280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 0}
+  ChooseInverseCamera: 1
 --- !u!135 &13588512
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -174,7 +188,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 1261cbdcade526c49b421b8d1eb45f2d, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.297}
   m_FlipX: 0
   m_FlipY: 0

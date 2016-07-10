@@ -140,7 +140,7 @@ public class TutorialManager : MonoBehaviour {
   
         TogglePlayerInputToTutoLevel(true);
 
-        waitTime = TalkManager.Instance.WriteMessage("You can rotate a Tri by clicking on it. Try it on the right Cluster.");
+        waitTime = TalkManager.Instance.WriteMessage("You can rotate a Tri by touching it. Try it on the right Cluster.");
         yield return new WaitForSeconds(waitTime + 2.5f);
         waitTime = TalkManager.Instance.WriteMessage("Try and fix the Cluster on the right to fit the left one.");
         yield return new WaitForSeconds(waitTime + 1.5f);
