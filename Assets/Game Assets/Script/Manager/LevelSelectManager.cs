@@ -8,6 +8,9 @@ public class LevelSelectManager : MonoBehaviour {
     public Button LeftButton;
     public Button RightButton;
 
+    [Header("Debug")]
+    public bool alwaysShowInverseButton = false;
+
 	void Start () {
         UpdateNavigationButtons();
 	}
@@ -37,9 +40,9 @@ public class LevelSelectManager : MonoBehaviour {
     }
 
     private void CheckIfInversionNeeded() {
-        Debug.Log(LevelManager.Instance.currentSelectedWorld);
+        //Debug.Log(LevelManager.Instance.currentSelectedWorld);
         if (LevelManager.Instance.currentSelectedWorld % 2 == 0) {
-            Debug.Log(LevelManager.Instance.GetWorldAllCompletedLevels(LevelManager.Instance.currentSelectedWorld - 1));
+            //Debug.Log(LevelManager.Instance.GetWorldAllCompletedLevels(LevelManager.Instance.currentSelectedWorld - 1));
             if (!LevelManager.Instance.GetWorldAllCompletedLevels(LevelManager.Instance.currentSelectedWorld-1)) {
                 InverseWorld();
             }
@@ -51,20 +54,26 @@ public class LevelSelectManager : MonoBehaviour {
         int worldImpair = (world % 2 == 0) ? world - 1 : world;
 
         //Check Inverse Button
-        if (InverseButton != null) {        
-            if (world % 2 == 1) {
-                if (LevelManager.Instance.GetWorldAllCompletedLevels(world)) {
-                    InverseButton.interactable = true;
-                    InverseButton.gameObject.SetActive(true);
-                } else {
-                    InverseButton.interactable = false;
-                    InverseButton.gameObject.SetActive(false);
-                }
-            } else {
+        if (InverseButton != null) {
+            if (alwaysShowInverseButton) {
                 InverseButton.interactable = true;
                 InverseButton.gameObject.SetActive(true);
+            } else {
+                if (world % 2 == 1) {
+                    if (LevelManager.Instance.GetWorldAllCompletedLevels(world)) {
+                        InverseButton.interactable = true;
+                        InverseButton.gameObject.SetActive(true);
+                    } else {
+                        InverseButton.interactable = false;
+                        InverseButton.gameObject.SetActive(false);
+                    }
+                } else {
+                    InverseButton.interactable = true;
+                    InverseButton.gameObject.SetActive(true);
+                }
             }
         } else Debug.Log("Inverse Button is null !");
+
 
         //Check Left Button
         if (LeftButton != null) {
