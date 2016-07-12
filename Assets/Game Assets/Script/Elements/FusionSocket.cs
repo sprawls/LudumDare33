@@ -18,6 +18,7 @@ public class FusionSocket : ElementSocket {
     public List<ElementTri> Tri_2_Additionnal;
 
     public virtual Color SubOrbBackgroundColor { get; protected set; }
+    public virtual Color SubOrbBackgroundColor_Inverse { get; protected set; }
     private Vector3 tri_1_pos = Vector3.zero;
     private Vector3 tri_2_pos = Vector3.zero;
 
@@ -25,7 +26,8 @@ public class FusionSocket : ElementSocket {
 
     public override void Start() {
         base.Start();
-        SubOrbBackgroundColor = new Color(0.40f, 0.40f, 0.40f, 1f);
+        SubOrbBackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.5f); 
+        SubOrbBackgroundColor_Inverse = new Color(0.4f, 0.40f, 0.40f, 1f);
     }
 
     private void ChangeElement(ElementType newElem) {
@@ -137,11 +139,27 @@ public class FusionSocket : ElementSocket {
 
     public override void ColorElements() {
         SpriteRenderer subSprite1 = subElement_1.GetComponentInChildren<SpriteRenderer>();
-        subSprite1.DOColor(SubOrbBackgroundColor,1f);
+        SpriteRenderer subSprite1_Foreground = subSprite1.transform.FindChild("Orb_Foreground").GetComponent<SpriteRenderer>();
         SpriteRenderer subSprite2 = subElement_2.GetComponentInChildren<SpriteRenderer>();
-        subSprite2.DOColor(SubOrbBackgroundColor, 1f);
+        SpriteRenderer subSprite2_Foreground = subSprite2.transform.FindChild("Orb_Foreground").GetComponent<SpriteRenderer>();
         SpriteRenderer elemSprite = element.GetComponentInChildren<SpriteRenderer>();
-        elemSprite.DOColor(OrbBackgroundColor, 1f);
+
+        if (LevelManager.Instance.isInverseWorld()) {
+            subSprite1.DOColor(SubOrbBackgroundColor_Inverse, 1f);
+            subSprite2.DOColor(SubOrbBackgroundColor_Inverse, 1f);
+            subSprite1_Foreground.DOColor(new Color(0f, 0f, 0f, 0f), 1f);
+            subSprite2_Foreground.DOColor(new Color(0f, 0f, 0f, 0f), 1f);
+            elemSprite.DOColor(OrbBackgroundColor, 1f);
+        } else {
+            subSprite1.DOColor(OrbBackgroundColor, 1f);
+            subSprite2.DOColor(OrbBackgroundColor, 1f);
+            subSprite1_Foreground.DOColor(SubOrbBackgroundColor, 1f);
+            subSprite2_Foreground.DOColor(SubOrbBackgroundColor, 1f);
+            elemSprite.DOColor(OrbBackgroundColor, 1f);
+        }
+
+
+
         
     }
 

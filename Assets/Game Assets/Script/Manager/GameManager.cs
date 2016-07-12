@@ -192,10 +192,17 @@ public class GameManager : MonoBehaviour {
         currentLevel = LevelManager.Instance.currentSelectedLevel;
         currentLevelMoves = 0;
 
-        ChangeColorByLevel.UpdateAllColor();
-        LoadLevel();
+        if (LevelManager.Instance.CurrentLevelExists()) {
+            //Show Next LEvel
+            ChangeColorByLevel.UpdateAllColor();
+            LoadLevel();
+            _inAnimation = false;
+        } else {
+            yield return new WaitForSeconds(0.5f);
+            SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect,2f,2f,0.25f);
+        }
 
-        _inAnimation = false;
+
     }
 
     IEnumerator CompletionAnimation_Tuto() {

@@ -31,7 +31,10 @@ public class ElementSocket : MonoBehaviour {
 
     public virtual void ColorElements() {
         SpriteRenderer spriteRend = element.GetComponentInChildren<SpriteRenderer>();
+        SpriteRenderer spriteRend_Foreground = spriteRend.transform.FindChild("Orb_Foreground").GetComponent<SpriteRenderer>();
+
         spriteRend.DOColor(OrbBackgroundColor, 1f);
+        spriteRend_Foreground.DOColor(new Color(0, 0, 0, 0), 1f);
     }
 
 

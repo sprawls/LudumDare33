@@ -42,9 +42,10 @@ public class ElementTri : MonoBehaviour {
         pos_3 = (Quaternion.Euler(new Vector3(0,0,addedRotation)) * new Vector3(-(size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + transform.position;
         TriRenderer.transform.parent.Rotate(new Vector3(0, 0, addedRotation));
 
-        DrawLinesBetweenPoints(pos_1,pos_2);
-        DrawLinesBetweenPoints(pos_2, pos_3);
-        DrawLinesBetweenPoints(pos_3, pos_1);
+        Vector3 ZLineOffset = new Vector3(0, 0, 1);
+        DrawLinesBetweenPoints(pos_1 + ZLineOffset, pos_2 + ZLineOffset);
+        DrawLinesBetweenPoints(pos_2 + ZLineOffset, pos_3 + ZLineOffset);
+        DrawLinesBetweenPoints(pos_3 + ZLineOffset, pos_1 + ZLineOffset);
 
         transform.localScale = Vector3.one * size;
     }

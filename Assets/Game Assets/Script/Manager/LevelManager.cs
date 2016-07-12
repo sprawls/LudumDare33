@@ -79,6 +79,10 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
+    public bool CurrentLevelExists() {
+        return currentSelectedLevel < worldList_par[currentSelectedWorld - 1].Count;
+    }
+
     void MoveLevelSelectTo(int world) {
         WorldsPosition worldPosScript = GameObject.Find("Camera Parent").GetComponent<WorldsPosition>();
         worldPosScript.SetWorldPosition((int)Mathf.Ceil((float)world / 2f) - 1);
