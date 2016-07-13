@@ -116,7 +116,7 @@ public class LevelManager : MonoBehaviour {
             for (int j = 0; j < worldList_par[i].Count; ++j) {
                 Level previousLevelData = PopLevelInList(levelsData.levelList, i+1, j);
                 if(previousLevelData != null) {
-                    newLevelList.Add(new Level(GetLevelID(i+1, j), previousLevelData.unlocked, previousLevelData.completed, previousLevelData.completedPar));
+                    newLevelList.Add(new Level(GetLevelID(i+1, j), previousLevelData.unlocked, previousLevelData.completed, previousLevelData.completedPar, previousLevelData.bestMoveScore));
                     Debug.Log("world" + (i+1) + " level " + (j) + " found. Completed : " + previousLevelData.completed + "    completedPar : " + previousLevelData.completedPar);
                 } else {
                     newLevelList.Add(new Level(GetLevelID(i+1,j)));
@@ -155,6 +155,7 @@ public class LevelManager : MonoBehaviour {
         string levelID = GetLevelID(currentSelectedWorld,currentSelectedLevel);
         Level levelRef = GetLevel(levelID);
         if(levelRef != null) {
+            levelRef.SetBestMoveScore(moves);
             levelRef.SetCompleted();
             if (moves <= parMoves) levelRef.SetCompletedPar();
             currentSelectedLevel++;

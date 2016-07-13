@@ -12,6 +12,7 @@ public class Level {
     public int world { private set; get; }
     public int lvl { private set; get; }
     public int par { private set; get; }
+    public int bestMoveScore { private set; get; }
 
     public Level(string _id) {
         id = _id;
@@ -19,15 +20,17 @@ public class Level {
         completed = false;
         completedPar = false;
         par = 0;
+        bestMoveScore = -1;
         SetWorldAndLvl();
     }
 
-    public Level(string _id, bool _unlocked, bool _completed, bool _completedPar) {
+    public Level(string _id, bool _unlocked, bool _completed, bool _completedPar, int _bestMoveScore) {
         id = _id;
         unlocked = _unlocked;
         completed = _completed;
         completedPar = _completedPar;
         par = 0;
+        bestMoveScore = _bestMoveScore;
         SetWorldAndLvl();
     }
 
@@ -37,12 +40,20 @@ public class Level {
         lvl = Int32.Parse(splitID[2]);
     }
 
+    public bool BestMoveScoreIsUnset() {
+        return bestMoveScore < 0;
+    }
+
     public void SetCompleted() {
         completed = true;
     }
 
     public void SetCompletedPar() {
         completedPar = true;
+    }
+
+    public void SetBestMoveScore(int _moves) {
+        bestMoveScore = _moves;
     }
 
     public void Unlock() {
