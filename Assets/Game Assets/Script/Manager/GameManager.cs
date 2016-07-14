@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
     public CanvasGroup UICanvas;
     public CanvasGroup UICanvas_Ending;
     public CanvasGroup UICanvas_Ending_Button;
+    public CanvasGroup UICanvas_ParAchieved;
+    public CanvasGroup UICanvas_HighscoreAchieved;
     public MeshRenderer backgroundRenderer;
     public Button RestartButton;
 
@@ -99,9 +101,13 @@ public class GameManager : MonoBehaviour {
         if (TutorialManager.Instance.isInTuto) {
             TutorialManager.Instance.TutoLevelCompleted();
         } else {
-            //TODO : Update Par Moves
-            if (currentLevelMoves < GetParMoves()) Score -= (GetParMoves() - currentLevelMoves);
-
+            Level curLevelRef = LevelManager.Instance.GetCurrentLevel();
+            Debug.Log(GetParMoves() + " " + currentLevelMoves);
+            if (currentLevelMoves <= GetParMoves()) {
+                StartCoroutine(FadeEndLevelCanvas(UICanvas_ParAchieved));
+            } else if (!curLevelRef.BestMoveScoreIsUnset() && currentLevelMoves < curLevelRef.bestMoveScore) {
+                StartCoroutine(FadeEndLevelCanvas(UICanvas_HighscoreAchieved));
+            }
             StartCoroutine(CompletionAnimation());
         }
     }
@@ -120,7 +126,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void ReloadLevel() {
-        Debug.Log(currentLevel + "  " + currentWorld);
+        //Debug.Log(currentLevel + "  " + currentWorld);
         if (currentLevel_Obj != null) Destroy(currentLevel_Obj);
         switch (currentWorld) {
             case 1 :
@@ -201,8 +207,13 @@ public class GameManager : MonoBehaviour {
             yield return new WaitForSeconds(0.5f);
             SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect,2f,2f,0.25f);
         }
+    }
 
-
+    IEnumerator FadeEndLevelCanvas(CanvasGroup canvasToFade) {
+        yield return new WaitForSeconds(1.0f);
+        canvasToFade.DOFade(1.0f, 1.5f);
+        yield return new WaitForSeconds(2f);
+        canvasToFade.DOFade(0f, 2.5f);
     }
 
     IEnumerator CompletionAnimation_Tuto() {

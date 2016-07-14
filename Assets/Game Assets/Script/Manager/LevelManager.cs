@@ -175,6 +175,11 @@ public class LevelManager : MonoBehaviour {
         return null;
     }
 
+    public Level GetCurrentLevel() {
+        string currentLevelID = GetLevelID(currentSelectedWorld, currentSelectedLevel);
+        return GetLevel(currentLevelID);
+    }
+
     public int GetWorldCompletedLevels(int worldRequested) {
         int amt = 0;
         for (int i = 0; i < levelsData.levelList.Count; ++i) {

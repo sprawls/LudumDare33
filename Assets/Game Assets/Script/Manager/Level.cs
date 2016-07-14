@@ -41,7 +41,7 @@ public class Level {
     }
 
     public bool BestMoveScoreIsUnset() {
-        return bestMoveScore < 0;
+        return bestMoveScore < 1;
     }
 
     public void SetCompleted() {
