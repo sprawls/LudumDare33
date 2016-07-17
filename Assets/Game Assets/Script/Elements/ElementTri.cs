@@ -154,11 +154,20 @@ public class ElementTri : MonoBehaviour {
     }
 
     private void UpdateCompletion() {
-        if (IsComplete()) {
-            TriRenderer.material.color = Color.green;  
+        if (LevelManager.Instance.isInverseWorld()) {
+            if (IsComplete()) {
+                TriRenderer.material.color = new Color(0.25f,0.7f,0.25f,1);
+            } else {
+                TriRenderer.material.color = new Color(0.7f, 0.15f, 0.15f, 1);
+            }
         } else {
-            TriRenderer.material.color = Color.red;
+            if (IsComplete()) {
+                TriRenderer.material.color = new Color(0,0.9f,0,1);
+            } else {
+                TriRenderer.material.color = Color.red;
+            }
         }
+
     }
 
     public bool GetComplete() {
