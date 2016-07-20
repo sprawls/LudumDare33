@@ -120,9 +120,8 @@ public class GameManager : MonoBehaviour {
 
         ReloadLevel();
         DialogueManager.Instance.StopTalkCoroutines();
-        DialogueManager.Instance.TalkAboutLevel(currentLevel);
+        DialogueManager.Instance.TalkAboutLevel();
 
-       
     }
 
     public void ReloadLevel() {
@@ -211,9 +210,9 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator FadeEndLevelCanvas(CanvasGroup canvasToFade) {
         yield return new WaitForSeconds(1.0f);
-        canvasToFade.DOFade(1.0f, 1.5f);
+        canvasToFade.DOFade(1.0f, 1.5f).SetEase(Ease.OutCubic);
         yield return new WaitForSeconds(2f);
-        canvasToFade.DOFade(0f, 2.5f);
+        canvasToFade.DOFade(0f, 2.5f).SetEase(Ease.InCubic); ;
     }
 
     IEnumerator CompletionAnimation_Tuto() {
