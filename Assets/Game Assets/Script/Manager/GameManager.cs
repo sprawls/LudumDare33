@@ -117,7 +117,6 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LoadLevel() {
-
         ReloadLevel();
         DialogueManager.Instance.StopTalkCoroutines();
         DialogueManager.Instance.TalkAboutLevel();
