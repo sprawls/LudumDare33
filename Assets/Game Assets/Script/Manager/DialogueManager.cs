@@ -55,7 +55,7 @@ public class DialogueManager : MonoBehaviour {
                     break;
             }
 
-            messageCooldown += 15f;
+            messageCooldown += 25f;
 
             yield return new WaitForSeconds(messageCooldown);
         }

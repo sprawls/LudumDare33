@@ -95,7 +95,7 @@ public class ElementTri : MonoBehaviour {
     /// <summary> Updates all tris and return true if ALL of them are complete </summary>
     /// <returns></returns>
     public static bool UpdateAndGetAllTris() {
-        if (LevelManager.Instance.currentSelectedWorld % 2 == 1) return CheckCompletionNormal();
+        if (!LevelManager.Instance.isInverseWorld()) return CheckCompletionNormal();
         else return CheckCompletionInverse();
     }
 

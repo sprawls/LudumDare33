@@ -41,25 +41,27 @@ public class LevelSelectOrb : MonoBehaviour {
 
 
     void OnMouseDown() {
-        switch (world) {
-            case WorldsEnum.world_1:
-                LevelManager.Instance.StartLevel(1, level, showTutorial);
-                break;
-            case WorldsEnum.world_2:
-                LevelManager.Instance.StartLevel(2, level, false);
-                break;
-            case WorldsEnum.world_3:
-                LevelManager.Instance.StartLevel(3, level, false);
-                break;
-            case WorldsEnum.world_4:
-                LevelManager.Instance.StartLevel(4, level, false);
-                break;
-            case WorldsEnum.world_5:
-                LevelManager.Instance.StartLevel(5, level, false);
-                break;
-            case WorldsEnum.world_6:
-                LevelManager.Instance.StartLevel(6, level, false);
-                break;
+        if (LevelManager.Instance.CanClickOnLevels()) {   
+            switch (world) {
+                case WorldsEnum.world_1:
+                    LevelManager.Instance.StartLevel(1, level, showTutorial);
+                    break;
+                case WorldsEnum.world_2:
+                    LevelManager.Instance.StartLevel(2, level, false);
+                    break;
+                case WorldsEnum.world_3:
+                    LevelManager.Instance.StartLevel(3, level, false);
+                    break;
+                case WorldsEnum.world_4:
+                    LevelManager.Instance.StartLevel(4, level, false);
+                    break;
+                case WorldsEnum.world_5:
+                    LevelManager.Instance.StartLevel(5, level, false);
+                    break;
+                case WorldsEnum.world_6:
+                    LevelManager.Instance.StartLevel(6, level, false);
+                    break;
+            }
         }
         
     }

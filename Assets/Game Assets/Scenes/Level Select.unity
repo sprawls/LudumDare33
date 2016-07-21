@@ -1491,7 +1491,6 @@ GameObject:
   - 20: {fileID: 440159659}
   - 92: {fileID: 440159658}
   - 124: {fileID: 440159657}
-  - 81: {fileID: 440159656}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1499,13 +1498,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &440159656
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 440159655}
-  m_Enabled: 1
 --- !u!124 &440159657
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2848,6 +2840,10 @@ Prefab:
       propertyPath: showTutorial
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11434414, guid: aba4fb770d5e3574589cf3dbbdaf7514, type: 2}
+      propertyPath: currentSelectedWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aba4fb770d5e3574589cf3dbbdaf7514, type: 2}
   m_IsPrefabParent: 0
@@ -2938,6 +2934,7 @@ GameObject:
   - 114: {fileID: 776890839}
   - 114: {fileID: 776890842}
   - 114: {fileID: 776890841}
+  - 81: {fileID: 776890844}
   m_Layer: 0
   m_Name: Camera Parent
   m_TagString: ReceivesTouchInputs
@@ -3005,6 +3002,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeResolution: 90
+--- !u!81 &776890844
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 776890838}
+  m_Enabled: 1
 --- !u!4 &858349431 stripped
 Transform:
   m_PrefabParentObject: {fileID: 475294, guid: 86d576263c771f249bf68eab33578cce, type: 2}
@@ -5040,7 +5044,6 @@ GameObject:
   - 20: {fileID: 1371282465}
   - 92: {fileID: 1371282464}
   - 124: {fileID: 1371282463}
-  - 81: {fileID: 1371282462}
   - 114: {fileID: 1371282466}
   m_Layer: 0
   m_Name: Main Camera_Inverse
@@ -5062,13 +5065,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 776890840}
   m_RootOrder: 2
---- !u!81 &1371282462
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1371282460}
-  m_Enabled: 1
 --- !u!124 &1371282463
 Behaviour:
   m_ObjectHideFlags: 0

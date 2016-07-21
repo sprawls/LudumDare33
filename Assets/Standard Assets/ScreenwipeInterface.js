@@ -15,3 +15,14 @@ function InverseWorld (isInverseWorld : boolean) {
                                             transitionMesh,
                                             rotateAmount);
 }
+
+function FakeInverseWorld (isInverseWorld : boolean) {
+        Screenwipe.ModelScale = shapeScale;
+        yield Screenwipe.use.ShapeWipe(         isInverseWorld ? normalCam : inverseCam,
+                                                isInverseWorld ? inverseCam : normalCam,
+                                                0.0f,
+                                                ZoomType.Grow,
+                                                transitionMesh,
+                                                rotateAmount);
+}
+

@@ -56,7 +56,15 @@ public class LevelManager : MonoBehaviour {
     }
 
     void OnLevelWasLoaded(int scene) {
-        if (scene == 1) UpdateBackgroundColor();
+        if (scene == 1) {
+            UpdateBackgroundColor();
+            if (isInverseWorld()) StartCoroutine(FakeInverseWorld());
+        }
+    }
+
+    public bool CanClickOnLevels() {
+        if (inInverseAnimation || SceneTransitionManager.Instance.InTransition) return false;
+        else return true;
     }
 
     public void OnClick_BackToMenu() {
@@ -84,6 +92,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void MoveLevelSelectTo(int world) {
+        Debug.Log("moving to " + world);
         WorldsPosition worldPosScript = GameObject.Find("Camera Parent").GetComponent<WorldsPosition>();
         worldPosScript.SetWorldPosition((int)Mathf.Ceil((float)world / 2f) - 1);
         currentSelectedWorld = world;
@@ -91,18 +100,34 @@ public class LevelManager : MonoBehaviour {
 
     IEnumerator InverseWorld() {
         if (!inInverseAnimation) {
+            Debug.Log("Inversing... cur world " + currentSelectedWorld);
             inInverseAnimation = true;
 
             screenWipeScript = GameObject.Find("Camera Parent");
             if (screenWipeScript != null) {
                 screenWipeScript.SendMessage("InverseWorld", isInverseWorld());
+                
                 if (isInverseWorld()) --currentSelectedWorld;
                 else ++currentSelectedWorld;
                 yield return new WaitForSeconds(2f);
+            }         
+
+            inInverseAnimation = false;
+        }
+    }
+
+    IEnumerator FakeInverseWorld() {
+        if (!inInverseAnimation) {
+            Debug.Log("FAKE Inversing... cur world " + currentSelectedWorld);
+            inInverseAnimation = true;
+            yield return new WaitForSeconds(0.05f);
+
+            screenWipeScript = GameObject.Find("Camera Parent");
+            if (screenWipeScript != null) {
+                screenWipeScript.SendMessage("FakeInverseWorld", !isInverseWorld());
             }
 
-            
-
+            yield return new WaitForSeconds(0.5f);
             inInverseAnimation = false;
         }
     }
@@ -139,6 +164,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void StartLevel(int world, int level, bool showTuto) {
+        Debug.Log("start lvl : " + world + " " + level);
         showTutorial = showTuto;
         currentSelectedWorld = world;
         currentSelectedLevel = level;

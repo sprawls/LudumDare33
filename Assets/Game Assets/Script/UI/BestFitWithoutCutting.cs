@@ -17,7 +17,7 @@ public class BestFitWithoutCutting : MonoBehaviour {
     }
 
     IEnumerator FixHeight() {
-        Debug.Log("Rezized");
+        //Debug.Log("Rezized");
         yield return null;
         TextGenerator gen = text.cachedTextGenerator;
         Rect rect = text.rectTransform.rect;
@@ -29,7 +29,7 @@ public class BestFitWithoutCutting : MonoBehaviour {
             }
             yield return null;
         }
-        Debug.Log(linkedText);
+        //Debug.Log(linkedText);
         if (linkedText != null) {
             linkedText.Rezize();
         }
