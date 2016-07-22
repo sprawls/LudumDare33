@@ -92,7 +92,6 @@ public class LevelManager : MonoBehaviour {
     }
 
     void MoveLevelSelectTo(int world) {
-        Debug.Log("moving to " + world);
         WorldsPosition worldPosScript = GameObject.Find("Camera Parent").GetComponent<WorldsPosition>();
         worldPosScript.SetWorldPosition((int)Mathf.Ceil((float)world / 2f) - 1);
         currentSelectedWorld = world;
@@ -100,7 +99,8 @@ public class LevelManager : MonoBehaviour {
 
     IEnumerator InverseWorld() {
         if (!inInverseAnimation) {
-            Debug.Log("Inversing... cur world " + currentSelectedWorld);
+            MusicManager.Instance.PlaySound_InverseWorld();
+
             inInverseAnimation = true;
 
             screenWipeScript = GameObject.Find("Camera Parent");
@@ -113,12 +113,12 @@ public class LevelManager : MonoBehaviour {
             }         
 
             inInverseAnimation = false;
+            MusicManager.Instance.UpdateSoundMixerSnapshots();
         }
     }
 
     IEnumerator FakeInverseWorld() {
         if (!inInverseAnimation) {
-            Debug.Log("FAKE Inversing... cur world " + currentSelectedWorld);
             inInverseAnimation = true;
             yield return new WaitForSeconds(0.05f);
 
@@ -164,7 +164,6 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void StartLevel(int world, int level, bool showTuto) {
-        Debug.Log("start lvl : " + world + " " + level);
         showTutorial = showTuto;
         currentSelectedWorld = world;
         currentSelectedLevel = level;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 using System.Collections;
 using DG.Tweening;
 
@@ -6,26 +7,38 @@ public class MusicManager : MonoBehaviour {
 
     public static MusicManager Instance;
 
+    [Header("Soundclips")]
     public AudioClip clip_music;
     public AudioClip clip_move;
     public AudioClip clip_fusionChange;
     public AudioClip clip_levelComplete;
+    public AudioClip clip_inverseWorld;
 
+    [Header("AudioSources and Mixers")]
     public AudioSource audioSource_music;
     public AudioSource audioSource_sounds;
-    
+    public AudioMixerGroup MasterMixer;
+    public AudioMixerGroup SFXMixer;
+    public AudioMixerGroup MusicMixer;
+    public AudioMixerSnapshot normalWorldSnapshot;
+    public AudioMixerSnapshot inverseWorldSnapshot;
+
 
     void Awake() {
         if (Instance == null) {
             MusicManager.Instance = this;
             GameObject.DontDestroyOnLoad(gameObject);
+
+            audioSource_music.outputAudioMixerGroup = MusicMixer;
+            audioSource_sounds.outputAudioMixerGroup = SFXMixer;
+
         } else {
             Destroy(gameObject);
         }
     }
 
     void Start() {
-
+        UpdateSoundMixerSnapshots();
         audioSource_music.loop = true;
         audioSource_music.clip = clip_music;
         audioSource_music.Play();
@@ -56,8 +69,17 @@ public class MusicManager : MonoBehaviour {
         if (clip_levelComplete != null) audioSource_sounds.PlayOneShot(clip_levelComplete);
     }
 
+    public void PlaySound_InverseWorld() {
+        if (clip_inverseWorld != null) audioSource_sounds.PlayOneShot(clip_inverseWorld);
+    }
+
     public void StopAllSounds(){
         audioSource_music.DOFade(0, 6f);
         audioSource_sounds.DOFade(0, 8f);
+    }
+
+    public void UpdateSoundMixerSnapshots() {
+        if (LevelManager.Instance.isInverseWorld()) inverseWorldSnapshot.TransitionTo(0.1f);
+        else normalWorldSnapshot.TransitionTo(0.1f);
     }
 }

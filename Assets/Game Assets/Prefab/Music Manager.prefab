@@ -25,8 +25,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.1081133, y: -.970866919, z: 91.1923828}
+  m_LocalPosition: {x: 12.108113, y: -0.9708669, z: 91.19238}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,6 +46,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -69,6 +71,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -79,6 +82,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -89,6 +93,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -99,6 +104,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!82 &8243488
 AudioSource:
   m_ObjectHideFlags: 1
@@ -110,10 +116,11 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: .300000012
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -138,6 +145,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -148,6 +156,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -158,6 +167,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -168,6 +178,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &11459324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,8 +194,16 @@ MonoBehaviour:
   clip_move: {fileID: 8300000, guid: c385f88cf64c4c0408b0dd8575c8fb46, type: 3}
   clip_fusionChange: {fileID: 8300000, guid: a46fb0ab5468248478dda96cd46a9ed1, type: 3}
   clip_levelComplete: {fileID: 8300000, guid: 832a5c1860fc67649a9917fbfb8a76c3, type: 3}
+  clip_inverseWorld: {fileID: 8300000, guid: c58875861ee9e9441babfcf2f58db9b1, type: 3}
   audioSource_music: {fileID: 8232562}
   audioSource_sounds: {fileID: 8243488}
+  MasterMixer: {fileID: 24300001, guid: 4481f33c4c6784e4bac5f15c026563d8, type: 2}
+  SFXMixer: {fileID: 24366142, guid: 4481f33c4c6784e4bac5f15c026563d8, type: 2}
+  MusicMixer: {fileID: 24319448, guid: 4481f33c4c6784e4bac5f15c026563d8, type: 2}
+  normalWorldSnapshot: {fileID: 24500003, guid: 4481f33c4c6784e4bac5f15c026563d8,
+    type: 2}
+  inverseWorldSnapshot: {fileID: 24541076, guid: 4481f33c4c6784e4bac5f15c026563d8,
+    type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
