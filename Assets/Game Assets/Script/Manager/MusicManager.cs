@@ -17,11 +17,11 @@ public class MusicManager : MonoBehaviour {
     [Header("AudioSources and Mixers")]
     public AudioSource audioSource_music;
     public AudioSource audioSource_sounds;
+    public AudioMixer audioMixer;
     public AudioMixerGroup MasterMixer;
     public AudioMixerGroup SFXMixer;
     public AudioMixerGroup MusicMixer;
-    public AudioMixerSnapshot normalWorldSnapshot;
-    public AudioMixerSnapshot inverseWorldSnapshot;
+    public AudioMixerSnapshot[] SnapshotsArray;
 
 
     void Awake() {
@@ -79,7 +79,15 @@ public class MusicManager : MonoBehaviour {
     }
 
     public void UpdateSoundMixerSnapshots() {
-        if (LevelManager.Instance.isInverseWorld()) inverseWorldSnapshot.TransitionTo(0.1f);
-        else normalWorldSnapshot.TransitionTo(0.1f);
+        float[] weights = new float[2];
+        if (LevelManager.Instance.isInverseWorld()) {
+            weights[0] = 0f;
+            weights[1] = 1f;
+        } else {
+            weights[0] = 1f;
+            weights[1] = 0f;
+        }
+
+        audioMixer.TransitionToSnapshots(SnapshotsArray, weights, 1f);
     }
 }

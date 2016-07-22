@@ -106,14 +106,16 @@ public class LevelManager : MonoBehaviour {
             screenWipeScript = GameObject.Find("Camera Parent");
             if (screenWipeScript != null) {
                 screenWipeScript.SendMessage("InverseWorld", isInverseWorld());
-                
                 if (isInverseWorld()) --currentSelectedWorld;
                 else ++currentSelectedWorld;
+
+                MusicManager.Instance.UpdateSoundMixerSnapshots();
+
                 yield return new WaitForSeconds(2f);
             }         
 
             inInverseAnimation = false;
-            MusicManager.Instance.UpdateSoundMixerSnapshots();
+
         }
     }
 

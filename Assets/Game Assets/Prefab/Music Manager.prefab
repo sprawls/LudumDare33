@@ -197,13 +197,13 @@ MonoBehaviour:
   clip_inverseWorld: {fileID: 8300000, guid: c58875861ee9e9441babfcf2f58db9b1, type: 3}
   audioSource_music: {fileID: 8232562}
   audioSource_sounds: {fileID: 8243488}
+  audioMixer: {fileID: 24100000, guid: 4481f33c4c6784e4bac5f15c026563d8, type: 2}
   MasterMixer: {fileID: 24300001, guid: 4481f33c4c6784e4bac5f15c026563d8, type: 2}
   SFXMixer: {fileID: 24366142, guid: 4481f33c4c6784e4bac5f15c026563d8, type: 2}
   MusicMixer: {fileID: 24319448, guid: 4481f33c4c6784e4bac5f15c026563d8, type: 2}
-  normalWorldSnapshot: {fileID: 24500003, guid: 4481f33c4c6784e4bac5f15c026563d8,
-    type: 2}
-  inverseWorldSnapshot: {fileID: 24541076, guid: 4481f33c4c6784e4bac5f15c026563d8,
-    type: 2}
+  SnapshotsArray:
+  - {fileID: 24500003, guid: 4481f33c4c6784e4bac5f15c026563d8, type: 2}
+  - {fileID: 24541076, guid: 4481f33c4c6784e4bac5f15c026563d8, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
