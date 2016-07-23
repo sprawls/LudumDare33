@@ -80,7 +80,7 @@ public class MusicManager : MonoBehaviour {
 
     public void UpdateSoundMixerSnapshots() {
         float[] weights = new float[2];
-        if (LevelManager.Instance.isInverseWorld()) {
+        if (LevelManager.Instance != null && LevelManager.Instance.isInverseWorld()) {
             weights[0] = 0f;
             weights[1] = 1f;
         } else {

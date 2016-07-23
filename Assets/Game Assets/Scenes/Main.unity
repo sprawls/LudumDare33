@@ -1860,7 +1860,6 @@ GameObject:
   - 114: {fileID: 700879119}
   - 114: {fileID: 700879121}
   - 114: {fileID: 700879122}
-  - 114: {fileID: 700879123}
   m_Layer: 5
   m_Name: Text 2
   m_TagString: Untagged
@@ -1882,7 +1881,7 @@ RectTransform:
   m_Father: {fileID: 738922639}
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.9, y: 0.4}
+  m_AnchorMax: {x: 1, y: 0.4}
   m_AnchoredPosition: {x: -2.5, y: 0}
   m_SizeDelta: {x: -5, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1953,17 +1952,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customTextBefore: 'Moves : '
---- !u!114 &700879123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 700879117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a03cc6a0ce6b5240ba4197a91fd86c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &738922637
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,7 +2707,6 @@ GameObject:
   - 114: {fileID: 1043859373}
   - 114: {fileID: 1043859375}
   - 114: {fileID: 1043859376}
-  - 114: {fileID: 1043859377}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2812,17 +2799,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customTextBefore: 'Cluster '
---- !u!114 &1043859377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1043859371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a03cc6a0ce6b5240ba4197a91fd86c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1049172943
 Prefab:
   m_ObjectHideFlags: 0
@@ -3669,10 +3645,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1024, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -4185,7 +4161,6 @@ GameObject:
   - 114: {fileID: 1666292169}
   - 114: {fileID: 1666292171}
   - 114: {fileID: 1666292172}
-  - 114: {fileID: 1666292173}
   m_Layer: 5
   m_Name: Text 1
   m_TagString: Untagged
@@ -4208,7 +4183,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.4, y: 0.4}
-  m_AnchoredPosition: {x: -2.5, y: 0}
+  m_AnchoredPosition: {x: 2.5, y: 0}
   m_SizeDelta: {x: -5, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1666292169
@@ -4278,17 +4253,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customTextBefore: 'Par : '
---- !u!114 &1666292173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1666292167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a03cc6a0ce6b5240ba4197a91fd86c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1669615477 stripped
 Transform:
   m_PrefabParentObject: {fileID: 452606, guid: 5c88b30832302e043ae51da0442f93f1, type: 2}
@@ -5463,7 +5427,7 @@ MonoBehaviour:
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 24
     m_MaxSize: 24
     m_Alignment: 3
     m_AlignByGeometry: 0
