@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour {
 
     void Start() {
         RestartButton.interactable = false;
-        if (LevelManager.Instance.showTutorial == true) {
+        if (LevelManager.Instance.showTutorial == true && LevelManager.Instance.levelsData.tutorialCompleted == false) {
             UICanvas_Ending.DOFade(0, 0.01f);
             TutorialManager.Instance.StartTutorial();
             

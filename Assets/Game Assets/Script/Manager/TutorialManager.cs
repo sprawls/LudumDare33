@@ -80,6 +80,8 @@ public class TutorialManager : MonoBehaviour {
     }
 
     public IEnumerator EndTutorial() {
+        LevelManager.Instance.levelsData.tutorialCompleted = true;
+
         Destroy(Canvas_Tuto.transform.parent.gameObject);
         if (TutoLevel_ref != null) {
             GameManager.Instance.CompleteLevel_Tuto();

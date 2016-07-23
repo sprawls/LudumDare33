@@ -137,7 +137,7 @@ public class LevelManager : MonoBehaviour {
     void LoadLevelsFromSave() {
         SaveAndLoad.Load();
         levelsData = GameSave.current.levels;
-
+        //Get Levels from old data. Should support adding more levels (savefile with less levels than currently)
         List<Level> newLevelList = new List<Level>();
         for (int i = 0; i < worldList_par.Count; ++i) {
             for (int j = 0; j < worldList_par[i].Count; ++j) {
@@ -246,13 +246,19 @@ public class LevelManager : MonoBehaviour {
     public bool isInverseWorld() {
         return (currentSelectedWorld % 2 == 0);
     }
+
+    public bool hasCompletedTutorial() {
+        return levelsData.tutorialCompleted;
+    }
 }
 
 [System.Serializable]
 public class LevelsData {
     public List<Level> levelList;
+    public bool tutorialCompleted;
 
     public LevelsData() {
         levelList = new List<Level>();
+        tutorialCompleted = false;
     }
 }
