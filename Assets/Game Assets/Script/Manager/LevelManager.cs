@@ -32,6 +32,8 @@ public class LevelManager : MonoBehaviour {
     void Awake() {
         if (Instance == null) {
             Instance = this;
+            Application.targetFrameRate = 60;
+
             DontDestroyOnLoad(gameObject);
             inInverseAnimation = false;
 
@@ -42,7 +44,7 @@ public class LevelManager : MonoBehaviour {
             worldList_par.Add(LevelsList_w5_par);
             worldList_par.Add(LevelsList_w6_par);
             LoadLevelsFromSave();
-            UpdateBackgroundColor();
+            if (SceneManager.GetActiveScene() != SceneManager.GetSceneAt(0)) UpdateBackgroundColor();
         } else {
             Destroy(gameObject);
         }
