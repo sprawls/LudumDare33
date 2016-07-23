@@ -169,7 +169,7 @@ public class LevelManager : MonoBehaviour {
         showTutorial = showTuto;
         currentSelectedWorld = world;
         currentSelectedLevel = level;
-        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.main, 1f, 1.5f, 0.5f);
+        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.main);
     }
 
     public void UpdateBackgroundColor() {

@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour {
     public void OnClick_BackToLevelSelect() {
         if (_inAnimation) return;
 
-        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect, 1f, 1.5f, 0.5f);
+        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect);
     }
 
     private void DeactivateAllColliders(){

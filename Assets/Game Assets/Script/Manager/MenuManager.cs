@@ -25,7 +25,7 @@ public class MenuManager : MonoBehaviour {
     }
 
     IEnumerator StartGame() {
-        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect, 1.5f, 3.5f, 1f);
+        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect, 1.25f, 2f, 1f);
         GameObject.DontDestroyOnLoad(gameObject);
         yield return new WaitForSeconds(1.5f);
 
