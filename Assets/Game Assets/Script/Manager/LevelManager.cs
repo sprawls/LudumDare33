@@ -240,7 +240,7 @@ public class LevelManager : MonoBehaviour {
                 return levelsData.levelList[i].par;
             }
         }
-        return -1;
+        return 0;
     }
 
     public bool isInverseWorld() {
