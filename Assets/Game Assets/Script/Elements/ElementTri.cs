@@ -185,8 +185,8 @@ public class ElementTri : MonoBehaviour {
     }
 
     public void RotateTri() {
-        //Debug.Log("current tris : " + CurrentTris.Count);
-        if (_canRotate && canReceivePlayerInput) {
+        Debug.Log(_canRotate + " " + canReceivePlayerInput);
+        if (_canRotate && canReceivePlayerInput && !GameManager.Instance.InAnimation) {
             if (UseRotationAvailable()) {
 
                 if (GameManager.Instance != null) GameManager.Instance.AddMove();

@@ -35,8 +35,7 @@ public class GameManager : MonoBehaviour {
     public GameObject EndLevelExplosion;
 
     public int Score {get; private set;}
-
-    private bool _inAnimation = false;
+    public bool InAnimation { get; private set; }
 
     void Awake() {
         if (Instance == null) {
@@ -54,6 +53,8 @@ public class GameManager : MonoBehaviour {
 
     void Start() {
         RestartButton.interactable = false;
+        InAnimation = false;
+
         if (LevelManager.Instance.showTutorial == true && LevelManager.Instance.levelsData.tutorialCompleted == false) {
             UICanvas_Ending.DOFade(0, 0.01f);
             TutorialManager.Instance.StartTutorial();
@@ -145,7 +146,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnClick_Restart() {
-        if (_inAnimation) return;
+        if (InAnimation) return;
 
         if (currentLevel < 0 || currentLevel + 1 >= worldList[currentWorld-1].Count) {
 
@@ -155,13 +156,13 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnClick_BackToMenu() {
-        if (_inAnimation) return;
+        if (InAnimation) return;
 
         SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.menu);
     }
 
     public void OnClick_BackToLevelSelect() {
-        if (_inAnimation) return;
+        if (InAnimation) return;
 
         SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect);
     }
@@ -180,7 +181,7 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator CompletionAnimation() {
-        _inAnimation = true;
+        InAnimation = true;
         yield return new WaitForSeconds(1f);
         ScaleOrbs(1.5f);
         DeactivateAllColliders();
@@ -200,7 +201,7 @@ public class GameManager : MonoBehaviour {
             //Show Next LEvel
             ChangeColorByLevel.UpdateAllColor();
             LoadLevel();
-            _inAnimation = false;
+            InAnimation = false;
         } else {
             yield return new WaitForSeconds(0.5f);
             SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect,2f,2f,0.25f);
@@ -215,7 +216,7 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator CompletionAnimation_Tuto() {
-        _inAnimation = true;
+        InAnimation = true;
 
         TutorialManager.Instance.ScaleTutoOrbs(1.5f);
 
@@ -227,12 +228,12 @@ public class GameManager : MonoBehaviour {
         Instantiate(EndLevelExplosion, transform.position + new Vector3(0, 0, -10), Quaternion.identity);
         yield return new WaitForSeconds(1f);
 
-        _inAnimation = false;
+        InAnimation = false;
     }
 
 
     IEnumerator EndSequence_HeatDeath() {
-        _inAnimation = true; 
+        InAnimation = true; 
 
         ElementTri.ToogleAllTrisActivation(false);
         DialogueManager.Instance.StopTalkCoroutines();
@@ -254,7 +255,7 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         UICanvas_Ending_Button.DOFade(1, 5f);
 
-        _inAnimation = false;
+        InAnimation = false;
     }
 
     IEnumerator EndSequence_NoHeatDeath() {
