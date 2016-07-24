@@ -7,6 +7,9 @@ public class MusicManager : MonoBehaviour {
 
     public static MusicManager Instance;
 
+    //Variables
+    public bool muted { get; private set; }
+
     [Header("Soundclips")]
     public AudioClip clip_music;
     public AudioClip clip_move;
@@ -31,7 +34,7 @@ public class MusicManager : MonoBehaviour {
 
             audioSource_music.outputAudioMixerGroup = MusicMixer;
             audioSource_sounds.outputAudioMixerGroup = SFXMixer;
-
+            muted = false;
         } else {
             Destroy(gameObject);
         }
@@ -90,4 +93,15 @@ public class MusicManager : MonoBehaviour {
 
         audioMixer.TransitionToSnapshots(SnapshotsArray, weights, 1f);
     }
+
+    public void ToggleMute() {
+        if (muted) {
+            muted = false;
+            audioMixer.SetFloat("MainVolume", 0f);
+        } else {
+            muted = true;
+            audioMixer.SetFloat("MainVolume", -80f);
+        }
+    }
+
 }

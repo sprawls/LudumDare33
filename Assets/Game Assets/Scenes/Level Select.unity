@@ -2690,14 +2690,6 @@ Prefab:
       propertyPath: screenWipeScript
       value: 
       objectReference: {fileID: 776890838}
-    - target: {fileID: 11434414, guid: aba4fb770d5e3574589cf3dbbdaf7514, type: 2}
-      propertyPath: showTutorial
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11434414, guid: aba4fb770d5e3574589cf3dbbdaf7514, type: 2}
-      propertyPath: currentSelectedWorld
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aba4fb770d5e3574589cf3dbbdaf7514, type: 2}
   m_IsPrefabParent: 0
@@ -3978,7 +3970,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22451080, guid: 7f72feb3b353c974f8816e252eabf7b8, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 22451080, guid: 7f72feb3b353c974f8816e252eabf7b8, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -5861,7 +5853,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 421572, guid: 11ff9a2fed9541047bcf1d5a047db2a9, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8232562, guid: 11ff9a2fed9541047bcf1d5a047db2a9, type: 2}
       propertyPath: panLevelCustomCurve.m_RotationOrder

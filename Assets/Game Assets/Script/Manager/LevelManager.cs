@@ -64,6 +64,14 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
+    //Save when application pause
+    void OnApplicationPause(bool pauseStatus) {
+        SaveAndLoad.Save();
+    }
+    void OnApplicationQuit() {
+        SaveAndLoad.Save();
+    }
+
     public bool CanClickOnLevels() {
         if (inInverseAnimation || SceneTransitionManager.Instance.InTransition) return false;
         else return true;
