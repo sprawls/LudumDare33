@@ -23,6 +23,7 @@ public class ElementTri : MonoBehaviour {
     public MeshRenderer TriRenderer;
     public Material LineRenderersMaterial;
     private GameObject currentMovesLeftObj;
+    private MovesLeftObject currentMovesLeftScript;
 
     private Vector3 pos_1;
     private Vector3 pos_2;
@@ -78,9 +79,11 @@ public class ElementTri : MonoBehaviour {
             if (currentMovesLeftObj == null) {
                 currentMovesLeftObj = (GameObject)Instantiate(movesLeft_GameObject, transform.position, Quaternion.identity);
                 currentMovesLeftObj.transform.parent = transform;
+                currentMovesLeftScript = currentMovesLeftObj.GetComponentInChildren<MovesLeftObject>();
+                if (currentMovesLeftScript == null) Debug.Log("No moves left script found !");
             }
-            if (rotationAvailable == 0) currentMovesLeftObj.GetComponentInChildren<TextMesh>().text = "0";
-            else currentMovesLeftObj.GetComponentInChildren<TextMesh>().text = rotationAvailable.ToString();
+            if (rotationAvailable == 0) currentMovesLeftScript.UpdateText("0");
+            else currentMovesLeftScript.UpdateText(rotationAvailable.ToString());
         }
     }
 
