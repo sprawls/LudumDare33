@@ -31,7 +31,7 @@ public class SceneTransitionManager : MonoBehaviour {
         }
     }
 
-    public void TransitionToAnotherScene(ScenesEnum scene, float inTime = 1f, float outTime = 1.5f, float midTime = 0.5f){
+    public void TransitionToAnotherScene(ScenesEnum scene, float inTime = 0.9f, float outTime = 1.3f, float midTime = 0.1f){
         if (InTransition) Debug.Log("Attempted To Transition while in another transition");
         else {
             StartCoroutine(SceneTransition(scene, inTime, outTime, midTime));
