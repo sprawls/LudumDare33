@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -11,6 +11,7 @@ Material:
   m_ShaderKeywords: 
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -32,20 +33,24 @@ Material:
         first:
           name: _Illum
         second:
-          m_Texture: {fileID: 2800000, guid: 5968ea1741779489885041593b0e221a, type: 3}
+          m_Texture: {fileID: 2800000, guid: 3229c1845a9944c33b82da0bed432bf0, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _Shininess
-        second: .078125
+        second: 0.078125
+      data:
+        first:
+          name: _Emission
+        second: 1
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .0588235259, g: .0302768163, b: .0308674462, a: 1}
+        second: {r: 0.058823526, g: 0.030276816, b: 0.030867446, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: .272058845, g: .272058845, b: .272058845, a: 1}
+        second: {r: 0.27205884, g: 0.27205884, b: 0.27205884, a: 1}
