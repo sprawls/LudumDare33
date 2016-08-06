@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -194,6 +195,8 @@ MonoBehaviour:
   UICanvas: {fileID: 0}
   UICanvas_Ending: {fileID: 0}
   UICanvas_Ending_Button: {fileID: 0}
+  UICanvas_ParAchieved: {fileID: 0}
+  UICanvas_HighscoreAchieved: {fileID: 0}
   backgroundRenderer: {fileID: 0}
   RestartButton: {fileID: 0}
   LevelsList_w1:
@@ -228,7 +231,22 @@ MonoBehaviour:
   - {fileID: 156528, guid: f40751e272986e844a1fec53a339956f, type: 2}
   - {fileID: 147810, guid: 0b2fa5badc9730f499b979b48bd4cedc, type: 2}
   - {fileID: 151090, guid: 3c03b01dd2cb35d4e859681f20bf1197, type: 2}
-  LevelsList_w3: []
+  LevelsList_w3:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   LevelsList_w4: []
   LevelsList_w5: []
   LevelsList_w6: []
