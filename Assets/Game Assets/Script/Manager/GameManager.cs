@@ -136,6 +136,14 @@ public class GameManager : MonoBehaviour {
                 if (LevelsList_w2.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList_w2[currentLevel], transform.position, Quaternion.identity);
                 else Debug.Log("LastLevelReached"); //TODO Go back to level select ?
                 break;
+            case 3:
+                if (LevelsList_w3.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList_w3[currentLevel], transform.position, Quaternion.identity);
+                else Debug.Log("LastLevelReached"); //TODO Go back to level select ?
+                break;
+            case 4:
+                if (LevelsList_w4.Count > currentLevel) currentLevel_Obj = (GameObject)Instantiate(LevelsList_w4[currentLevel], transform.position, Quaternion.identity);
+                else Debug.Log("LastLevelReached"); //TODO Go back to level select ?
+                break;
             default :
                 Debug.LogError("BadWorldRequested");
                 break;
