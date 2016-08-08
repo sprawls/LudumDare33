@@ -154,7 +154,7 @@ public class LevelManager : MonoBehaviour {
                 Level previousLevelData = PopLevelInList(levelsData.levelList, i+1, j);
                 if(previousLevelData != null) {
                     newLevelList.Add(new Level(GetLevelID(i+1, j), previousLevelData.unlocked, previousLevelData.completed, previousLevelData.completedPar, previousLevelData.bestMoveScore));
-                    Debug.Log("world" + (i+1) + " level " + (j) + " found. Completed : " + previousLevelData.completed + "    completedPar : " + previousLevelData.completedPar);
+                    //Debug.Log("world" + (i+1) + " level " + (j) + " found. Completed : " + previousLevelData.completed + "    completedPar : " + previousLevelData.completedPar);
                 } else {
                     newLevelList.Add(new Level(GetLevelID(i+1,j)));
                 }
@@ -234,6 +234,17 @@ public class LevelManager : MonoBehaviour {
             }
         }
         return true;
+    }
+
+    public bool GetLevelIsCompleted(int worldRequested, int levelRequested) {
+        for (int i = 0; i < levelsData.levelList.Count; ++i) {
+            if (levelsData.levelList[i].world == worldRequested && levelsData.levelList[i].lvl == levelRequested) {
+                if (levelsData.levelList[i].completed) return true;
+                else return false;
+            }
+        }
+        Debug.Log("Requested Level was not found : world " + worldRequested + " level " + levelRequested);
+        return false;
     }
 
     public void UpdatePersistentData(GameSave newSave) {

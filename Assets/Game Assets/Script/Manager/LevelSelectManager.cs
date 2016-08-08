@@ -8,8 +8,11 @@ public class LevelSelectManager : MonoBehaviour {
     public Button LeftButton;
     public Button RightButton;
 
-    [Header("Debug")]
-    public bool alwaysShowInverseButton = false;
+    public bool alwaysShowInverseButton { get; private set; }
+
+    void Awake() {
+        alwaysShowInverseButton = true;
+    }
 
 	void Start () {
         UpdateNavigationButtons();
@@ -40,6 +43,7 @@ public class LevelSelectManager : MonoBehaviour {
     }
 
     private void CheckIfInversionNeeded() {
+        if (alwaysShowInverseButton) return;
         //Debug.Log(LevelManager.Instance.currentSelectedWorld);
         if (LevelManager.Instance.currentSelectedWorld % 2 == 0) {
             //Debug.Log(LevelManager.Instance.GetWorldAllCompletedLevels(LevelManager.Instance.currentSelectedWorld - 1));

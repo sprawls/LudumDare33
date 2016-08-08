@@ -4,6 +4,7 @@ using System.Collections;
 public class LevelSelectOrb : MonoBehaviour {
 
     public enum WorldsEnum { world_1, world_2, world_3, world_4, world_5, world_6 }
+    public enum UnlockMethod { WorldCompletionPoints, InverseLevelCompleted, StarsAmount }
 
     public GameObject orbPrefab_locked;
     public GameObject orbPrefab_unlocked;
@@ -17,7 +18,13 @@ public class LevelSelectOrb : MonoBehaviour {
 
     public WorldsEnum world;
     public int level;
+
+    [Header("Unlock Conditions")]
+    public UnlockMethod unlockMethod;
+    /// <summary> Amounts of points or stars required depending on the chosen Unlock Method </summary>
     public int pointsRequired;
+
+    [Header("Other")]
     public bool showTutorial = false;
     public LevelSelectOrb nextLevelOrb = null;
 
@@ -89,8 +96,8 @@ public class LevelSelectOrb : MonoBehaviour {
        Level currentLevel = LevelManager.Instance.GetLevel(GetLevelId());
        bool isInInverseWorld = GetOrbReverseWorld();
        if (currentLevel != null) {
-           int completedLevels = GetAmtLvlCompleted();
-           if (completedLevels >= pointsRequired) {
+
+           if (CheckUnlockConditions()) {
                buttonCollider.enabled = true;
                if (LevelManager.Instance.GetLevel(GetLevelId()).completedPar) {
                    if(!isInInverseWorld) SpawnOrb(orbPrefab_completedPar);
@@ -113,6 +120,41 @@ public class LevelSelectOrb : MonoBehaviour {
            Debug.Log("Requested Level Does Not Exist !");
            Debug.Log(GetLevelId());
        }
+    }
+
+    bool CheckUnlockConditions() {
+        switch (unlockMethod) {
+            case UnlockMethod.WorldCompletionPoints :
+                int completedLevels = GetAmtLvlCompleted();
+                return completedLevels >= pointsRequired;
+            case UnlockMethod.InverseLevelCompleted :
+                return(CheckUnlockCondition_InverseWorldCompleted());
+            case UnlockMethod.StarsAmount :
+                return true; //Todo Implement this once stars are in !
+            default :
+                Debug.Log("Unimplemented Unlock Method !");
+                return false;
+        }
+    }
+
+    bool CheckUnlockCondition_InverseWorldCompleted() {
+        switch (world) {
+            case WorldsEnum.world_1:
+                return LevelManager.Instance.GetLevelIsCompleted(2, level);
+            case WorldsEnum.world_2:
+                return LevelManager.Instance.GetLevelIsCompleted(1, level);
+            case WorldsEnum.world_3:
+                return LevelManager.Instance.GetLevelIsCompleted(4, level);
+            case WorldsEnum.world_4:
+                return LevelManager.Instance.GetLevelIsCompleted(3, level);
+            case WorldsEnum.world_5:
+                return LevelManager.Instance.GetLevelIsCompleted(6, level);
+            case WorldsEnum.world_6:
+                return LevelManager.Instance.GetLevelIsCompleted(5, level);
+            default :
+                Debug.Log("Using an unimplemented world !");
+                return false;
+        }
     }
 
     void SetPositions(Vector3 pos1, Vector3 pos2) {
