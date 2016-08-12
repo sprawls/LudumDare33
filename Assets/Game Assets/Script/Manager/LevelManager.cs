@@ -247,6 +247,15 @@ public class LevelManager : MonoBehaviour {
         return false;
     }
 
+    public int GetTotalAmountStars() {
+        int amtStars = 0;
+        for (int i = 0; i < levelsData.levelList.Count; ++i) {
+            if (levelsData.levelList[i].completed) ++amtStars;
+            if (levelsData.levelList[i].completedPar) ++amtStars;
+        }
+        return amtStars;
+    }
+
     public void UpdatePersistentData(GameSave newSave) {
         levelsData = newSave.levels;
     }

@@ -130,7 +130,8 @@ public class LevelSelectOrb : MonoBehaviour {
             case UnlockMethod.InverseLevelCompleted :
                 return(CheckUnlockCondition_InverseWorldCompleted());
             case UnlockMethod.StarsAmount :
-                return true; //Todo Implement this once stars are in !
+                int AmtStars = LevelManager.Instance.GetTotalAmountStars();
+                return AmtStars >= pointsRequired; //Todo Implement this once stars are in !
             default :
                 Debug.Log("Unimplemented Unlock Method !");
                 return false;

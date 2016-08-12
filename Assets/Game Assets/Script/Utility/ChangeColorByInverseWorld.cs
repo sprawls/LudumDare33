@@ -9,6 +9,7 @@ public class ChangeColorByInverseWorld : MonoBehaviour {
     public bool ChangeText = false;
     public bool ChangeMeshRenderer = false;
     public bool ChangeImage = false;
+    public bool ChangeSprite = false;
 
     private static List<ChangeColorByInverseWorld> colorList;
 
@@ -18,6 +19,7 @@ public class ChangeColorByInverseWorld : MonoBehaviour {
     private MeshRenderer meshRendrer;
     private Text text;
     private Image image;
+    private SpriteRenderer sprite;
 
 	void Awake(){
         if (colorList == null) colorList = new List<ChangeColorByInverseWorld>();
@@ -28,6 +30,7 @@ public class ChangeColorByInverseWorld : MonoBehaviour {
         if(ChangeText) text = GetComponent<Text>();
         if(ChangeMeshRenderer) meshRendrer = GetComponent<MeshRenderer>();
         if (ChangeImage) image = GetComponent<Image>();
+        if (ChangeSprite) sprite = GetComponent<SpriteRenderer>();
         UpdateColor(0f);
     }
 
@@ -47,5 +50,6 @@ public class ChangeColorByInverseWorld : MonoBehaviour {
         if (meshRendrer != null) meshRendrer.material.DOColor(TargetColor, time);
         if (text != null) text.DOColor(TargetColor, time);
         if (image != null) image.DOColor(TargetColor, time);
+        if (sprite != null) sprite.DOColor(TargetColor, time);
     }
 }
