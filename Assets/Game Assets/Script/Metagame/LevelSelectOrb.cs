@@ -1,8 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LevelSelectOrb : MonoBehaviour {
 
+public class LevelSelectOrb : MonoBehaviour {
+    
+    // statics
+    private const string STARS_DISPLAY_PAR = "LevelSelect/LevelOrb_StarDisplay_Par";
+    private const string STARS_DISPLAY_COMPLETED = "LevelSelect/LevelOrb_StarDisplay_Completed";
+    private const string STARS_DISPLAY_UNLOCKED = "LevelSelect/LevelOrb_StarDisplay_Unlocked";
+    private const string STARS_DISPLAY_STARS_REQUIRED = "LevelSelect/LevelOrb_StarDisplay_StarRequirement";
+
+
+    // public
     public enum WorldsEnum { world_1, world_2, world_3, world_4, world_5, world_6 }
     public enum UnlockMethod { WorldCompletionPoints, InverseLevelCompleted, StarsAmount }
 
@@ -31,6 +40,7 @@ public class LevelSelectOrb : MonoBehaviour {
     private GameObject spawnedOrbPrefab;
     private LineRenderer nextLevelLineRenderer;
     public bool unlocked { get; private set; }
+
 
     void Awake() {
         nextLevelLineRenderer = GetComponent<LineRenderer>();
@@ -100,14 +110,14 @@ public class LevelSelectOrb : MonoBehaviour {
            if (CheckUnlockConditions()) {
                buttonCollider.enabled = true;
                if (LevelManager.Instance.GetLevel(GetLevelId()).completedPar) {
-                   if(!isInInverseWorld) SpawnOrb(orbPrefab_completedPar);
-                   else SpawnOrb(orbPrefab_completedPar_inverse);
+                   if (!isInInverseWorld) SpawnOrb(orbPrefab_completedPar, STARS_DISPLAY_PAR);
+                   else SpawnOrb(orbPrefab_completedPar_inverse, STARS_DISPLAY_PAR);
                } else if (LevelManager.Instance.GetLevel(GetLevelId()).completed) {
-                   if (!isInInverseWorld) SpawnOrb(orbPrefab_completed);
-                   else SpawnOrb(orbPrefab_completed_inverse);
+                   if (!isInInverseWorld) SpawnOrb(orbPrefab_completed, STARS_DISPLAY_COMPLETED);
+                   else SpawnOrb(orbPrefab_completed_inverse, STARS_DISPLAY_COMPLETED);
                } else {
-                   if (!isInInverseWorld) SpawnOrb(orbPrefab_unlocked);
-                   else SpawnOrb(orbPrefab_unlocked_inverse);
+                   if (!isInInverseWorld) SpawnOrb(orbPrefab_unlocked, STARS_DISPLAY_UNLOCKED);
+                   else SpawnOrb(orbPrefab_unlocked_inverse, STARS_DISPLAY_UNLOCKED);
                }
                unlocked = true;
            } else {
@@ -131,7 +141,9 @@ public class LevelSelectOrb : MonoBehaviour {
                 return(CheckUnlockCondition_InverseWorldCompleted());
             case UnlockMethod.StarsAmount :
                 int AmtStars = LevelManager.Instance.GetTotalAmountStars();
-                return AmtStars >= pointsRequired; //Todo Implement this once stars are in !
+                bool unlocked = AmtStars >= pointsRequired;
+                if (!unlocked) SpawnStarRequirementDisplay();
+                return unlocked; //Todo Implement this once stars are in !
             default :
                 Debug.Log("Unimplemented Unlock Method !");
                 return false;
@@ -207,7 +219,7 @@ public class LevelSelectOrb : MonoBehaviour {
         return id;
     }
 
-    private void SpawnOrb(GameObject prefab) {
+    private void SpawnOrb(GameObject prefab, string starsPrefabLoaction = null) {
         if (spawnedOrbPrefab != null) {
             Destroy(spawnedOrbPrefab);
             spawnedOrbPrefab = null;
@@ -215,6 +227,24 @@ public class LevelSelectOrb : MonoBehaviour {
         spawnedOrbPrefab = (GameObject) Instantiate(prefab, transform.position, Quaternion.identity);
         spawnedOrbPrefab.transform.parent = transform;
         spawnedOrbPrefab.transform.localScale = Vector3.one;
+
+        if (starsPrefabLoaction != null) {
+            GameObject starsPrefab = (GameObject)Resources.Load(starsPrefabLoaction);
+            if (starsPrefab != null) {
+                GameObject starObjectInstance = (GameObject) GameObject.Instantiate(starsPrefab, spawnedOrbPrefab.transform.position, Quaternion.identity);
+                starObjectInstance.transform.parent = spawnedOrbPrefab.transform;
+            }
+        }
+    }
+
+    private void SpawnStarRequirementDisplay() {
+        GameObject instantiatedDisplay = (GameObject) Instantiate(Resources.Load(STARS_DISPLAY_STARS_REQUIRED), transform.position, Quaternion.identity);
+        if (instantiatedDisplay != null) {
+            TextMesh textmesh = instantiatedDisplay.GetComponentInChildren<TextMesh>();
+            if (textmesh != null) {
+                textmesh.text = pointsRequired.ToString();
+            }
+        }
     }
 
     //GIZMO DEBUG

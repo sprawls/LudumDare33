@@ -105,6 +105,7 @@ MonoBehaviour:
   ChangeMeshRenderer: 0
   ChangeImage: 0
   ChangeSprite: 1
+  ChangeTextMesh: 0
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   InverseColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &11465764
@@ -122,6 +123,7 @@ MonoBehaviour:
   ChangeMeshRenderer: 0
   ChangeImage: 0
   ChangeSprite: 1
+  ChangeTextMesh: 0
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   InverseColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!212 &21207594

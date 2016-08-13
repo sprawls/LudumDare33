@@ -108,6 +108,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     IEnumerator InverseWorld() {
+
         if (!inInverseAnimation) {
             MusicManager.Instance.PlaySound_InverseWorld();
 
@@ -120,16 +121,18 @@ public class LevelManager : MonoBehaviour {
                 else ++currentSelectedWorld;
 
                 MusicManager.Instance.UpdateSoundMixerSnapshots();
+                ChangeColorByInverseWorld.UpdateAllColor();
 
                 yield return new WaitForSeconds(2f);
             }         
 
             inInverseAnimation = false;
-
         }
+
     }
 
     IEnumerator FakeInverseWorld() {
+        ChangeColorByInverseWorld.UpdateAllColor();
         if (!inInverseAnimation) {
             inInverseAnimation = true;
             yield return new WaitForSeconds(0.05f);
