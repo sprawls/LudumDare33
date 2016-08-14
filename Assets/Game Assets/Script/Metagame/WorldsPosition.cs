@@ -13,23 +13,26 @@ public class WorldsPosition : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        SetWorldPosition(0);
 	}
 
     public void SetWorldPosition(int worldToShow) {
+        SetWorldPosition(worldToShow, 1f);
+    }
+
+    public void SetWorldPosition(int worldToShow, float time) {
         if (worldToShow >= 0 && worldToShow < worldsTransforms.Count) {
             currentWorld = worldToShow;
-            SetWorldPosition();
+            SetWorldPosition(time);
         }
     }
 
-    void SetWorldPosition() {
-        MoveToSelectedWorld();
+    void SetWorldPosition(float time) {
+        MoveToSelectedWorld(time);
     }
 
 
-    void MoveToSelectedWorld() {
-        transform.DOMove(worldsTransforms[currentWorld].position, 1f);
+    void MoveToSelectedWorld(float time) {
+        transform.DOMove(worldsTransforms[currentWorld].position, time);
     }
 
     /// <summary>

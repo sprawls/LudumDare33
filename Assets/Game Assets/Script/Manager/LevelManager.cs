@@ -61,6 +61,8 @@ public class LevelManager : MonoBehaviour {
         if (scene == 1) {
             UpdateBackgroundColor();
             if (isInverseWorld()) StartCoroutine(FakeInverseWorld());
+            MoveLevelSelectTo(currentSelectedWorld, 0f);
+            Debug.Log(currentSelectedWorld);
         }
     }
 
@@ -101,9 +103,9 @@ public class LevelManager : MonoBehaviour {
         return currentSelectedLevel < worldList_par[currentSelectedWorld - 1].Count;
     }
 
-    void MoveLevelSelectTo(int world) {
+    void MoveLevelSelectTo(int world, float time = 1f) {
         WorldsPosition worldPosScript = GameObject.Find("Camera Parent").GetComponent<WorldsPosition>();
-        worldPosScript.SetWorldPosition((int)Mathf.Ceil((float)world / 2f) - 1);
+        worldPosScript.SetWorldPosition((int)Mathf.Ceil((float)world / 2f) - 1, time);
         currentSelectedWorld = world;
     }
 

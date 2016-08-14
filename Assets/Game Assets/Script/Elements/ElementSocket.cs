@@ -25,6 +25,11 @@ public class ElementSocket : MonoBehaviour {
         element.TranslateToPosition(transform.position);
     }
 
+    public virtual void SetupElement(Vector2 newPos, ElementTri triRef) {
+        transform.position = newPos;
+        element.TranslateToPosition(transform.position, 0f);
+    }
+
     public virtual void ChangeElement(Element newElement, ElementTri triRef) {
         element = newElement;
     }

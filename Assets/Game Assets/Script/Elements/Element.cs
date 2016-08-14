@@ -18,7 +18,7 @@ public class Element : MonoBehaviour {
 
     void Awake() {
         transform.position = Vector3.zero;
-        Orb_All = (GameObject) Resources.Load("Orbs/Orb_All");
+        Orb_All = (GameObject) Resources.Load("Orbs/Orb_All"); //Load it here to avoid setting it in inspector.
     }
 
     void Start() {
@@ -75,6 +75,10 @@ public class Element : MonoBehaviour {
 
     public virtual void TranslateToPosition(Vector3 newPos) {
         Model.transform.DOMove(newPos, 1f, false);
+    }
+
+    public virtual void TranslateToPosition(Vector3 newPos, float time) {
+        Model.transform.DOMove(newPos, time, false);
     }
 
     public void ScaleModel(float scale) {

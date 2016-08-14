@@ -88,7 +88,21 @@ public class FusionSocket : ElementSocket {
             tri_2_pos = newPos;
             subElement_2.TranslateToPosition(newPos);
         } else {
-            TranslateElementAdditionnalTris(newPos, triRef);
+            TranslateElementAdditionnalTris(newPos, triRef, 1f);
+        }
+        //Now put middle Orb inbetween both
+        MixElements();
+    }
+
+    public override void SetupElement(Vector2 newPos, ElementTri triRef) {
+        if (triRef == Tri_1) {
+            tri_1_pos = newPos;
+            subElement_1.TranslateToPosition(newPos,0);
+        } else if (triRef == Tri_2) {
+            tri_2_pos = newPos;
+            subElement_2.TranslateToPosition(newPos,0);
+        } else {
+            TranslateElementAdditionnalTris(newPos, triRef, 0);
         }
         //Now put middle Orb inbetween both
         MixElements();
@@ -96,19 +110,19 @@ public class FusionSocket : ElementSocket {
 
 
 
-    private void TranslateElementAdditionnalTris(Vector3 newPos, ElementTri triRef) {
+    private void TranslateElementAdditionnalTris(Vector3 newPos, ElementTri triRef, float animTime) {
         bool found = false;
         foreach (ElementTri tri in Tri_1_Additionnal) {
             if (triRef == tri) {
                 tri_1_pos = newPos;
-                subElement_1.TranslateToPosition(newPos);
+                subElement_1.TranslateToPosition(newPos, animTime);
                 found = true;
             }
         }
         foreach (ElementTri tri in Tri_2_Additionnal) {
             if (triRef == tri) {
                 tri_2_pos = newPos;
-                subElement_2.TranslateToPosition(newPos);
+                subElement_2.TranslateToPosition(newPos, animTime);
                 found = true;
             }
         }

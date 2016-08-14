@@ -53,7 +53,7 @@ public class ElementTri : MonoBehaviour {
 
     void Start(){
         ScaleElements();
-        MoveElementsToPosition();
+        SetupElementsToPosition();
         ChangeOrbBackgroundsColor();
         UpdateCompletion();
         UpdateMovesText();
@@ -221,6 +221,12 @@ public class ElementTri : MonoBehaviour {
         Element_1.TranslateElement(pos_1, this);
         Element_2.TranslateElement(pos_2, this);
         Element_3.TranslateElement(pos_3, this);
+    }
+
+    void SetupElementsToPosition() {
+        Element_1.SetupElement(pos_1, this);
+        Element_2.SetupElement(pos_2, this);
+        Element_3.SetupElement(pos_3, this); 
     }
 
     void ChangeOrbBackgroundsColor() {
