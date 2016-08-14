@@ -38,15 +38,22 @@ public class FusionSocket : ElementSocket {
         }
     }
 
-    private void MixElements() {
-        if (subElement_1.EType == ElementType.all || subElement_2.EType == ElementType.all) ChangeElement(ElementType.all);
-        else if (subElement_1.EType == subElement_2.EType) ChangeElement(subElement_1.EType);
-        else if (subElement_1.EType != ElementType.fire && subElement_2.EType != ElementType.fire) ChangeElement(ElementType.fire);
-        else if (subElement_1.EType != ElementType.water && subElement_2.EType != ElementType.water) ChangeElement(ElementType.water);
-        else if (subElement_1.EType != ElementType.wind && subElement_2.EType != ElementType.wind) ChangeElement(ElementType.wind);
-        element.ResetModel();
-        element.ScaleModel(Tri_1.size * 1.5f);
-        PositionInMiddle();
+    private void MixElements(bool forceChange = false) {
+        ElementType previousElement = element.EType;
+        ElementType targetElement = ElementType.none;
+
+        if (subElement_1.EType == ElementType.all || subElement_2.EType == ElementType.all) targetElement = ElementType.all;
+        else if (subElement_1.EType == subElement_2.EType) targetElement = subElement_1.EType;
+        else if (subElement_1.EType != ElementType.fire && subElement_2.EType != ElementType.fire) targetElement = ElementType.fire;
+        else if (subElement_1.EType != ElementType.water && subElement_2.EType != ElementType.water) targetElement = ElementType.water;
+        else if (subElement_1.EType != ElementType.wind && subElement_2.EType != ElementType.wind) targetElement = ElementType.wind;
+
+        if (forceChange || previousElement != targetElement) {
+            ChangeElement(targetElement);
+            element.ResetModel();
+            element.ScaleModel(Tri_1.size * 1.5f);
+            PositionInMiddle();
+        }
     }
 
     private void PositionInMiddle() {
@@ -105,7 +112,7 @@ public class FusionSocket : ElementSocket {
             TranslateElementAdditionnalTris(newPos, triRef, 0);
         }
         //Now put middle Orb inbetween both
-        MixElements();
+        MixElements(true);
     }
 
 
