@@ -565,6 +565,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 90958372}
   - 114: {fileID: 90958373}
+  - 114: {fileID: 90958374}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -600,6 +601,17 @@ MonoBehaviour:
   InverseButton: {fileID: 2058954789}
   LeftButton: {fileID: 2045920624}
   RightButton: {fileID: 935540002}
+--- !u!114 &90958374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 90958371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2929388b7f57b60499ad75e33e465f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &94349572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,7 +2977,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 597931845}
-  - 114: {fileID: 597931846}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -2991,21 +3002,7 @@ Transform:
   - {fileID: 2014620012}
   - {fileID: 1451337846}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
---- !u!114 &597931846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 597931844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47fe2a70c1f00644ea89586d65cb432b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TouchInputMask:
-    serializedVersion: 2
-    m_Bits: 0
+  m_RootOrder: 1
 --- !u!4 &604170307 stripped
 Transform:
   m_PrefabParentObject: {fileID: 475294, guid: 86d576263c771f249bf68eab33578cce, type: 2}
@@ -3879,7 +3876,7 @@ Transform:
   - {fileID: 440159660}
   - {fileID: 1371282461}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
 --- !u!114 &776890841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4305,7 +4302,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11447172, guid: 86d576263c771f249bf68eab33578cce, type: 2}
       propertyPath: pointsRequired
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 11447172, guid: 86d576263c771f249bf68eab33578cce, type: 2}
       propertyPath: unlockMethod

@@ -10,11 +10,17 @@ public class LevelSelectManager : MonoBehaviour {
 
     public bool alwaysShowInverseButton { get; private set; }
 
+    private SimpleSwipeInputDetector swipeInputs;
+
     void Awake() {
         alwaysShowInverseButton = true;
     }
 
 	void Start () {
+        swipeInputs = GetComponent<SimpleSwipeInputDetector>();
+        swipeInputs.OnSwipeLeft += PreviousWorld;
+        swipeInputs.OnSwipeRight += NextWorld;
+
         UpdateNavigationButtons();
 	}
 
