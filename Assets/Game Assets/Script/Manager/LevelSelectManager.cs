@@ -18,11 +18,18 @@ public class LevelSelectManager : MonoBehaviour {
 
 	void Start () {
         swipeInputs = GetComponent<SimpleSwipeInputDetector>();
-        swipeInputs.OnSwipeLeft += PreviousWorld;
-        swipeInputs.OnSwipeRight += NextWorld;
+        swipeInputs.OnSwipeLeft += NextWorld;
+        swipeInputs.OnSwipeRight += PreviousWorld;
 
         UpdateNavigationButtons();
 	}
+
+    void OnDestroy() {
+        if (swipeInputs != null) {
+            swipeInputs.OnSwipeLeft -= NextWorld;
+            swipeInputs.OnSwipeRight -= PreviousWorld;
+        }
+    }
 
     public void BackToMenu() {
         LevelManager.Instance.OnClick_BackToMenu();
