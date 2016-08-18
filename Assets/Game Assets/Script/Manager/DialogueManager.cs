@@ -73,10 +73,12 @@ public class DialogueManager : MonoBehaviour {
 
         switch (LevelManager.Instance.currentSelectedWorld) {
             case 1:
+                AddTips_World1();
                 break;
             case 2:
                 break;
             case 3:
+                AddTips_World3();
                 break;
             case 4:
                 break;
@@ -92,6 +94,12 @@ public class DialogueManager : MonoBehaviour {
         possibleMessages.Add("Two different colors in the fusion socket will result in the third color.");
     }
 
+    private void AddTips_World3() {
+        possibleMessages.Add("Triangles with numbers in them can only be rotated a certain amount of times.");
+        possibleMessages.Add("Some triangles starts with zero possible rotations !");
+        possibleMessages.Add("If a triangle has no number in it, it can be rotated an unlimited amount of times.");
+    }
+
     private void AddDefaultTips() {
         possibleMessages.Add("Take your time, we're in no hurry.");
         possibleMessages.Add("You can always return to a level later.");
@@ -105,11 +113,13 @@ public class DialogueManager : MonoBehaviour {
     }
 
     private void AddNormalWorldTips() {
-        possibleMessages.Add("Complete all levels in a world to unlock its inverse version.");
+        possibleMessages.Add("Complete a level to unlock its harder version !");
+        possibleMessages.Add("Use the button on the top rigth corner of the level select to see the alternative levels.");
     }
 
     private void AddInverseWorldTips() {
-        possibleMessages.Add("Two multicolored orbs in a single tri will always result in a balanced tri.");
+        possibleMessages.Add("Two multicolored orbs in a single triangle will always result in a balanced triangle.");
+        possibleMessages.Add("Multicolored orbs counts as any color.");
     }
 
 
