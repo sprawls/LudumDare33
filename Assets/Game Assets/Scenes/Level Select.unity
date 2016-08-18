@@ -5994,7 +5994,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22451080, guid: 7f72feb3b353c974f8816e252eabf7b8, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 22451080, guid: 7f72feb3b353c974f8816e252eabf7b8, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -6081,6 +6081,10 @@ Prefab:
     - target: {fileID: 426038, guid: 74f6968014c39a74eba668213390e914, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19884338, guid: 74f6968014c39a74eba668213390e914, type: 2}
+      propertyPath: InitialModule.startColor.maxColor.rgba
+      value: 922812411
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74f6968014c39a74eba668213390e914, type: 2}
@@ -8612,7 +8616,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 421572, guid: 11ff9a2fed9541047bcf1d5a047db2a9, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8232562, guid: 11ff9a2fed9541047bcf1d5a047db2a9, type: 2}
       propertyPath: panLevelCustomCurve.m_RotationOrder

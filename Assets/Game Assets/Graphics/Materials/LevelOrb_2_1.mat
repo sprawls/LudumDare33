@@ -93,6 +93,10 @@ Material:
         second: 0.5
       data:
         first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
           name: _Parallax
         second: 0.02
       data:
@@ -131,10 +135,6 @@ Material:
         first:
           name: _EmissionScaleUI
         second: 0
-      data:
-        first:
-          name: _InvFade
-        second: 1
     m_Colors:
       data:
         first:
@@ -146,9 +146,9 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _EmissionColorUI
-        second: {r: 1, g: 1, b: 1, a: 1}
+          name: _TintColor
+        second: {r: 0.9145373, g: 0.9264706, b: 0.061310556, a: 0.22745098}
       data:
         first:
-          name: _TintColor
-        second: {r: 0, g: 0.7941176, b: 0.10405671, a: 0.22745098}
+          name: _EmissionColorUI
+        second: {r: 1, g: 1, b: 1, a: 1}
