@@ -29,7 +29,7 @@ public class BestFitWithoutCutting : MonoBehaviour {
             }
             yield return null;
         }
-        //Debug.Log(linkedText);
+        // Debug.Log(linkedText);
         if (linkedText != null) {
             linkedText.Rezize();
         }

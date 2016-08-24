@@ -205,7 +205,7 @@ public class LevelManager : MonoBehaviour {
             Debug.Log("Requested Level Does not exist");
         }
 
-       
+        UIGetter_Stars.UpdateAll();
     }
 
     public Level GetLevel(string wantedID) {

@@ -37,6 +37,16 @@ public class GameManager : MonoBehaviour {
     public int Score {get; private set;}
     public bool InAnimation { get; private set; }
 
+    private void SetCurrentLevel(int newLevel) {
+        currentLevel = newLevel;
+        UIGetter_Level.UpdateAll();
+    }
+
+    private void SetCurrentLevelMoves(int newLevelMoves) {
+        currentLevelMoves = newLevelMoves;
+        UIGetter_Moves.UpdateAll();
+    }
+
     void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -65,6 +75,9 @@ public class GameManager : MonoBehaviour {
                 StartGame(LevelManager.Instance.currentSelectedLevel, LevelManager.Instance.currentSelectedWorld);
             }
         }
+
+        UIGetter_Level.UpdateAll();
+        UIGetter_Moves.UpdateAll();
     }
 
     public void StartGame() {
@@ -72,11 +85,12 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartGame(int lvl, int world = 1) {
-        currentLevel = lvl;
+        SetCurrentLevel(lvl);
         currentWorld = world;
-        currentLevelMoves = 0;
+        SetCurrentLevelMoves(0);
         Score = 0;
         LoadLevel();
+
     }
 
     void OnDestroy() {
@@ -94,7 +108,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void AddMove() {
-        currentLevelMoves++;
+        SetCurrentLevelMoves(currentLevelMoves+1);
         if (currentLevelMoves > GetParMoves()) Score++;
     }
 
@@ -121,6 +135,8 @@ public class GameManager : MonoBehaviour {
         ReloadLevel();
         DialogueManager.Instance.StopTalkCoroutines();
         DialogueManager.Instance.TalkAboutLevel();
+
+        UIGetter_ParMoves.UpdateAll();
 
     }
 
@@ -149,7 +165,7 @@ public class GameManager : MonoBehaviour {
                 break;
         }
 
-        currentLevelMoves = 0;
+        SetCurrentLevelMoves(0);
         
     }
 
@@ -203,7 +219,7 @@ public class GameManager : MonoBehaviour {
 
         LevelManager.Instance.CompleteLevel(currentLevelMoves, GetParMoves());
         currentLevel = LevelManager.Instance.currentSelectedLevel;
-        currentLevelMoves = 0;
+        SetCurrentLevelMoves(0);
 
         if (LevelManager.Instance.CurrentLevelExists()) {
             //Show Next LEvel
