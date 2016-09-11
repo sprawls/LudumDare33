@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour {
     public List<int> LevelsList_w6_par;
     public List<List<int>> worldList_par = new List<List<int>>();
     public LevelsData levelsData { get; private set; }
+    public StatsData statsData { get; private set; }
 
     [Header("World Switch")]
     public Camera normalCam;
@@ -152,6 +153,13 @@ public class LevelManager : MonoBehaviour {
     void LoadLevelsFromSave() {
         SaveAndLoad.Load();
         levelsData = GameSave.current.levels;
+        statsData = GameSave.current.stats;
+
+        //Create new if not existing
+        if (levelsData == null) levelsData = new LevelsData();
+        if (statsData == null) statsData = new StatsData();
+
+
         //Get Levels from old data. Should support adding more levels (savefile with less levels than currently)
         List<Level> newLevelList = new List<Level>();
         for (int i = 0; i < worldList_par.Count; ++i) {
@@ -167,6 +175,9 @@ public class LevelManager : MonoBehaviour {
             }
         }
         levelsData.levelList = newLevelList;
+
+        GameSave.current.levels = levelsData;
+        GameSave.current.stats = statsData;
         SaveAndLoad.Save();
     }
 
@@ -263,6 +274,7 @@ public class LevelManager : MonoBehaviour {
 
     public void UpdatePersistentData(GameSave newSave) {
         levelsData = newSave.levels;
+        statsData = newSave.stats;
     }
 
     public string GetLevelID(int world, int level) {
@@ -295,5 +307,23 @@ public class LevelsData {
     public LevelsData() {
         levelList = new List<Level>();
         tutorialCompleted = false;
+    }
+}
+
+[System.Serializable]
+public class StatsData {
+    public int stats_amt_fusions;
+    public int stats_amt_rotations;
+    public int stats_amt_rotations_limitedTriangle;
+    public int stats_amt_rotations_multicolor;
+    public int stats_amt_resets;
+
+
+    public StatsData() {
+        stats_amt_fusions = 0;
+        stats_amt_rotations = 0;
+        stats_amt_rotations_limitedTriangle = 0;
+        stats_amt_rotations_multicolor = 0;
+        stats_amt_resets = 0;
     }
 }
