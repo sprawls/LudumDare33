@@ -29,6 +29,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject screenWipeScript;
     public bool inInverseAnimation { get; private set; }
 
+    private GooglePlayServiceHelper _GPSHelper;
 
     void Awake() {
         if (Instance == null) {
@@ -38,6 +39,7 @@ public class LevelManager : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             inInverseAnimation = false;
 
+            //Create Worlds
             worldList_par.Add(LevelsList_w1_par);
             worldList_par.Add(LevelsList_w2_par);
             worldList_par.Add(LevelsList_w3_par);
@@ -46,6 +48,10 @@ public class LevelManager : MonoBehaviour {
             worldList_par.Add(LevelsList_w6_par);
             LoadLevelsFromSave();
             if (SceneManager.GetActiveScene() != SceneManager.GetSceneAt(0)) UpdateBackgroundColor();
+
+            //Activate GooglePlay Services
+            _GPSHelper = gameObject.AddComponent<GooglePlayServiceHelper>();
+
         } else {
             Destroy(gameObject);
         }
@@ -297,6 +303,55 @@ public class LevelManager : MonoBehaviour {
     public bool hasCompletedTutorial() {
         return levelsData.tutorialCompleted;
     }
+
+    /// <summary>
+    /// This is called in level select in order to re evaluate conditions for achievements in case the user was offline when he met the requirements
+    /// </summary>
+    public void CheckAchievementsProgress() {
+        //Learner
+        if (statsData.stats_tutorial_completed) _GPSHelper.UnlockAchievement(Achievements.Learner);
+
+        //Curious
+        if (statsData.stats_curiousness_achieved) _GPSHelper.UnlockAchievement(Achievements.Mastery_Curiousness);
+
+        // Harmony-Chaos
+        bool w1 = true, w2 = true, w3 = true, w4 = true;
+        if(levelsData.levelList.Count > 30) {
+            foreach(Level lvl in levelsData.levelList) {
+                if (!lvl.completed) {
+                    switch (lvl.world) {
+                        case 1: w1 = false; break;
+                        case 2: w2 = false; break;
+                        case 3: w3 = false; break;
+                        case 4: w4 = false; break;
+                    }
+                }
+            }
+            if (w1) _GPSHelper.UnlockAchievement(Achievements.Hamory_Centaurus);
+            if (w2) _GPSHelper.UnlockAchievement(Achievements.Chaos_Centaurus);
+            if (w3) _GPSHelper.UnlockAchievement(Achievements.Hamory_Hydra);
+            if (w4) _GPSHelper.UnlockAchievement(Achievements.Chaos_Hydra);
+        }
+
+        //Mastery
+        if (statsData.stats_amt_rotations > Achievements.Mastery_Rotation_Needed)
+            _GPSHelper.UnlockAchievement(Achievements.Mastery_Rotation);
+        if (statsData.stats_amt_fusions > Achievements.Mastery_Fusion_Needed)
+            _GPSHelper.UnlockAchievement(Achievements.Mastery_Fusion);
+        if (statsData.stats_amt_rotations_limitedTriangle > Achievements.Mastery_Limitations_Needed)
+            _GPSHelper.UnlockAchievement(Achievements.Mastery_Limitations);
+        if (statsData.stats_amt_rotations_multicolor > Achievements.Mastery_Multicolor_Needed)
+            _GPSHelper.UnlockAchievement(Achievements.Mastery_Multicolor);
+        if (statsData.stats_amt_resets > Achievements.Mastery_Commitment_Needed)
+            _GPSHelper.UnlockAchievement(Achievements.Mastery_Commitment);
+
+        //Equilibrium
+        int amtStars = GetTotalAmountStars();
+        if (amtStars >= Achievements.Equilibrium_Stage1_Needed) _GPSHelper.UnlockAchievement(Achievements.Equilibrium_Stage1);
+        if (amtStars >= Achievements.Equilibrium_Stage2_Needed) _GPSHelper.UnlockAchievement(Achievements.Equilibrium_Stage2);
+        if (amtStars >= Achievements.Equilibrium_Stage3_Needed) _GPSHelper.UnlockAchievement(Achievements.Equilibrium_Stage3);
+        if (amtStars >= Achievements.Equilibrium_Stage4_Needed) _GPSHelper.UnlockAchievement(Achievements.Equilibrium_Stage4);
+    }
 }
 
 [System.Serializable]
@@ -318,6 +373,8 @@ public class StatsData {
     public int stats_amt_rotations_multicolor;
     public int stats_amt_resets;
 
+    public bool stats_tutorial_completed;
+    public bool stats_curiousness_achieved;
 
     public StatsData() {
         stats_amt_fusions = 0;
@@ -325,5 +382,8 @@ public class StatsData {
         stats_amt_rotations_limitedTriangle = 0;
         stats_amt_rotations_multicolor = 0;
         stats_amt_resets = 0;
+
+        stats_tutorial_completed = false;
+        stats_curiousness_achieved = false;
     }
 }
