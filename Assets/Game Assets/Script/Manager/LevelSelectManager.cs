@@ -55,6 +55,10 @@ public class LevelSelectManager : MonoBehaviour {
         CheckIfInversionNeeded();
     }
 
+    public void OpenGooglePlay() {
+        LevelManager.Instance.OpenGooglePlay();
+    }
+
     private void CheckIfInversionNeeded() {
         if (alwaysShowInverseButton) return;
         //Debug.Log(LevelManager.Instance.currentSelectedWorld);

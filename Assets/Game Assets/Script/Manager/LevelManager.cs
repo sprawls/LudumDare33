@@ -304,6 +304,12 @@ public class LevelManager : MonoBehaviour {
         return levelsData.tutorialCompleted;
     }
 
+    public void OpenGooglePlay() {
+        if(!_GPSHelper.IsAuthentificated()) {
+            _GPSHelper.AttemptToConnectUser();
+        }
+    }
+
     /// <summary>
     /// This is called in level select in order to re evaluate conditions for achievements in case the user was offline when he met the requirements
     /// </summary>
