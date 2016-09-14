@@ -223,6 +223,9 @@ public class LevelManager : MonoBehaviour {
         }
 
         UIGetter_Stars.UpdateAll();
+
+        CheckHarmonyChaosUnlockRequierements();
+        CheckEquilibriumUnlockRequierements();
     }
 
     public Level GetLevel(string wantedID) {
@@ -304,6 +307,34 @@ public class LevelManager : MonoBehaviour {
         return levelsData.tutorialCompleted;
     }
 
+    public void SetTutorialCompleted() {
+        LevelManager.Instance.levelsData.tutorialCompleted = true;
+        LevelManager.Instance.statsData.stats_tutorial_completed = true;
+        _GPSHelper.UnlockAchievement(Achievements.Learner);
+    }
+
+    public void IncrementRotations(int amount = 1) {
+        statsData.stats_amt_rotations += amount;
+        CheckMasteryUnlockRequierements();
+    }
+    public void IncrementRotations_LimitedTri(int amount = 1) {
+        statsData.stats_amt_rotations_limitedTriangle += amount;
+        CheckMasteryUnlockRequierements();
+    }
+    public void IncrementRotations_Multicolor(int amount = 1) {
+        statsData.stats_amt_rotations_multicolor += amount;
+        CheckMasteryUnlockRequierements();
+    }
+    public void IncrementResets(int amount = 1) {
+        statsData.stats_amt_resets += amount;
+        CheckMasteryUnlockRequierements();
+    }
+    public void IncrementFusions(int amount = 1) {
+        statsData.stats_amt_fusions += amount;
+        CheckMasteryUnlockRequierements();
+    }
+
+
     public void OpenGooglePlay() {
         if(!_GPSHelper.IsAuthentificated()) {
             _GPSHelper.AttemptToConnectUser();
@@ -315,15 +346,21 @@ public class LevelManager : MonoBehaviour {
     /// </summary>
     public void CheckAchievementsProgress() {
         //Learner
-        if (statsData.stats_tutorial_completed) _GPSHelper.UnlockAchievement(Achievements.Learner);
-
+        if (statsData.stats_tutorial_completed || levelsData.tutorialCompleted) _GPSHelper.UnlockAchievement(Achievements.Learner);
         //Curious
         if (statsData.stats_curiousness_achieved) _GPSHelper.UnlockAchievement(Achievements.Mastery_Curiousness);
-
         // Harmony-Chaos
+        CheckHarmonyChaosUnlockRequierements();
+        //Mastery
+        CheckMasteryUnlockRequierements();
+        //Equilibrium
+        CheckEquilibriumUnlockRequierements();
+    }
+
+    private void CheckHarmonyChaosUnlockRequierements() {
         bool w1 = true, w2 = true, w3 = true, w4 = true;
-        if(levelsData.levelList.Count > 30) {
-            foreach(Level lvl in levelsData.levelList) {
+        if (levelsData.levelList.Count > 30) {
+            foreach (Level lvl in levelsData.levelList) {
                 if (!lvl.completed) {
                     switch (lvl.world) {
                         case 1: w1 = false; break;
@@ -338,8 +375,9 @@ public class LevelManager : MonoBehaviour {
             if (w3) _GPSHelper.UnlockAchievement(Achievements.Hamory_Hydra);
             if (w4) _GPSHelper.UnlockAchievement(Achievements.Chaos_Hydra);
         }
+    }
 
-        //Mastery
+    private void CheckMasteryUnlockRequierements() {
         if (statsData.stats_amt_rotations > Achievements.Mastery_Rotation_Needed)
             _GPSHelper.UnlockAchievement(Achievements.Mastery_Rotation);
         if (statsData.stats_amt_fusions > Achievements.Mastery_Fusion_Needed)
@@ -350,14 +388,17 @@ public class LevelManager : MonoBehaviour {
             _GPSHelper.UnlockAchievement(Achievements.Mastery_Multicolor);
         if (statsData.stats_amt_resets > Achievements.Mastery_Commitment_Needed)
             _GPSHelper.UnlockAchievement(Achievements.Mastery_Commitment);
+    }
 
-        //Equilibrium
+    private void CheckEquilibriumUnlockRequierements() {
         int amtStars = GetTotalAmountStars();
         if (amtStars >= Achievements.Equilibrium_Stage1_Needed) _GPSHelper.UnlockAchievement(Achievements.Equilibrium_Stage1);
         if (amtStars >= Achievements.Equilibrium_Stage2_Needed) _GPSHelper.UnlockAchievement(Achievements.Equilibrium_Stage2);
         if (amtStars >= Achievements.Equilibrium_Stage3_Needed) _GPSHelper.UnlockAchievement(Achievements.Equilibrium_Stage3);
         if (amtStars >= Achievements.Equilibrium_Stage4_Needed) _GPSHelper.UnlockAchievement(Achievements.Equilibrium_Stage4);
     }
+
+
 }
 
 [System.Serializable]

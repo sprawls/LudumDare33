@@ -3704,7 +3704,7 @@ RectTransform:
   - {fileID: 1852503264}
   m_Father: {fileID: 381234351}
   m_RootOrder: 5
-  m_AnchorMin: {x: 0.66, y: 0.825}
+  m_AnchorMin: {x: 0.67, y: 0.825}
   m_AnchorMax: {x: 0.77, y: 1}
   m_AnchoredPosition: {x: -2.7784424, y: -5.265625}
   m_SizeDelta: {x: -10, y: -10}
@@ -3755,7 +3755,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 90958373}
-        m_MethodName: InverseWorld
+        m_MethodName: OpenGooglePlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

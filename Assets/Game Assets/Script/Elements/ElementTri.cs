@@ -213,6 +213,7 @@ public class ElementTri : MonoBehaviour {
                 //Start Cooldown
                 StartCoroutine(RotationCooldown());
 
+                UpdateRotationStats();
             }
         }
     }
@@ -245,6 +246,28 @@ public class ElementTri : MonoBehaviour {
         _canRotate = false;
         yield return new WaitForSeconds(0.4f);
         _canRotate = true;
+    }
+
+    void UpdateRotationStats() {
+        //Rotation
+        LevelManager.Instance.IncrementRotations();
+
+        //Multicolor Rotation
+        int amtMulticolorOrbs = 0;
+        if (Element_1.GetEType(this) == ElementType.all) ++amtMulticolorOrbs;
+        if (Element_2.GetEType(this) == ElementType.all) ++amtMulticolorOrbs;
+        if (Element_3.GetEType(this) == ElementType.all) ++amtMulticolorOrbs;
+        if (amtMulticolorOrbs > 0) LevelManager.Instance.IncrementRotations_Multicolor(amtMulticolorOrbs);
+
+        //Limited Rotation
+        if (rotationAvailable >= 0) LevelManager.Instance.IncrementRotations_LimitedTri();
+
+        //Fusion 
+        int amtFusionSockets = 0;
+        if (Element_1.GetType() == typeof(FusionSocket)) ++amtFusionSockets;
+        if (Element_2.GetType() == typeof(FusionSocket)) ++amtFusionSockets;
+        if (Element_3.GetType() == typeof(FusionSocket)) ++amtFusionSockets;
+        if (amtFusionSockets > 0) LevelManager.Instance.IncrementFusions(amtFusionSockets);
     }
 
 #if UNITY_EDITOR_WIN

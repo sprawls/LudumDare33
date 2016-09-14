@@ -166,7 +166,8 @@ public class GameManager : MonoBehaviour {
         }
 
         SetCurrentLevelMoves(0);
-        
+
+        LevelManager.Instance.IncrementResets();
     }
 
     public void OnClick_Restart() {
