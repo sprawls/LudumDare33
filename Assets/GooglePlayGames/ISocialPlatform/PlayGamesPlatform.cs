@@ -857,7 +857,7 @@ namespace GooglePlayGames
             if (!IsAuthenticated())
             {
                 GooglePlayGames.OurUtils.Logger.e("LoadAchievements can only be called after authentication.");
-                callback.Invoke(null);
+ 
             }
 
             mClient.LoadAchievements(ach =>

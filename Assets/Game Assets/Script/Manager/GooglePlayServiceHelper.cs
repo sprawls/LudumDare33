@@ -37,22 +37,36 @@ public struct Achievements {
 
 public class GooglePlayServiceHelper : MonoBehaviour {
 
-    private bool _authentificated = false;
+    private bool _authenticated = false;
 
 	void Awake () {
         InitializeGooglePlayGames();
 	}
 
-    public bool IsAuthentificated() {
-        return _authentificated;
+    public bool IsAuthenticated() {
+        return _authenticated;
     }
 
     public void AttemptToConnectUser() {
         Social.localUser.Authenticate((bool success) => {
             if (success) {
-                _authentificated = true;
+                _authenticated = true;
+            } else {
+                Debug.Log("Failed to authenticate local user");
             }
         });
+    }
+
+    public void ShowAchievementsUI() {
+        if (!_authenticated) AttemptToConnectUser();
+        if (_authenticated) {
+            Debug.Log("Failed to authenticate local user");
+        } else {
+            Debug.Log("Success: " + Social.localUser.userName);
+            Social.LoadAchievements(null);
+            Social.ShowAchievementsUI();
+            PlayerPrefs.SetInt("GamecenterAutoAuthenticate", 1);
+        }
     }
 
     public void UnlockAchievement(string id) {
@@ -64,9 +78,7 @@ public class GooglePlayServiceHelper : MonoBehaviour {
     private void InitializeGooglePlayGames() {
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
             // enables saving game progress.
-            .EnableSavedGames()
-            // require access to a player's Google+ social graph (usually not needed)
-            .RequireGooglePlus()
+            //.EnableSavedGames()
             .Build();
 
         PlayGamesPlatform.InitializeInstance(config);
@@ -74,6 +86,8 @@ public class GooglePlayServiceHelper : MonoBehaviour {
         PlayGamesPlatform.DebugLogEnabled = true;
         // Activate the Google Play Games platform
         PlayGamesPlatform.Activate();
+
+        AttemptToConnectUser();
     }
 
 }

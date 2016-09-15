@@ -336,9 +336,14 @@ public class LevelManager : MonoBehaviour {
 
 
     public void OpenGooglePlay() {
-        if(!_GPSHelper.IsAuthentificated()) {
+        if(!_GPSHelper.IsAuthenticated()) {
             _GPSHelper.AttemptToConnectUser();
         }
+        OpenGooglePlayAchievements();
+    }
+
+    public void OpenGooglePlayAchievements() {
+        _GPSHelper.ShowAchievementsUI();
     }
 
     /// <summary>
