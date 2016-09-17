@@ -44,22 +44,31 @@ public class GooglePlayServiceHelper : MonoBehaviour {
 	}
 
     public bool IsAuthenticated() {
-        return _authenticated;
+        return Social.localUser.authenticated;
     }
 
-    public void AttemptToConnectUser() {
+    public bool AttemptToConnectUser() {
+        if (IsAuthenticated()) return true; 
         Social.localUser.Authenticate((bool success) => {
             if (success) {
-                _authenticated = true;
+                Debug.Log("Successfully authenticated local user");
             } else {
                 Debug.Log("Failed to authenticate local user");
             }
         });
+        return IsAuthenticated();
+    }
+
+    public void SignOutUser() {
+        if (IsAuthenticated()) {
+            ((GooglePlayGames.PlayGamesPlatform)Social.Active).SignOut();
+        }
+
     }
 
     public void ShowAchievementsUI() {
         if (!_authenticated) AttemptToConnectUser();
-        if (_authenticated) {
+        if (!_authenticated) {
             Debug.Log("Failed to authenticate local user");
         } else {
             Debug.Log("Success: " + Social.localUser.userName);
@@ -71,7 +80,11 @@ public class GooglePlayServiceHelper : MonoBehaviour {
 
     public void UnlockAchievement(string id) {
         Social.ReportProgress(id, 100.0f, (bool success) => {
-            // handle success or failure
+            if (success) {
+                Debug.Log("Achivement unlocked : " + id);
+            } else {
+                Debug.Log("Failed to Unlock : " + id);
+            }
         });
     }
 
