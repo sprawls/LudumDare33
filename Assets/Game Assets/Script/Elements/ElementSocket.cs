@@ -4,9 +4,15 @@ using DG.Tweening;
 
 public class ElementSocket : MonoBehaviour {
 
+    protected Transform _transform;
+
     public Element element;
 
     public virtual Color OrbBackgroundColor { get; protected set; }
+      
+    public virtual void Awake() {
+        _transform = transform;
+    }
 
     public virtual void Start() {
         OrbBackgroundColor = new Color(0f, 0f, 0f, 1f);
@@ -21,13 +27,13 @@ public class ElementSocket : MonoBehaviour {
     }
 
     public virtual void TranslateElement(Vector3 newPos, ElementTri triRef) {
-        transform.position = newPos;
-        element.TranslateToPosition(transform.position);
+        _transform.position = newPos;
+        element.TranslateToPosition(_transform.position);
     }
 
     public virtual void SetupElement(Vector2 newPos, ElementTri triRef) {
-        transform.position = newPos;
-        element.TranslateToPosition(transform.position, 0f);
+        _transform.position = newPos;
+        element.TranslateToPosition(_transform.position, 0f);
     }
 
     public virtual void ChangeElement(Element newElement, ElementTri triRef) {

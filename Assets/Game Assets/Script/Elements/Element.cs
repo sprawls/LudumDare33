@@ -6,7 +6,7 @@ public enum ElementType { fire = 0, water = 1, wind = 2, all = 3, none = -1 }
 
 public class Element : MonoBehaviour {
 
-    
+    public Transform _transform;
 
     public ElementType EType;
     public GameObject Orb_Fire;
@@ -17,7 +17,8 @@ public class Element : MonoBehaviour {
     public GameObject Model;
 
     void Awake() {
-        transform.position = Vector3.zero;
+        _transform = transform;
+        _transform.position = Vector3.zero;
         Orb_All = (GameObject) Resources.Load("Orbs/Orb_All"); //Load it here to avoid setting it in inspector.
     }
 
@@ -69,7 +70,7 @@ public class Element : MonoBehaviour {
         //Spawn it
         Model = (GameObject) Instantiate(GO,Vector3.zero,Quaternion.identity);
         Model.transform.localScale = Vector3.one * 1f;
-        Model.transform.parent = transform;
+        Model.transform.parent = _transform;
         //Debug.Log("mod scale " + Model.transform.localScale + " name : " + Model.name);
     }
 
@@ -84,7 +85,7 @@ public class Element : MonoBehaviour {
     public void ScaleModel(float scale) {
         Model.transform.parent = null;
         Model.transform.localScale = Vector3.one * scale * (2f/3f);
-        Model.transform.parent = transform;
+        Model.transform.parent = _transform;
     }
 
     public void ResetModel() {

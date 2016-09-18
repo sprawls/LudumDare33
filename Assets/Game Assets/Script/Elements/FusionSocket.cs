@@ -34,8 +34,8 @@ public class FusionSocket : ElementSocket {
         MusicManager.Instance.PlaySound_FusionChange();
         if (element.EType != newElem) {
             element.EType = newElem;
-            GameObject fusionGO = (GameObject)Instantiate(FusionSocketParticles, element.transform.position, Quaternion.identity);
-            fusionGO.transform.parent = element.transform;
+            GameObject fusionGO = (GameObject)Instantiate(FusionSocketParticles, element._transform.position, Quaternion.identity);
+            fusionGO.transform.parent = element._transform;
         }
     }
 
@@ -61,8 +61,8 @@ public class FusionSocket : ElementSocket {
         Vector3 subDistance = tri_1_pos - tri_2_pos;
         Vector3 middlePos = (subDistance.normalized * (subDistance.magnitude * 0.5f)) + tri_2_pos;
         //Debug.Log("mid : " + middlePos + "   sub1 :" + tri_1_pos + "  sub2 " + tri_2_pos);
-        element.transform.position = middlePos + new Vector3(0, 0, -5);
-        element.Model.transform.position = element.transform.position;
+        element._transform.position = middlePos + new Vector3(0, 0, -5);
+        element.Model.transform.position = element._transform.position;
     }
 
     public override Element GetElement(ElementTri triRef) {
@@ -188,9 +188,9 @@ public class FusionSocket : ElementSocket {
     //GIZMO DEBUG
     void OnDrawGizmos() {
         if (Application.isPlaying) return;
-        Vector3 middlePos = ((Tri_1.transform.position + Tri_2.transform.position) / 2f);
-        Vector3 middlePos_1 = (Tri_1.transform.position * 1.3f + Tri_2.transform.position * 0.7f) / 2f;
-        Vector3 middlePos_2 = (Tri_1.transform.position * 0.7f + Tri_2.transform.position * 1.3f) / 2f;
+        Vector3 middlePos = ((Tri_1._transform.position + Tri_2._transform.position) / 2f);
+        Vector3 middlePos_1 = (Tri_1._transform.position * 1.3f + Tri_2._transform.position * 0.7f) / 2f;
+        Vector3 middlePos_2 = (Tri_1._transform.position * 0.7f + Tri_2._transform.position * 1.3f) / 2f;
 
         Gizmos.color = GetSocketGizmoColor(subElement_1);
         Gizmos.DrawSphere(middlePos_1, 0.50f * Tri_1.size);

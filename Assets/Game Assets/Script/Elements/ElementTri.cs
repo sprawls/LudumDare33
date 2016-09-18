@@ -19,6 +19,7 @@ public class ElementTri : MonoBehaviour {
     public ElementSocket Element_1;
     public ElementSocket Element_2;
     public ElementSocket Element_3;
+    public Transform _transform;
 
     public MeshRenderer TriRenderer;
     public Material LineRenderersMaterial;
@@ -36,11 +37,12 @@ public class ElementTri : MonoBehaviour {
     public Mesh GizmoMesh;
 
     void Awake(){
+        _transform = transform;
         AddToStaticList();
 
-        pos_1 = (Quaternion.Euler(new Vector3(0,0,addedRotation)) * new Vector3(0, size, 0)) + transform.position;
-        pos_2 = (Quaternion.Euler(new Vector3(0,0,addedRotation)) * new Vector3((size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + transform.position;
-        pos_3 = (Quaternion.Euler(new Vector3(0,0,addedRotation)) * new Vector3(-(size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + transform.position;
+        pos_1 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(0, size, 0)) + _transform.position;
+        pos_2 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3((size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + _transform.position;
+        pos_3 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(-(size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + _transform.position;
         TriRenderer.transform.parent.Rotate(new Vector3(0, 0, addedRotation));
 
         Vector3 ZLineOffset = new Vector3(0, 0, 1);
@@ -48,7 +50,7 @@ public class ElementTri : MonoBehaviour {
         DrawLinesBetweenPoints(pos_2 + ZLineOffset, pos_3 + ZLineOffset);
         DrawLinesBetweenPoints(pos_3 + ZLineOffset, pos_1 + ZLineOffset);
 
-        transform.localScale = Vector3.one * size;
+        _transform.localScale = Vector3.one * size;
     }
 
     void Start(){
@@ -77,8 +79,8 @@ public class ElementTri : MonoBehaviour {
     private void UpdateMovesText() {
         if (rotationAvailable >= 0) {
             if (currentMovesLeftObj == null) {
-                currentMovesLeftObj = (GameObject)Instantiate(movesLeft_GameObject, transform.position, Quaternion.identity);
-                currentMovesLeftObj.transform.parent = transform;
+                currentMovesLeftObj = (GameObject)Instantiate(movesLeft_GameObject, _transform.position, Quaternion.identity);
+                currentMovesLeftObj.transform.parent = _transform;
                 currentMovesLeftScript = currentMovesLeftObj.GetComponentInChildren<MovesLeftObject>();
                 if (currentMovesLeftScript == null) Debug.Log("No moves left script found !");
             }
@@ -132,7 +134,7 @@ public class ElementTri : MonoBehaviour {
     /// <summary> Draws lines inbetween three points </summary>
     private void DrawLinesBetweenPoints(Vector3 s, Vector3 e) {
         GameObject GO = new GameObject();
-        GO.transform.parent = transform;
+        GO.transform.parent = _transform;
         LineRenderer lr = GO.AddComponent<LineRenderer>();
         lr.SetColors(Color.black, Color.black);
         lr.SetPosition(0, s);
@@ -275,13 +277,13 @@ public class ElementTri : MonoBehaviour {
     void OnDrawGizmos() {
         if(Application.isPlaying) return; 
         if(GizmoMesh) Gizmos.DrawMesh(  GizmoMesh,
-                                        transform.position + (Quaternion.Euler(0, 0, addedRotation) * new Vector3(0f, 0.3f, 2f)), 
+                                        _transform.position + (Quaternion.Euler(0, 0, addedRotation) * new Vector3(0f, 0.3f, 2f)), 
                                         Quaternion.Euler(0,0,addedRotation), 
                                         new Vector3(1.65f,1.545f,1.65f) * size) ;
 
-        Vector3 pos_1 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(0, size, 0)) + transform.position;
-        Vector3 pos_2 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3((size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + transform.position;
-        Vector3 pos_3 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(-(size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + transform.position;
+        Vector3 pos_1 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(0, size, 0)) + _transform.position;
+        Vector3 pos_2 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3((size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + _transform.position;
+        Vector3 pos_3 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(-(size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + _transform.position;
 
         if (Element_1.element.EType != ElementType.none) {
             Gizmos.color = GetSocketGizmoColor(Element_1);
