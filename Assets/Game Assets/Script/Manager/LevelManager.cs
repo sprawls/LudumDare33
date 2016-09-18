@@ -69,7 +69,7 @@ public class LevelManager : MonoBehaviour {
             UpdateBackgroundColor();
             if (isInverseWorld()) StartCoroutine(FakeInverseWorld());
             MoveLevelSelectTo(currentSelectedWorld, 0f);
-            Debug.Log(currentSelectedWorld);
+            //Debug.Log(currentSelectedWorld);
         }
     }
 
