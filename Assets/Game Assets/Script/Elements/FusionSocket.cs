@@ -34,7 +34,8 @@ public class FusionSocket : ElementSocket {
         MusicManager.Instance.PlaySound_FusionChange();
         if (element.EType != newElem) {
             element.EType = newElem;
-            Instantiate(FusionSocketParticles, element.transform.position, Quaternion.identity);
+            GameObject fusionGO = (GameObject)Instantiate(FusionSocketParticles, element.transform.position, Quaternion.identity);
+            fusionGO.transform.parent = element.transform;
         }
     }
 

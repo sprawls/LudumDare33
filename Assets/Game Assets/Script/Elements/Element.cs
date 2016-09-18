@@ -63,7 +63,7 @@ public class Element : MonoBehaviour {
                 break;
         }
         if (GO == null) {
-            Debug.Log("No model for Element Type : " + EType.ToString());
+            Debug.LogWarning("No model for Element Type : " + EType.ToString() + " on Object " + gameObject.name);
             return;
         }
         //Spawn it

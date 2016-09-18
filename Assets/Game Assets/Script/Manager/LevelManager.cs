@@ -315,22 +315,27 @@ public class LevelManager : MonoBehaviour {
 
     public void IncrementRotations(int amount = 1) {
         statsData.stats_amt_rotations += amount;
+        Debug.Log("Incremented Rotations by " + amount + " to " + statsData.stats_amt_rotations);
         CheckMasteryUnlockRequierements();
     }
     public void IncrementRotations_LimitedTri(int amount = 1) {
         statsData.stats_amt_rotations_limitedTriangle += amount;
+        Debug.Log("Incremented LimitedMoves by " + amount + " to " + statsData.stats_amt_rotations_limitedTriangle);
         CheckMasteryUnlockRequierements();
     }
     public void IncrementRotations_Multicolor(int amount = 1) {
         statsData.stats_amt_rotations_multicolor += amount;
+        Debug.Log("Incremented Multicolor by " + amount + " to " + statsData.stats_amt_rotations_multicolor);
         CheckMasteryUnlockRequierements();
     }
     public void IncrementResets(int amount = 1) {
         statsData.stats_amt_resets += amount;
+        Debug.Log("Incremented Resets by " + amount + " to " + statsData.stats_amt_resets);
         CheckMasteryUnlockRequierements();
     }
     public void IncrementFusions(int amount = 1) {
         statsData.stats_amt_fusions += amount;
+        Debug.Log("Incremented Fusions by " + amount + " to " + statsData.stats_amt_fusions);
         CheckMasteryUnlockRequierements();
     }
 

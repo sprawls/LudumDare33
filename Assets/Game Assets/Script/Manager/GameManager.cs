@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LoadLevel() {
-        ReloadLevel();
+        ReloadLevel(false);
         DialogueManager.Instance.StopTalkCoroutines();
         DialogueManager.Instance.TalkAboutLevel();
 
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void ReloadLevel() {
+    public void ReloadLevel(bool incrementStat = false) {
         //Debug.Log(currentLevel + "  " + currentWorld);
         if (currentLevel_Obj != null) Destroy(currentLevel_Obj);
         switch (currentWorld) {
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour {
 
         SetCurrentLevelMoves(0);
 
-        LevelManager.Instance.IncrementResets();
+        if(incrementStat) LevelManager.Instance.IncrementResets();
     }
 
     public void OnClick_Restart() {
@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour {
         if (currentLevel < 0 || currentLevel + 1 >= worldList[currentWorld-1].Count) {
 
         } else {
-            ReloadLevel();
+            ReloadLevel(true);
         }
     }
 
