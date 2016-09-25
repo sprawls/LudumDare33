@@ -7,6 +7,7 @@ public class LevelSelectManager : MonoBehaviour {
     public Button InverseButton;
     public Button LeftButton;
     public Button RightButton;
+    public GameObject MenuObject;
 
     public bool alwaysShowInverseButton { get; private set; }
 
@@ -33,6 +34,16 @@ public class LevelSelectManager : MonoBehaviour {
 
     public void BackToMenu() {
         LevelManager.Instance.OnClick_BackToMenu();
+    }
+
+    public void ToggleOptions() {
+        if (LevelManager.Instance.gameIsPaused) {
+            LevelManager.Instance.OnSetPause(false);
+            MenuObject.SetActive(false);
+        } else {
+            LevelManager.Instance.OnSetPause(true);
+            MenuObject.SetActive(true);
+        }
     }
 
     public void InverseWorld() {

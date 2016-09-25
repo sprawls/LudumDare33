@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour {
     public int currentSelectedWorld = 1;
     public int currentSelectedLevel = 0;
     public bool showTutorial = false;
+    public bool gameIsPaused { get; private set; }
 
     public List<int> LevelsList_w1_par;
     public List<int> LevelsList_w2_par;
@@ -38,6 +39,7 @@ public class LevelManager : MonoBehaviour {
 
             DontDestroyOnLoad(gameObject);
             inInverseAnimation = false;
+            gameIsPaused = false;
 
             //Create Worlds
             worldList_par.Add(LevelsList_w1_par);
@@ -73,6 +75,11 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
+    public void OnSetPause(bool isPaused) {
+        if (isPaused) gameIsPaused = true;
+        else gameIsPaused = false;
+    }
+
     //Save when application pause
     void OnApplicationPause(bool pauseStatus) {
         SaveAndLoad.Save();
@@ -82,7 +89,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public bool CanClickOnLevels() {
-        if (inInverseAnimation || SceneTransitionManager.Instance.InTransition) return false;
+        if (inInverseAnimation || SceneTransitionManager.Instance.InTransition || gameIsPaused) return false;
         else return true;
     }
 
