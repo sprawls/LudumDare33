@@ -12,6 +12,7 @@ public class GameSave {
 
     public LevelsData levels;
     public StatsData stats;
+    public OptionsData options;
 
     /// <summary> Creates a new gamesave from nothing </summary>
     public GameSave(bool createNew) {
@@ -20,9 +21,11 @@ public class GameSave {
         if (createNew) {
             levels = new LevelsData();
             stats = new StatsData();
+            options = new OptionsData();
         } else {
             levels = LevelManager.Instance.levelsData;
             stats = LevelManager.Instance.statsData;
+            options = LevelManager.Instance.optionsData;
         }
 
     }

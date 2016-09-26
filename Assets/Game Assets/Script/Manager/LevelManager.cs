@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,18 +20,25 @@ public class LevelManager : MonoBehaviour {
     public List<int> LevelsList_w5_par;
     public List<int> LevelsList_w6_par;
     public List<List<int>> worldList_par = new List<List<int>>();
+
     public LevelsData levelsData { get; private set; }
     public StatsData statsData { get; private set; }
+    public OptionsData optionsData { get; private set; }
 
     [Header("World Switch")]
     public Camera normalCam;
     public Camera inverseCam;
     public Mesh transitionMesh;
+
     //JS scripts
     public GameObject screenWipeScript;
     public bool inInverseAnimation { get; private set; }
 
     private GooglePlayServiceHelper _GPSHelper;
+
+    [Header("Audio")]
+    public AudioMixerGroup soundMixerGroup;
+    public AudioMixerGroup musicMixerGroup;
 
     void Awake() {
         if (Instance == null) {
@@ -53,7 +61,6 @@ public class LevelManager : MonoBehaviour {
 
             //Activate GooglePlay Services
             _GPSHelper = gameObject.AddComponent<GooglePlayServiceHelper>();
-
         } else {
             Destroy(gameObject);
         }
@@ -67,6 +74,8 @@ public class LevelManager : MonoBehaviour {
     }
 
     void OnLevelWasLoaded(int scene) {
+        UpdateAudioGroups();
+
         if (scene == 1) {
             UpdateBackgroundColor();
             if (isInverseWorld()) StartCoroutine(FakeInverseWorld());
@@ -167,10 +176,12 @@ public class LevelManager : MonoBehaviour {
         SaveAndLoad.Load();
         levelsData = GameSave.current.levels;
         statsData = GameSave.current.stats;
+        optionsData = GameSave.current.options;
 
         //Create new if not existing
         if (levelsData == null) levelsData = new LevelsData();
         if (statsData == null) statsData = new StatsData();
+        if (optionsData == null) optionsData = new OptionsData();
 
 
         //Get Levels from old data. Should support adding more levels (savefile with less levels than currently)
@@ -191,6 +202,7 @@ public class LevelManager : MonoBehaviour {
 
         GameSave.current.levels = levelsData;
         GameSave.current.stats = statsData;
+        GameSave.current.options = optionsData;
         SaveAndLoad.Save();
     }
 
@@ -310,6 +322,10 @@ public class LevelManager : MonoBehaviour {
         return (currentSelectedWorld % 2 == 0);
     }
 
+    //////////////////////////////////////////////////////
+    ///  DATA 
+    //////////////////////////////////////////////////////
+
     public bool hasCompletedTutorial() {
         return levelsData.tutorialCompleted;
     }
@@ -346,7 +362,27 @@ public class LevelManager : MonoBehaviour {
         CheckMasteryUnlockRequierements();
     }
 
+    public void ToggleMuteSounds() {
+        optionsData.sound_muted = !optionsData.sound_muted;
+        UpdateAudioGroups();
+    }
 
+    public void ToggleMuteMusic() {
+        optionsData.music_muted = !optionsData.music_muted;
+        UpdateAudioGroups();
+    }
+
+    private void UpdateAudioGroups() {
+        if (optionsData.music_muted) musicMixerGroup.audioMixer.SetFloat("MusicVolume", -80f);
+        else musicMixerGroup.audioMixer.SetFloat("MusicVolume", 0f);
+
+        if (optionsData.sound_muted) soundMixerGroup.audioMixer.SetFloat("SFXVolume", -80f);
+        else soundMixerGroup.audioMixer.SetFloat("SFXVolume", 0f);
+    }
+
+    //////////////////////////////////////////////////////
+    ///  GOOGLE PLAY
+    //////////////////////////////////////////////////////
     public void OpenGooglePlay() {
         if(!_GPSHelper.IsAuthenticated()) {
             _GPSHelper.AttemptToConnectUser();
@@ -360,6 +396,9 @@ public class LevelManager : MonoBehaviour {
         _GPSHelper.ShowAchievementsUI();
     }
 
+    //////////////////////////////////////////////////////
+    ///  ACHIEVEMENTS
+    //////////////////////////////////////////////////////
     /// <summary>
     /// This is called in level select in order to re evaluate conditions for achievements in case the user was offline when he met the requirements
     /// </summary>
@@ -420,6 +459,10 @@ public class LevelManager : MonoBehaviour {
 
 }
 
+//////////////////////////////////////////////////////
+///  Data Structures
+//////////////////////////////////////////////////////
+
 [System.Serializable]
 public class LevelsData {
     public List<Level> levelList;
@@ -451,5 +494,18 @@ public class StatsData {
 
         stats_tutorial_completed = false;
         stats_curiousness_achieved = false;
+    }
+}
+
+[System.Serializable]
+public class OptionsData {
+    public bool sound_muted;
+    public bool music_muted;
+    public bool low_quality;
+
+    public OptionsData() {
+        sound_muted = false;
+        music_muted = false;
+        low_quality = false;
     }
 }
