@@ -61,6 +61,8 @@ public class LevelManager : MonoBehaviour {
 
             //Activate GooglePlay Services
             _GPSHelper = gameObject.AddComponent<GooglePlayServiceHelper>();
+
+            StartCoroutine(UpdateAudioGroupsOnDelay(0f));
         } else {
             Destroy(gameObject);
         }
@@ -74,7 +76,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void OnLevelWasLoaded(int scene) {
-        UpdateAudioGroups();
+        StartCoroutine(UpdateAudioGroupsOnDelay(0f));
 
         if (scene == 1) {
             UpdateBackgroundColor();
@@ -82,6 +84,12 @@ public class LevelManager : MonoBehaviour {
             MoveLevelSelectTo(currentSelectedWorld, 0f);
             //Debug.Log(currentSelectedWorld);
         }
+    }
+
+    IEnumerator UpdateAudioGroupsOnDelay(float delay) {
+        yield return new WaitForSeconds(delay);
+        Debug.Log("UpdateAUDIO");
+        UpdateAudioGroups();
     }
 
     public void OnSetPause(bool isPaused) {

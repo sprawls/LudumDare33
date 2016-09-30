@@ -190,8 +190,7 @@ public class ElementTri : MonoBehaviour {
     }
 
     public void RotateTri() {
-        //Debug.Log(_canRotate + " " + canReceivePlayerInput);
-        if (_canRotate && canReceivePlayerInput && !GameManager.Instance.InAnimation) {
+        if (_canRotate && canReceivePlayerInput && !GameManager.Instance.InAnimation && LevelManager.Instance.CanClickOnLevels()) {
             if (UseRotationAvailable()) {
 
                 if (GameManager.Instance != null) GameManager.Instance.AddMove();
