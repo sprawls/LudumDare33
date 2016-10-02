@@ -276,13 +276,13 @@ public class ElementTri : MonoBehaviour {
     void OnDrawGizmos() {
         if(Application.isPlaying) return; 
         if(GizmoMesh) Gizmos.DrawMesh(  GizmoMesh,
-                                        _transform.position + (Quaternion.Euler(0, 0, addedRotation) * new Vector3(0f, 0.3f, 2f)), 
+                                        transform.position + (Quaternion.Euler(0, 0, addedRotation) * new Vector3(0f, 0.3f, 2f)), 
                                         Quaternion.Euler(0,0,addedRotation), 
                                         new Vector3(1.65f,1.545f,1.65f) * size) ;
 
-        Vector3 pos_1 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(0, size, 0)) + _transform.position;
-        Vector3 pos_2 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3((size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + _transform.position;
-        Vector3 pos_3 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(-(size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + _transform.position;
+        Vector3 pos_1 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(0, size, 0)) + transform.position;
+        Vector3 pos_2 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3((size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + transform.position;
+        Vector3 pos_3 = (Quaternion.Euler(new Vector3(0, 0, addedRotation)) * new Vector3(-(size * Mathf.Sin(60 * Mathf.Deg2Rad)), -(size * Mathf.Cos(60 * Mathf.Deg2Rad)), 0)) + transform.position;
 
         if (Element_1.element.EType != ElementType.none) {
             Gizmos.color = GetSocketGizmoColor(Element_1);

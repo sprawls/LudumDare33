@@ -188,9 +188,9 @@ public class FusionSocket : ElementSocket {
     //GIZMO DEBUG
     void OnDrawGizmos() {
         if (Application.isPlaying) return;
-        Vector3 middlePos = ((Tri_1._transform.position + Tri_2._transform.position) / 2f);
-        Vector3 middlePos_1 = (Tri_1._transform.position * 1.3f + Tri_2._transform.position * 0.7f) / 2f;
-        Vector3 middlePos_2 = (Tri_1._transform.position * 0.7f + Tri_2._transform.position * 1.3f) / 2f;
+        Vector3 middlePos = ((Tri_1.transform.position + Tri_2.transform.position) / 2f);
+        Vector3 middlePos_1 = (Tri_1.transform.position * 1.3f + Tri_2.transform.position * 0.7f) / 2f;
+        Vector3 middlePos_2 = (Tri_1.transform.position * 0.7f + Tri_2.transform.position * 1.3f) / 2f;
 
         Gizmos.color = GetSocketGizmoColor(subElement_1);
         Gizmos.DrawSphere(middlePos_1, 0.50f * Tri_1.size);

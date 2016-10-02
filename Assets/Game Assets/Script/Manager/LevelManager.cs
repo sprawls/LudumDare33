@@ -89,7 +89,6 @@ public class LevelManager : MonoBehaviour {
 
     IEnumerator UpdateAudioGroupsOnDelay(float delay) {
         yield return new WaitForSeconds(delay);
-        Debug.Log("UpdateAUDIO");
         UpdateAudioGroups();
     }
 

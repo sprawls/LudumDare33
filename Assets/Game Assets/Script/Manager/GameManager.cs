@@ -221,6 +221,7 @@ public class GameManager : MonoBehaviour {
         LevelManager.Instance.CompleteLevel(currentLevelMoves, GetParMoves());
         currentLevel = LevelManager.Instance.currentSelectedLevel;
         SetCurrentLevelMoves(0);
+        SetCurrentLevel(currentLevel);
 
         if (LevelManager.Instance.CurrentLevelExists()) {
             //Show Next LEvel
