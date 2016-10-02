@@ -47,7 +47,7 @@ public class LevelManager : MonoBehaviour {
 
             DontDestroyOnLoad(gameObject);
             inInverseAnimation = false;
-            gameIsPaused = false;
+            OnSetPause(false);
 
             //Create Worlds
             worldList_par.Add(LevelsList_w1_par);
@@ -77,6 +77,7 @@ public class LevelManager : MonoBehaviour {
 
     void OnLevelWasLoaded(int scene) {
         StartCoroutine(UpdateAudioGroupsOnDelay(0f));
+        OnSetPause(false);
 
         if (scene == 1) {
             UpdateBackgroundColor();

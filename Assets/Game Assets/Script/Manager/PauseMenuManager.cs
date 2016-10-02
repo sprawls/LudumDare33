@@ -30,4 +30,13 @@ public class PauseMenuManager : MonoBehaviour {
     public void OpenWebsite() {
         Application.OpenURL("http://sprawls.github.io/");
     }
+
+    public void BackToLevelSelect() {
+        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect);
+    }
+
+    public void BackToMainMenu() {
+        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.menu);
+    }
+
 }
