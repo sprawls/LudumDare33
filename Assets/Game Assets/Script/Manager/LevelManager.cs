@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
+    public static bool RecordingMode = true;
+
+
     public static LevelManager Instance;
 
     public int currentSelectedWorld = 1;
@@ -66,6 +69,13 @@ public class LevelManager : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
+    }
+
+    void Update() {
+        if (Input.GetKeyDown("space")) {
+            RecordingMode = !RecordingMode;
+            DeactivateIfRecording.UpdateAll();
+        }      
     }
 
     void OnDestroy() {
