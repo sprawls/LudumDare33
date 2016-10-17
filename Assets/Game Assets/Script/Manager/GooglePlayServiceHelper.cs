@@ -60,9 +60,11 @@ public class GooglePlayServiceHelper : MonoBehaviour {
     }
 
     public void SignOutUser() {
-        if (IsAuthenticated()) {
-            ((GooglePlayGames.PlayGamesPlatform)Social.Active).SignOut();
-        }
+        #if (UNITY_ANDROID || (UNITY_IPHONE && !NO_GPGS)) 
+            if (IsAuthenticated()) {
+                ((GooglePlayGames.PlayGamesPlatform)Social.Active).SignOut();
+            }
+        #endif
 
     }
 
@@ -89,18 +91,20 @@ public class GooglePlayServiceHelper : MonoBehaviour {
     }
 
     private void InitializeGooglePlayGames() {
-        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
-            // enables saving game progress.
-            //.EnableSavedGames()
-            .Build();
+        #if (UNITY_ANDROID || (UNITY_IPHONE && !NO_GPGS)) 
+            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
+                // enables saving game progress.
+                //.EnableSavedGames()
+                .Build();
 
-        PlayGamesPlatform.InitializeInstance(config);
-        // recommended for debugging:
-        PlayGamesPlatform.DebugLogEnabled = true;
-        // Activate the Google Play Games platform
-        PlayGamesPlatform.Activate();
+            PlayGamesPlatform.InitializeInstance(config);
+            // recommended for debugging:
+            PlayGamesPlatform.DebugLogEnabled = true;
+            // Activate the Google Play Games platform
+            PlayGamesPlatform.Activate();
 
-        AttemptToConnectUser();
+            AttemptToConnectUser();
+        #endif
     }
 
 }
