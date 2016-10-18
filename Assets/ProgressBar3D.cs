@@ -10,7 +10,7 @@ public class ProgressBar3D : MonoBehaviour {
 
 	void Awake () {
         _outerBar = transform.Find("outerBar");
-        _innerBar = _innerBar.Find("innerBar");
+        _innerBar = _outerBar.Find("innerBar");
 
         if (_innerBar == null || _outerBar == null) Debug.LogError("Components of progress bars not found ! Check Hierarchy !");
         else {
