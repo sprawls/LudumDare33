@@ -9,8 +9,8 @@ public class ProgressBar3D : MonoBehaviour {
     private float _completionRatio = 0f;
 
 	void Awake () {
-        _innerBar = transform.Find("outerBar");
-        _outerBar = _innerBar.Find("innerBar");
+        _outerBar = transform.Find("outerBar");
+        _innerBar = _innerBar.Find("innerBar");
 
         if (_innerBar == null || _outerBar == null) Debug.LogError("Components of progress bars not found ! Check Hierarchy !");
         else {
@@ -29,8 +29,8 @@ public class ProgressBar3D : MonoBehaviour {
     private void UpdateInnerBar() {
         Mathf.Clamp(_completionRatio, 0f, 1f);
         //set scale
-        transform.localScale = new Vector3(_completionRatio, 1f, 1f);
+        _innerBar.transform.localScale = new Vector3(_completionRatio, 1f, 1f);
         //set position
-        transform.localPosition = new Vector3((1f - _completionRatio) * -0.5f, 0f,0f);
+        _innerBar.transform.localPosition = new Vector3((1f - _completionRatio) * -0.5f, 0f, 0f);
     }
 }
