@@ -3395,7 +3395,7 @@ GameObject:
   - 65: {fileID: 682596706}
   - 23: {fileID: 682596705}
   m_Layer: 10
-  m_Name: InnerBar
+  m_Name: innerBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6671,7 +6671,7 @@ GameObject:
   - 65: {fileID: 1131588291}
   - 23: {fileID: 1131588290}
   m_Layer: 11
-  m_Name: InnerBar
+  m_Name: innerBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
