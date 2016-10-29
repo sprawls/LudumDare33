@@ -340,6 +340,10 @@ public class LevelManager : MonoBehaviour {
         return (currentSelectedWorld % 2 == 0);
     }
 
+    public void OpenGameWebsite() {
+        Application.OpenURL("http://sprawls.github.io/entropy");
+    }
+
     //////////////////////////////////////////////////////
     ///  DATA 
     //////////////////////////////////////////////////////

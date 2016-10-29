@@ -28,7 +28,7 @@ public class PauseMenuManager : MonoBehaviour {
     }
 
     public void OpenWebsite() {
-        Application.OpenURL("http://sprawls.github.io/");
+        LevelManager.Instance.OpenGameWebsite();
     }
 
     public void BackToLevelSelect() {
