@@ -95,13 +95,13 @@ PlayerSettings:
     16:9: 1
     Others: 0
   bundleIdentifier: com.StudioMastodonte.Entropy
-  bundleVersion: 0.4
+  bundleVersion: 0.5
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   xboxOneDisableKinectGpuReservation: 0
   singlePassStereoRendering: 0
   protectGraphicsMemory: 0
-  AndroidBundleVersionCode: 4
+  AndroidBundleVersionCode: 5
   AndroidMinSdkVersion: 14
   AndroidPreferredInstallLocation: 1
   aotOptions: 

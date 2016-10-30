@@ -223,7 +223,12 @@ public class GameManager : MonoBehaviour {
         SetCurrentLevelMoves(0);
         SetCurrentLevel(currentLevel);
 
-        if (LevelManager.Instance.CurrentLevelExists()) {
+        bool goToNextLevel = true;
+        if (!LevelManager.Instance.CurrentLevelExists()) goToNextLevel = false;
+        if (LevelManager.Instance.isInverseWorld() && !LevelManager.Instance.CurrentLevelIsUnlocked()) goToNextLevel = false;
+
+
+        if (goToNextLevel) {
             //Show Next LEvel
             ChangeColorByLevel.UpdateAllColor();
             LoadLevel();

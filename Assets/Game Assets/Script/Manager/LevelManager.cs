@@ -144,6 +144,16 @@ public class LevelManager : MonoBehaviour {
         return currentSelectedLevel < worldList_par[currentSelectedWorld - 1].Count;
     }
 
+    public bool CurrentLevelIsUnlocked() {
+        Level curLevel = GetCurrentLevel();
+        return curLevel.unlocked;
+    }
+
+    public void UnlockLevel(int world, int level) {
+        Level levelInfo = GetLevel(GetLevelID(world,level));
+        levelInfo.Unlock();
+    }
+
     void MoveLevelSelectTo(int world, float time = 1f) {
         WorldsPosition worldPosScript = GameObject.Find("Camera Parent").GetComponent<WorldsPosition>();
         worldPosScript.SetWorldPosition((int)Mathf.Ceil((float)world / 2f) - 1, time);
@@ -209,7 +219,7 @@ public class LevelManager : MonoBehaviour {
                 Level previousLevelData = PopLevelInList(levelsData.levelList, i+1, j);
                 if(previousLevelData != null) {
                     newLevelList.Add(new Level(GetLevelID(i+1, j), previousLevelData.unlocked, previousLevelData.completed, previousLevelData.completedPar, previousLevelData.bestMoveScore));
-                    //Debug.Log("world" + (i+1) + " level " + (j) + " found. Completed : " + previousLevelData.completed + "    completedPar : " + previousLevelData.completedPar);
+                    //Debug.Log("world" + (i + 1) + " level " + (j) + " found. Completed : " + previousLevelData.completed + "    completedPar : " + previousLevelData.completedPar + "    unlocked : " + previousLevelData.unlocked);
                 } else {
                     newLevelList.Add(new Level(GetLevelID(i+1,j)));
                 }

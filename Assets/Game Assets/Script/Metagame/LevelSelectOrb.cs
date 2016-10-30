@@ -108,6 +108,8 @@ public class LevelSelectOrb : MonoBehaviour {
        if (currentLevel != null) {
 
            if (CheckUnlockConditions()) {
+               LevelManager.Instance.UnlockLevel(GetWorldByEnum(world), level);
+
                buttonCollider.enabled = true;
                if (LevelManager.Instance.GetLevel(GetLevelId()).completedPar) {
                    if (!isInInverseWorld) SpawnOrb(orbPrefab_completedPar, STARS_DISPLAY_PAR);
@@ -143,10 +145,30 @@ public class LevelSelectOrb : MonoBehaviour {
                 int AmtStars = LevelManager.Instance.GetTotalAmountStars();
                 bool unlocked = AmtStars >= pointsRequired;
                 if (!unlocked) SpawnStarRequirementDisplay();
-                return unlocked; //Todo Implement this once stars are in !
+                return unlocked; 
             default :
                 Debug.Log("Unimplemented Unlock Method !");
                 return false;
+        }
+    }
+
+    int GetWorldByEnum(WorldsEnum wEnum) {
+        switch (wEnum) {
+            case WorldsEnum.world_1:
+                return 1;
+            case WorldsEnum.world_2:
+                return 2;
+            case WorldsEnum.world_3:
+                return 3;
+            case WorldsEnum.world_4:
+                return 4;
+            case WorldsEnum.world_5:
+                return 5;
+            case WorldsEnum.world_6:
+                return 6;
+            default:
+                Debug.Log("Using an unimplemented world !");
+                return -1;
         }
     }
 
