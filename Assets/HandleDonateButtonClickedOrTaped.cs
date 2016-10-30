@@ -24,7 +24,7 @@ public class HandleDonateButtonClickedOrTaped : MonoBehaviour {
 	}
 
     private void AttemptOpenWebsite() {
-        if(canOpenWebsite) {
+        if(!LevelManager.Instance.gameIsPaused && canOpenWebsite) {
             LevelManager.Instance.OpenGameWebsite();
             StartCoroutine(OpenWebsiteCooldown());
         }

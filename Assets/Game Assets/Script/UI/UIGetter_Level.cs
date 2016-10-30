@@ -32,7 +32,7 @@ public class UIGetter_Level : MonoBehaviour {
     }
 
 	void UpdateText () {
-        Debug.Log(GameManager.Instance.currentLevel + 1);
+        //Debug.Log(GameManager.Instance.currentLevel + 1);
         if (GameManager.Instance != null) text.text = customTextBefore + (GameManager.Instance.currentLevel + 1).ToString();
 	}
 }

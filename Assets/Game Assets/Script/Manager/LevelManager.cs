@@ -351,6 +351,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void OpenGameWebsite() {
+        Debug.Log("DS)");
         Application.OpenURL("http://sprawls.github.io/entropy");
     }
 
