@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour {
     public int currentSelectedLevel = 0;
     public bool showTutorial = false;
     public bool gameIsPaused { get; private set; }
+    public bool popupIsOnScreen { get; private set; }
 
     public List<int> LevelsList_w1_par;
     public List<int> LevelsList_w2_par;
@@ -51,6 +52,7 @@ public class LevelManager : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             inInverseAnimation = false;
             OnSetPause(false);
+            popupIsOnScreen = false;
 
             //Create Worlds
             worldList_par.Add(LevelsList_w1_par);
@@ -107,6 +109,11 @@ public class LevelManager : MonoBehaviour {
         else gameIsPaused = false;
     }
 
+    public void OnSetPopupIsOnScreen(bool isOnScreen) {
+        if (isOnScreen) popupIsOnScreen = true;
+        else popupIsOnScreen = false;
+    }
+
     //Save when application pause
     void OnApplicationPause(bool pauseStatus) {
         SaveAndLoad.Save();
@@ -116,7 +123,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public bool CanClickOnLevels() {
-        if (inInverseAnimation || SceneTransitionManager.Instance.InTransition || gameIsPaused) return false;
+        if (inInverseAnimation || SceneTransitionManager.Instance.InTransition || gameIsPaused || popupIsOnScreen) return false;
         else return true;
     }
 

@@ -23,6 +23,12 @@ public class NotificationPopup : MonoBehaviour {
         _Text_Refuse = Button_Refuse.GetComponentInChildren<Text>();
         _Text_Accept = Button_Accept.GetComponentInChildren<Text>();
         _Text_Later = Button_Later.GetComponentInChildren<Text>();
+
+        LevelManager.Instance.OnSetPopupIsOnScreen(true);
+    }
+
+    private void OnDestroy() {
+        LevelManager.Instance.OnSetPopupIsOnScreen(false);
     }
 
     public void Initialize(ENotificationPopupType type) {
@@ -32,7 +38,7 @@ public class NotificationPopup : MonoBehaviour {
         UpdateText();
     }
 
-    private void UpdateText() {
+    private void UpdateButtons() {
         switch(_popupType){
             case ENotificationPopupType.Donate :
                 Button_Accept.onClick.AddListener(this.OpenWebsite);
@@ -46,6 +52,7 @@ public class NotificationPopup : MonoBehaviour {
             case ENotificationPopupType.InverseWorld:
                 Button_Accept.onClick.AddListener(this.CloseWindow);
                 Button_Refuse.onClick.AddListener(this.CloseWindow);
+                Destroy(Button_Later.gameObject);
 
                 _Text_Accept.text = "Try it now";
                 _Text_Refuse.text = "Maybe Later";
@@ -62,8 +69,8 @@ public class NotificationPopup : MonoBehaviour {
         }
     }
 
-   
-    private void UpdateButtons() {
+
+    private void UpdateText() {
         switch(_popupType){
             case ENotificationPopupType.Donate :
                 Text_Title.text = "You've been playing for a while. Please consider donating to support the game !";

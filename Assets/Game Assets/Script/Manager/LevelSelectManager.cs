@@ -7,6 +7,7 @@ public class LevelSelectManager : MonoBehaviour {
     public Button InverseButton;
     public Button LeftButton;
     public Button RightButton;
+    public GameObject Prefab_PopupWindow;
 
     public bool alwaysShowInverseButton { get; private set; }
 
@@ -22,6 +23,7 @@ public class LevelSelectManager : MonoBehaviour {
         swipeInputs.OnSwipeLeft += PreviousWorld;
 
         UpdateNavigationButtons();
+        HandlePopupWindows();
 	}
 
     void OnDestroy() {
@@ -119,4 +121,28 @@ public class LevelSelectManager : MonoBehaviour {
         } else Debug.Log("Right Button is null !");
     }
 
+    private void HandlePopupWindows() {
+        //todo determine when to show which
+        return;
+
+        int rand = Random.Range(0,3);
+        if (Prefab_PopupWindow != null) {
+            GameObject popupWindow = (GameObject) Instantiate(Prefab_PopupWindow,Vector3.zero, Quaternion.identity);
+            NotificationPopup notifPopup = popupWindow.GetComponent<NotificationPopup>();
+            switch (rand) {
+                case 0:
+                    notifPopup.Initialize(NotificationPopup.ENotificationPopupType.Donate);
+                    break;
+                case 1:
+                    notifPopup.Initialize(NotificationPopup.ENotificationPopupType.InverseWorld);
+                    break;
+                case 2:
+                    notifPopup.Initialize(NotificationPopup.ENotificationPopupType.Rate);
+                    break;
+            }
+        } else {
+            Debug.LogWarning("Popup Prefab not selected in editor !");
+        }
+
+    }
 }

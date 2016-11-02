@@ -611,6 +611,8 @@ MonoBehaviour:
   InverseButton: {fileID: 2058954789}
   LeftButton: {fileID: 2045920624}
   RightButton: {fileID: 935540002}
+  Prefab_PopupWindow: {fileID: 1000011927288530, guid: d01fe8562cfc7fa43993d9b523ca1107,
+    type: 2}
 --- !u!114 &90958374
 MonoBehaviour:
   m_ObjectHideFlags: 0
