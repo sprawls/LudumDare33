@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 
+
 public class NotificationPopup : MonoBehaviour {
+
+    public enum ENotificationPopupType {
+        Donate, Rate, InverseWorld, None
+    }
+
 
     public Text Text_Title;
     public Button Button_Refuse;
@@ -12,10 +19,6 @@ public class NotificationPopup : MonoBehaviour {
     private Text _Text_Refuse;
     private Text _Text_Accept;
     private Text _Text_Later;
-
-    public enum ENotificationPopupType {
-        Donate, Rate, InverseWorld 
-    }
 
     private ENotificationPopupType _popupType;
 
@@ -42,8 +45,8 @@ public class NotificationPopup : MonoBehaviour {
         switch(_popupType){
             case ENotificationPopupType.Donate :
                 Button_Accept.onClick.AddListener(this.OpenWebsite);
-                Button_Refuse.onClick.AddListener(this.CloseWindow);
-                //Button_Later.onClick.AddListener(); //Remind Later
+                Button_Refuse.onClick.AddListener(this.DontRemindLater);
+                Button_Later.onClick.AddListener(this.RemindLater);
 
                 _Text_Accept.text = "Donate";
                 _Text_Refuse.text = "No Thanks";
@@ -51,7 +54,7 @@ public class NotificationPopup : MonoBehaviour {
                 break;
             case ENotificationPopupType.InverseWorld:
                 Button_Accept.onClick.AddListener(this.CloseWindow);
-                Button_Refuse.onClick.AddListener(this.CloseWindow);
+                Button_Refuse.onClick.AddListener(this.DontRemindLater);
                 Destroy(Button_Later.gameObject);
 
                 _Text_Accept.text = "Try it now";
@@ -60,7 +63,7 @@ public class NotificationPopup : MonoBehaviour {
             case ENotificationPopupType.Rate :
                 Button_Accept.onClick.AddListener(this.OpenGooglePlayPage);
                 Button_Refuse.onClick.AddListener(this.CloseWindow);
-                //Button_Later.onClick.AddListener(); //Remind Later
+                Button_Later.onClick.AddListener(this.RemindLater);
 
                 _Text_Accept.text = "Rate it";
                 _Text_Refuse.text = "No Thanks";
@@ -90,11 +93,41 @@ public class NotificationPopup : MonoBehaviour {
 
     private void OpenWebsite() {
         LevelManager.Instance.OpenGameWebsite();
-        CloseWindow();
+        DontRemindLater();
     }
 
     private void OpenGooglePlayPage() {
         LevelManager.Instance.OpenGooglePlayPage();
+        DontRemindLater();
+    }
+
+    private void RemindLater() {
+        switch (_popupType) {
+            case ENotificationPopupType.Donate:
+                LevelManager.Instance.statsData.notif_tip_time = DateTime.Now;
+                break;
+            case ENotificationPopupType.InverseWorld:
+                LevelManager.Instance.statsData.notif_chaos_time = DateTime.Now;
+                break;
+            case ENotificationPopupType.Rate:
+                LevelManager.Instance.statsData.notif_rate_time = DateTime.Now;
+                break;
+        }
+        CloseWindow();
+    }
+
+    private void DontRemindLater() {
+        switch (_popupType) {
+            case ENotificationPopupType.Donate:
+                LevelManager.Instance.statsData.notif_tip_shown = true;
+                break;
+            case ENotificationPopupType.InverseWorld:
+                LevelManager.Instance.statsData.notif_chaos_shown = true;
+                break;
+            case ENotificationPopupType.Rate:
+                LevelManager.Instance.statsData.notif_rate_shown = true;
+                break;
+        }
         CloseWindow();
     }
 }

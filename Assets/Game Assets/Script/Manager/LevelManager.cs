@@ -3,6 +3,7 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class LevelManager : MonoBehaviour {
 
@@ -238,6 +239,9 @@ public class LevelManager : MonoBehaviour {
         GameSave.current.levels = levelsData;
         GameSave.current.stats = statsData;
         GameSave.current.options = optionsData;
+
+        //Debug.Log("Chaos Shown :" + statsData.notif_chaos_shown + "      Chaos Time : " + statsData.notif_chaos_time);
+
         SaveAndLoad.Save();
     }
 
@@ -528,6 +532,13 @@ public class StatsData {
     public bool stats_tutorial_completed;
     public bool stats_curiousness_achieved;
 
+    public DateTime notif_chaos_time;
+    public DateTime notif_rate_time;
+    public DateTime notif_tip_time;
+    public bool notif_chaos_shown;
+    public bool notif_rate_shown;
+    public bool notif_tip_shown;
+
     public StatsData() {
         stats_amt_fusions = 0;
         stats_amt_rotations = 0;
@@ -537,6 +548,13 @@ public class StatsData {
 
         stats_tutorial_completed = false;
         stats_curiousness_achieved = false;
+
+        notif_chaos_time = DateTime.MinValue;
+        notif_rate_time = DateTime.MinValue;
+        notif_tip_time = DateTime.MinValue;
+        notif_chaos_shown = false;
+        notif_rate_shown = false;
+        notif_tip_shown = false;
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 
 public class LevelSelectManager : MonoBehaviour {
@@ -122,27 +123,44 @@ public class LevelSelectManager : MonoBehaviour {
     }
 
     private void HandlePopupWindows() {
-        //todo determine when to show which
-        return;
+        NotificationPopup.ENotificationPopupType type = NotificationPopup.ENotificationPopupType.None;
+        int amtStars = LevelManager.Instance.GetTotalAmountStars();
+        DateTime currentTime = DateTime.Now;
 
-        int rand = Random.Range(0,3);
-        if (Prefab_PopupWindow != null) {
+        if (!LevelManager.Instance.statsData.notif_chaos_shown && amtStars > 10 && CanShowNotification(currentTime, LevelManager.Instance.statsData.notif_chaos_time)) {
+            type = NotificationPopup.ENotificationPopupType.InverseWorld;
+        } else if (!LevelManager.Instance.statsData.notif_rate_shown && amtStars > 18 && CanShowNotification(currentTime, LevelManager.Instance.statsData.notif_rate_time)) {
+            type = NotificationPopup.ENotificationPopupType.Rate;
+        } else if (!LevelManager.Instance.statsData.notif_tip_shown && amtStars > 36 && CanShowNotification(currentTime, LevelManager.Instance.statsData.notif_tip_time)) {
+            type = NotificationPopup.ENotificationPopupType.Donate;
+        }
+
+        if (type != NotificationPopup.ENotificationPopupType.None && Prefab_PopupWindow != null) {
             GameObject popupWindow = (GameObject) Instantiate(Prefab_PopupWindow,Vector3.zero, Quaternion.identity);
             NotificationPopup notifPopup = popupWindow.GetComponent<NotificationPopup>();
-            switch (rand) {
-                case 0:
+            switch (type) {
+                case NotificationPopup.ENotificationPopupType.Donate:
                     notifPopup.Initialize(NotificationPopup.ENotificationPopupType.Donate);
                     break;
-                case 1:
+                case NotificationPopup.ENotificationPopupType.InverseWorld:
                     notifPopup.Initialize(NotificationPopup.ENotificationPopupType.InverseWorld);
                     break;
-                case 2:
+                case NotificationPopup.ENotificationPopupType.Rate:
                     notifPopup.Initialize(NotificationPopup.ENotificationPopupType.Rate);
+                    break;
+                default :
+                    Debug.LogWarning("Tring to spawn an unimplemented Popup window !");
+                    Destroy(popupWindow);
                     break;
             }
         } else {
             Debug.LogWarning("Popup Prefab not selected in editor !");
         }
 
+    }
+
+    private bool CanShowNotification(DateTime now, DateTime last) {
+        if ((now - last).Days >= 1) return true;
+        else return false;
     }
 }
