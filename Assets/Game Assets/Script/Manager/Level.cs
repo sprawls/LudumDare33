@@ -57,7 +57,10 @@ public class Level {
     }
 
     public void Unlock() {
-        unlocked = true;
+        if (!unlocked) {
+            unlocked = true;
+            LevelManager.Instance.NewLevelWasUnlocked();
+        }
     }
 
     public void SetPar(int _par) {

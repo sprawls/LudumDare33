@@ -8,7 +8,10 @@ public class LevelSelectManager : MonoBehaviour {
     public Button InverseButton;
     public Button LeftButton;
     public Button RightButton;
+    public GameObject InverseButtonEmphasis;
+
     public GameObject Prefab_PopupWindow;
+
 
     public bool alwaysShowInverseButton { get; private set; }
 
@@ -16,6 +19,8 @@ public class LevelSelectManager : MonoBehaviour {
 
     void Awake() {
         alwaysShowInverseButton = true;
+
+        LevelManager.NewLevelUnlocked += ActivateEmphasisOnInverseButton;
     }
 
 	void Start () {
@@ -32,6 +37,8 @@ public class LevelSelectManager : MonoBehaviour {
             swipeInputs.OnSwipeRight -= NextWorld;
             swipeInputs.OnSwipeLeft -= PreviousWorld;
         }
+
+        LevelManager.NewLevelUnlocked -= ActivateEmphasisOnInverseButton;
     }
 
     public void BackToMenu() {
@@ -40,6 +47,7 @@ public class LevelSelectManager : MonoBehaviour {
 
     public void InverseWorld() {
         if (LevelManager.Instance.inInverseAnimation) return;
+        DeactivateEmphasisOnInverseButton();
         LevelManager.Instance.OnClick_InverseWorld();
         UpdateNavigationButtons();
     }
@@ -71,6 +79,14 @@ public class LevelSelectManager : MonoBehaviour {
                 InverseWorld();
             }
         }
+    }
+
+    private void ActivateEmphasisOnInverseButton() {
+        InverseButtonEmphasis.SetActive(true);
+    }
+
+    private void DeactivateEmphasisOnInverseButton() {
+        InverseButtonEmphasis.SetActive(false);
     }
 
     private void UpdateNavigationButtons() {

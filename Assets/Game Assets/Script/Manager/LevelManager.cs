@@ -7,8 +7,9 @@ using System;
 
 public class LevelManager : MonoBehaviour {
 
-    public static bool RecordingMode = true;
+    public static event Action NewLevelUnlocked;
 
+    public static bool RecordingMode = true;
 
     public static LevelManager Instance;
 
@@ -253,6 +254,10 @@ public class LevelManager : MonoBehaviour {
             }
         }
         return null;
+    }
+
+    public void NewLevelWasUnlocked(){
+        if(NewLevelUnlocked != null) NewLevelUnlocked();
     }
 
     public void StartLevel(int world, int level, bool showTuto) {
