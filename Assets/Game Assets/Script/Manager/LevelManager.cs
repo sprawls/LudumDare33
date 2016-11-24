@@ -90,6 +90,8 @@ public class LevelManager : MonoBehaviour {
     }
 
     void OnLevelWasLoaded(int scene) {
+        if (Instance != this) return;
+
         StartCoroutine(UpdateAudioGroupsOnDelay(0f));
         OnSetPause(false);
 
@@ -97,7 +99,7 @@ public class LevelManager : MonoBehaviour {
             UpdateBackgroundColor();
             if (isInverseWorld()) StartCoroutine(FakeInverseWorld());
             MoveLevelSelectTo(currentSelectedWorld, 0f);
-            //Debug.Log(currentSelectedWorld);
+            
         }
     }
 

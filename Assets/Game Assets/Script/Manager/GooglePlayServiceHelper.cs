@@ -81,13 +81,15 @@ public class GooglePlayServiceHelper : MonoBehaviour {
     }
 
     public void UnlockAchievement(string id) {
-        Social.ReportProgress(id, 100.0f, (bool success) => {
-            if (success) {
-                Debug.Log("Achivement unlocked : " + id);
-            } else {
-                Debug.Log("Failed to Unlock : " + id);
-            }
-        });
+        #if (UNITY_ANDROID || (UNITY_IPHONE && !NO_GPGS)) 
+            Social.ReportProgress(id, 100.0f, (bool success) => {
+                if (success) {
+                    Debug.Log("Achivement unlocked : " + id);
+                } else {
+                    Debug.Log("Failed to Unlock : " + id);
+                }
+            });
+        #endif
     }
 
     private void InitializeGooglePlayGames() {
