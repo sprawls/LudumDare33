@@ -79,10 +79,10 @@ public class NotificationPopup : MonoBehaviour {
                 Text_Title.text = "You've been playing for a while. Please consider donating to support the game !";
                 break;
             case ENotificationPopupType.InverseWorld:
-                Text_Title.text = "By clicking the button at the top right, you can access chaos mode and play a new version of every level you completed !";
+                Text_Title.text = "By clicking the button at the top right, you can access chaos mode and play a new version of every level you completed!";
                 break;
             case ENotificationPopupType.Rate :
-                Text_Title.text = "Thanks for playing ! Support the game by rating it on Google Play !";
+                Text_Title.text = "Thanks for playing!\nSupport the game by rating it on Google Play !";
                 break;
         }
     }

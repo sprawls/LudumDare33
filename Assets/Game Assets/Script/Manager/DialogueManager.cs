@@ -120,6 +120,9 @@ public class DialogueManager : MonoBehaviour {
     private void AddInverseWorldTips() {
         possibleMessages.Add("Two multicolored orbs in a single triangle will always result in a balanced triangle.");
         possibleMessages.Add("Multicolored orbs counts as any color.");
+        possibleMessages.Add("Multicolored orbs can fill the role of any other element,");
+        possibleMessages.Add("Try and spread multicolored orbs apart.");
+        possibleMessages.Add("In destruction mode, the goal is to have no balanced triangle.");
     }
 
 
