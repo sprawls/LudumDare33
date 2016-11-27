@@ -235,7 +235,7 @@ public class GameManager : MonoBehaviour {
             InAnimation = false;
         } else {
             yield return new WaitForSeconds(0.5f);
-            SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect,2f,2f,0.25f);
+            SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect,0.8f,1f,0.2f);
         }
     }
 
