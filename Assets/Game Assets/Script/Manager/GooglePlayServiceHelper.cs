@@ -37,7 +37,6 @@ public struct Achievements {
 
 public class GooglePlayServiceHelper : MonoBehaviour {
 
-    private bool _authenticated = false;
     private bool _initialized = false;
 
 	void Awake () {
@@ -70,9 +69,9 @@ public class GooglePlayServiceHelper : MonoBehaviour {
     }
 
     public void ShowAchievementsUI() {
-        if (!_authenticated) AttemptToConnectUser();
-        if (!_authenticated) {
-            Debug.Log("Failed to authenticate local user");
+        if (!IsAuthenticated()) AttemptToConnectUser();
+        if (!IsAuthenticated()) {
+            Debug.Log("Failed to authenticate local user. Cannot Open Achievements");
         } else {
             Debug.Log("Success: " + Social.localUser.userName);
             Social.LoadAchievements(null);
@@ -98,14 +97,9 @@ public class GooglePlayServiceHelper : MonoBehaviour {
     private void InitializeGooglePlayGames() {
         #if (UNITY_ANDROID || (UNITY_IPHONE && !NO_GPGS)) 
         if (!_initialized) {  
-            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
-                // enables saving game progress.
-                //.EnableSavedGames()
-                .Build();
-
-            PlayGamesPlatform.InitializeInstance(config);
-            // recommended for debugging:
+            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
             PlayGamesPlatform.DebugLogEnabled = true;
+            PlayGamesPlatform.InitializeInstance(config);
             // Activate the Google Play Games platform
             PlayGamesPlatform.Activate();
             _initialized = true;
