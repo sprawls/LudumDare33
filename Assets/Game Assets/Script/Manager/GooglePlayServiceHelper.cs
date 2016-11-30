@@ -38,6 +38,7 @@ public struct Achievements {
 public class GooglePlayServiceHelper : MonoBehaviour {
 
     private bool _authenticated = false;
+    private bool _initialized = false;
 
 	void Awake () {
         InitializeGooglePlayGames();
@@ -48,7 +49,7 @@ public class GooglePlayServiceHelper : MonoBehaviour {
     }
 
     public bool AttemptToConnectUser() {
-        if (IsAuthenticated()) return true; 
+        if (IsAuthenticated() || !_initialized) return true; 
         Social.localUser.Authenticate((bool success) => {
             if (success) {
                 Debug.Log("Successfully authenticated local user");
@@ -61,7 +62,7 @@ public class GooglePlayServiceHelper : MonoBehaviour {
 
     public void SignOutUser() {
         #if (UNITY_ANDROID || (UNITY_IPHONE && !NO_GPGS)) 
-            if (IsAuthenticated()) {
+            if (IsAuthenticated() && _initialized) {
                 ((GooglePlayGames.PlayGamesPlatform)Social.Active).SignOut();
             }
         #endif
@@ -82,6 +83,8 @@ public class GooglePlayServiceHelper : MonoBehaviour {
 
     public void UnlockAchievement(string id) {
         #if (UNITY_ANDROID || (UNITY_IPHONE && !NO_GPGS)) 
+            if (!_initialized) return;
+
             Social.ReportProgress(id, 100.0f, (bool success) => {
                 if (success) {
                     Debug.Log("Achivement unlocked : " + id);
@@ -94,6 +97,7 @@ public class GooglePlayServiceHelper : MonoBehaviour {
 
     private void InitializeGooglePlayGames() {
         #if (UNITY_ANDROID || (UNITY_IPHONE && !NO_GPGS)) 
+        if (!_initialized) {  
             PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
                 // enables saving game progress.
                 //.EnableSavedGames()
@@ -104,8 +108,12 @@ public class GooglePlayServiceHelper : MonoBehaviour {
             PlayGamesPlatform.DebugLogEnabled = true;
             // Activate the Google Play Games platform
             PlayGamesPlatform.Activate();
+            _initialized = true;
+        }
+           
+        AttemptToConnectUser();
 
-            AttemptToConnectUser();
+
         #endif
     }
 

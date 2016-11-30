@@ -25,12 +25,15 @@ public class MenuManager : MonoBehaviour {
     }
 
     IEnumerator StartGame() {
-        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect, 0.8f, 1f, 0.5f);
+        float fadeIn = 0.8f;
+        float transitionTime = 0.5f;
+
+        SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect, fadeIn, 1f, transitionTime);
         GameObject.DontDestroyOnLoad(gameObject);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(fadeIn);
 
         Destroy(mainCanvas);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(transitionTime);
 
         foreach (GameObject go in TransitionDestroy) {
             Destroy(go);
