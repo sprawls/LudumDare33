@@ -25,7 +25,7 @@ public class HandleDonateButtonClickedOrTaped : MonoBehaviour {
 
     private void AttemptOpenWebsite() {
         if(!LevelManager.Instance.gameIsPaused && canOpenWebsite) {
-            LevelManager.Instance.OpenGameWebsite();
+            LevelManager.Instance.OpenPaypalWebsite();
             StartCoroutine(OpenWebsiteCooldown());
         }
     }

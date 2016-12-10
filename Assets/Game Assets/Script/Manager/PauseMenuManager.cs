@@ -31,6 +31,10 @@ public class PauseMenuManager : MonoBehaviour {
         LevelManager.Instance.OpenGameWebsite();
     }
 
+    public void OpenPaypal() {
+        LevelManager.Instance.OpenPaypalWebsite();
+    }
+
     public void BackToLevelSelect() {
         SceneTransitionManager.Instance.TransitionToAnotherScene(ScenesEnum.levelSelect);
     }
