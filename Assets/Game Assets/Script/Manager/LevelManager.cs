@@ -377,7 +377,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void OpenPaypalWebsite() {
-        Application.OpenURL("https://www.paypal.com/ca/cgi-bin/webscr?cmd=_flow&SESSION=pX_XUPfP4YbmpGooAlwVJ7blZyEZ5FZrSC6SbFi-WelayyuqCbzqHc0t0-K&dispatch=5885d80a13c0db1f8e263663d3faee8d333dc9aadeed3fe0b5b299d55fd35542");
+        Application.OpenURL("https://www.paypal.me/EntropyGame");
     }
 
     //////////////////////////////////////////////////////

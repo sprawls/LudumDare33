@@ -97,7 +97,7 @@ public class NotificationPopup : MonoBehaviour {
     }
 
     private void OpenGooglePlayPage() {
-        LevelManager.Instance.OpenGooglePlayPage();
+        LevelManager.Instance.OpenPaypalWebsite();
         DontRemindLater();
     }
 
