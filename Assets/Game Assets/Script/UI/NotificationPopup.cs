@@ -53,8 +53,8 @@ public class NotificationPopup : MonoBehaviour {
                 _Text_Later.text = "Remind me Later";
                 break;
             case ENotificationPopupType.InverseWorld:
-                Button_Accept.onClick.AddListener(this.CloseWindow);
-                Button_Refuse.onClick.AddListener(this.DontRemindLater);
+                Button_Accept.onClick.AddListener(this.InverseWorldButtonClicked);
+                Button_Refuse.onClick.AddListener(this.RemindLater);
                 Destroy(Button_Later.gameObject);
 
                 _Text_Accept.text = "Try it now";
@@ -99,6 +99,16 @@ public class NotificationPopup : MonoBehaviour {
     private void OpenGooglePlayPage() {
         LevelManager.Instance.OpenPaypalWebsite();
         DontRemindLater();
+    }
+
+    private void InverseWorldButtonClicked() {
+        LevelSelectManager levelSelectManager = GameObject.FindObjectOfType<LevelSelectManager>();
+        if (levelSelectManager != null) {
+            levelSelectManager.InverseWorld();
+        }
+
+        LevelManager.Instance.statsData.notif_chaos_shown = true;
+        CloseWindow();
     }
 
     private void RemindLater() {

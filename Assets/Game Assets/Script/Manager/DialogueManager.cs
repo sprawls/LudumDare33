@@ -104,7 +104,7 @@ public class DialogueManager : MonoBehaviour {
         possibleMessages.Add("Take your time, we're in no hurry.");
         possibleMessages.Add("You can always return to a level later.");
         possibleMessages.Add("Try and beat the level with the least amount of moves possible.");
-        possibleMessages.Add("You can always reset the level to its origin position by using the button at the top right corner.");
+        possibleMessages.Add("You can always reset the level to its origin position by using the button at the top left corner.");
         possibleMessages.Add("The optimal amount of moves to complete in a level is written in the top right corner.");
         possibleMessages.Add("Your progress on each level is represented by the color of the orb in the level select.");
         possibleMessages.Add("The solution is often simpler than it first appears.");

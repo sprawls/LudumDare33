@@ -370,6 +370,7 @@ public class LevelManager : MonoBehaviour {
 
     public void OpenGameWebsite() {
         Application.OpenURL("http://sprawls.github.io/entropy");
+        UnlockSupporterAchievement();
     }
 
     public void OpenGooglePlayPage() {
@@ -378,6 +379,7 @@ public class LevelManager : MonoBehaviour {
 
     public void OpenPaypalWebsite() {
         Application.OpenURL("https://www.paypal.me/EntropyGame");
+        UnlockSupporterAchievement();
     }
 
     //////////////////////////////////////////////////////
@@ -514,6 +516,9 @@ public class LevelManager : MonoBehaviour {
         if (amtStars >= Achievements.Equilibrium_Stage4_Needed) _GPSHelper.UnlockAchievement(Achievements.Equilibrium_Stage4);
     }
 
+    private void UnlockSupporterAchievement() {
+        _GPSHelper.UnlockAchievement(Achievements.Supporter);
+    }
 
 }
 
