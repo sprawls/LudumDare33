@@ -25,8 +25,8 @@ public class LevelSelectManager : MonoBehaviour {
 
 	void Start () {
         swipeInputs = GetComponent<SimpleSwipeInputDetector>();
-        swipeInputs.OnSwipeRight += NextWorld;
-        swipeInputs.OnSwipeLeft += PreviousWorld;
+        swipeInputs.OnSwipeRight += PreviousWorld;
+        swipeInputs.OnSwipeLeft += NextWorld;
 
         UpdateNavigationButtons();
         HandlePopupWindows();
@@ -34,8 +34,8 @@ public class LevelSelectManager : MonoBehaviour {
 
     void OnDestroy() {
         if (swipeInputs != null) {
-            swipeInputs.OnSwipeRight -= NextWorld;
-            swipeInputs.OnSwipeLeft -= PreviousWorld;
+            swipeInputs.OnSwipeRight -= PreviousWorld;
+            swipeInputs.OnSwipeLeft -= NextWorld;
         }
 
         LevelManager.NewLevelUnlocked -= ActivateEmphasisOnInverseButton;

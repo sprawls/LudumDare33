@@ -76,6 +76,7 @@ namespace GooglePlayGames
             this.mConfiguration = PlayGamesClientConfiguration.DefaultConfiguration;
         }
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GooglePlayGames.PlayGamesPlatform"/> class.
         /// </summary>
@@ -377,6 +378,11 @@ namespace GooglePlayGames
         public void Authenticate(ILocalUser unused, Action<bool> callback)
         {
             Authenticate(callback, false);
+        }
+
+        //Temp fix for unity 5.5
+        public void Authenticate(ILocalUser x, Action<bool, string> callback) {
+            //mPlatform.Authenticate(callback);
         }
 
         /// <summary>
