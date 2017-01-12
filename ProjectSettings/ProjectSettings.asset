@@ -527,9 +527,9 @@ PlayerSettings:
     Game_Performance: 0
     Hub: 0
     Purchasing: 0
-    UNet: 0
+    UNet: 1
     Unity_Ads: 0
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: 6600a700-d541-4dbd-97ac-53f8f584fed5
+  projectName: 'Entropy : A Quest For Harmony'
+  organizationId: sprawl
   cloudEnabled: 0
